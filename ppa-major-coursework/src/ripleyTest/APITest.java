@@ -34,6 +34,9 @@ public class APITest
 		//Create new set
 		Set<String> cities = new HashSet<>();
 		
+		//Print ripley version
+		System.out.println(ripley.getVersion());
+		
 		//Add cities from incident array to set
 		for(int i=0;i<list.size();i++)
 		{
