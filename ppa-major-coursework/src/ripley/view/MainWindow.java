@@ -7,6 +7,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -22,7 +24,7 @@ import javax.swing.SwingConstants;
  *  Footer text
  *  retrun combo box values
  */
-public class MainWindow extends JFrame {
+public class MainWindow extends JFrame implements Observer {
 	
 	private JPanel jpTop;
 	private JPanel jpMid;
@@ -116,6 +118,20 @@ public class MainWindow extends JFrame {
 	public void setFooter(String footer) {
 		
 		jlInfo.setText(footer);
+	}
+	/** 
+	 * Sets the centre panel of the frame.
+	 * @param centrePanel the panel that will be our center panel.
+	 */
+	public void setCentrePanel(JPanel centrePanel) {
+		
+		add(centrePanel, BorderLayout.CENTER);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
