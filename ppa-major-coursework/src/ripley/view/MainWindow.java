@@ -18,7 +18,9 @@ import javax.swing.SwingConstants;
 
 /**
  * @author afrancht
- *
+ * set JPanel to the center
+ *  Footer text
+ *  retrun combo box values
  */
 public class MainWindow extends JFrame {
 	
@@ -85,7 +87,7 @@ public class MainWindow extends JFrame {
 		jpBot.add(jbRight, BorderLayout.EAST);
 		jpBot.add(jlInfo, BorderLayout.CENTER);
 		
-		// Creates border for the center panel
+		// Creates border for the centre panel
 		jpMid.setBorder(BorderFactory.createLineBorder(Color.black));
 		
 		//String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
@@ -105,6 +107,15 @@ public class MainWindow extends JFrame {
 		setVisible(true);
 		
 		
+	}
+	
+	/** 
+	 * Method which sets the footer text of our window.
+	 * @param footer the string that will become our footer. 
+	 */
+	public void setFooter(String footer) {
+		
+		jlInfo.setText(footer);
 	}
 
 }
