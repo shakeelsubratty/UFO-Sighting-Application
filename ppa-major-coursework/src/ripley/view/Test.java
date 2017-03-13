@@ -1,5 +1,7 @@
 package ripley.view;
 
+import java.awt.List;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -27,11 +29,15 @@ public class Test
 		JPanel statsPanel = new StatisticsPanel("Alex", "123");
 		JPanel welcomePanel = new WelcomePanel(ripley);
 		
-		frame.add(statsPanel);
+		//frame.add(statsPanel);
 		frame.add(welcomePanel);
+		JFrame listOfSightings = new ListOfSightings("California");
 		
 		frame.pack();
 		frame.setVisible(true);
+		
+		listOfSightings.pack();
+		listOfSightings.setVisible(true);
 		
 	}
 }
