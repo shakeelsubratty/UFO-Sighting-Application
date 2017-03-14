@@ -11,14 +11,13 @@ import javax.swing.SwingConstants;
 /**
  * Panel to display the statistics of the data within a given time frame.
  * 
- * @author Aaron - K1630486
+ * @author Lewis - K1630576
+ * 		   Aaron - K1630486
  *
  */
 public class StatisticsPanel extends JPanel
 {
 	// GUI Components
-	private JButton leftButton;
-	private JButton rightButton;
 	private JLabel titleLabel;
 	private JLabel infoLabel;
 	
@@ -49,27 +48,9 @@ public class StatisticsPanel extends JPanel
 		infoLabel = new JLabel(info);
 		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		
-		// JButton leftButton
-		leftButton = new JButton("<");
-		
-		// JButton rightButton
-		rightButton = new JButton(">");
-		
 		// Add components to panel
 		this.add(titleLabel, BorderLayout.NORTH);
 		this.add(infoLabel, BorderLayout.CENTER);
-		this.add(leftButton, BorderLayout.WEST);
-		this.add(rightButton, BorderLayout.EAST);
-	}
-	
-	public void setLeftButtonListener(ActionListener l)
-	{
-		leftButton.addActionListener(l);
-	}
-	
-	public void setRightButtonListener(ActionListener l)
-	{
-		rightButton.addActionListener(l);
 	}
 	
 	public void setTitle(String title)
