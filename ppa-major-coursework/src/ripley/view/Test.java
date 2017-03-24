@@ -2,8 +2,9 @@ package ripley.view;
 
 import java.awt.BorderLayout;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+import javax.swing.JLabel;
 
 /**
  * Class used for testing panels - REMOVE BEFORE FINAL SUBMISSION
@@ -13,32 +14,18 @@ import javax.swing.JPanel;
  */
 public class Test
 {
-	/*public static void main(String[] args)
-	{
-		JFrame frame = new JFrame();
-		
-		JPanel statsPanel = new StatisticsPanel("Alex", "123");
-		
-		frame.add(statsPanel);
-		
-		frame.pack();
-		frame.setVisible(true);
-		
-		frame.remove(statsPanel);
-	}*/
-	
 	public static void main(String[] args)
 	{
 		JFrame frame = new JFrame();
-		MapPanel test = new MapPanel("img/map.jpg", "img/alien.jpg");
+		MapPanel test = new MapPanel("img/map.png", "img/alien.png");
 		
 		frame.setLayout(new BorderLayout());
 		
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
+		frame.setResizable(false);
 		frame.add(test, BorderLayout.CENTER);
 		frame.pack();
 		frame.setVisible(true);
-		
 	}
 }
