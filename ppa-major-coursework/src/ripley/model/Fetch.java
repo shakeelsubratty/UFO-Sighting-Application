@@ -85,7 +85,7 @@ public class Fetch {
 	 * Returns the start year given by the Ripley API.
 	 * @return startYear 		the first year in the Ripley API.
 	 */
-	public static int getStartDate() {
+	public static int getStartYear() {
 		
 		return startYear;
 	}
