@@ -23,6 +23,8 @@ public class Fetch {
 	private static String acknowledgement;
 	private static double version;
 	private static int startYear;
+	private static int endYear;
+	private static String lastUpdated;
 	
 	// Incidents within the API
 	private static ArrayList<Incident> incidents;
@@ -43,12 +45,17 @@ public class Fetch {
 		// First year of incidents
 		startYear = ripley.getStartYear();
 		
+		// Last year of incidents
+		endYear = ripley.getLatestYear();
+		
 		// Current date and time
 		String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		
 		// Fetch all of the incidents within the API
 		// Took ~35 seconds to collect ~105000 records.
 		incidents = ripley.getIncidentsInRange(startYear+"-01-01 00:00:00", currentTime);
+		
+		lastUpdated = ripley.getLastUpdated();
 	}
 	
 	/**
@@ -67,5 +74,10 @@ public class Fetch {
 	 */
 	public static String getAcknowledgement() {
 		return acknowledgement;
+	}
+
+	public static String getLastUpdated() {
+		
+		return lastUpdated;
 	}
 }
