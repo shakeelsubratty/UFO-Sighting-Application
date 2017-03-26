@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -29,6 +30,7 @@ public class MainWindow extends JFrame implements Observer {
 	private JPanel jpTop;
 	private JPanel jpMid;
 	private JPanel jpBot;
+	//private JPanel jpFrom;
 	
 	private JButton jbLeft; 
 	private JButton jbRight;
@@ -37,20 +39,21 @@ public class MainWindow extends JFrame implements Observer {
 	private JLabel jlFrom;
 	private JLabel jlTo;
 	
-	private JComboBox jcbFrom;
-	private JComboBox jcbTo;
 	
-	public MainWindow() {
+	private JComboBox<String> jcbFrom;
+	private JComboBox<String> jcbTo;
+
+	public MainWindow(String[] allYears) {
 		
 		super(""); // Sets title for the frame.
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // Ensures program exits upon closing the window.
-		initWidgets(); // Calls our initWIdgets methods to create the widgets.
+		initWidgets(allYears); // Calls our initWIdgets methods to create the widgets.
 	}
 	
 	/**
 	 *  Method which initialises and correctly aligns all the widgets that appear in the frame.
 	 */
-	public void initWidgets() {
+	private void initWidgets(String[] allYears) {
 		
 		setPreferredSize(new Dimension(600,400)); // Sets desired size of frame.
 		setLayout(new BorderLayout()); // Assigns a border layout to the frame.
@@ -58,8 +61,8 @@ public class MainWindow extends JFrame implements Observer {
 		jlFrom = new JLabel(" From: "); // Creates label From next to the drop-down menu.
 		jlTo = new JLabel(" To: "); // Creates label To next to the drop-down menu.
 		
-		jcbFrom = new JComboBox(); // Creates the drop-down menu next to the From label.
-		jcbTo = new JComboBox(); // Creates the drop-down menu next to the To label. 
+		jcbFrom = new JComboBox<String>(allYears); // Creates the drop-down menu next to the From label.
+		jcbTo = new JComboBox<String>(allYears); // Creates the drop-down menu next to the To label. 
 		
 		// Creates the right and left angled brackets buttons. 
 		jbLeft = new JButton("<"); 
@@ -70,7 +73,7 @@ public class MainWindow extends JFrame implements Observer {
 		jpMid = new JPanel();
 		jpBot = new JPanel();
 		
-		// Creates bottom center label. 
+		// Creates bottom centre label. 
 		jlInfo = new JLabel("adfadfad");
 		jlInfo.setHorizontalAlignment(SwingConstants.CENTER);
 		
@@ -91,15 +94,7 @@ public class MainWindow extends JFrame implements Observer {
 		
 		// Creates border for the centre panel
 		jpMid.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		//String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
-
-		//Create the combo box, select item at index 4.
-		////Indices start at 0, so 4 specifies the pig.
-		//jcbFrom = new JComboBox(petStrings);
-		//jcbFrom.setSelectedIndex(4);
-		//jcbFrom.addActionListener(this);
-		
+	
 		// Adds each panel to the corresponding area in the border layout. 
 		add(jpTop, BorderLayout.NORTH);
 		add(jpBot, BorderLayout.SOUTH);
@@ -107,7 +102,6 @@ public class MainWindow extends JFrame implements Observer {
 		
 		pack();
 		setVisible(true);
-		
 		
 	}
 	
@@ -121,11 +115,22 @@ public class MainWindow extends JFrame implements Observer {
 	}
 	/** 
 	 * Sets the centre panel of the frame.
-	 * @param centrePanel the panel that will be our center panel.
+	 * @param centrePanel the panel that will be our centre panel.
 	 */
 	public void setCentrePanel(JPanel centrePanel) {
 		
-		add(centrePanel, BorderLayout.CENTER);
+		jpMid = centrePanel;
+	}
+	
+	/**
+	 * Adds action listeners to the two buttons.
+	 * @param one ActionListener
+	 * @param two ActionListener
+	 */
+	public void addListeners(ActionListener one, ActionListener two) {
+		
+		jbLeft.addActionListener(one);
+		jbRight.addActionListener(two);
 	}
 
 	@Override
