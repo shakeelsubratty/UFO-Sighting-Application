@@ -27,6 +27,8 @@ public class MapPanel extends JPanel
 	private Image map;
 	private Image alien;
 	private ArrayList<JButton> buttons;
+	private ArrayList<Integer> alienHeight;
+	private ArrayList<Integer> alienWidth;
 
 	// Object states
 	private String mapPath;
@@ -66,12 +68,17 @@ public class MapPanel extends JPanel
 		
 		// Initialise buttons array
 		buttons = new ArrayList<>();
+		alienHeight = new ArrayList<>();
+		alienWidth = new ArrayList<>();
 		
 		//Create a button for each alien
 		for(int i=0;i<SoftwareConstants.COORDINATES.length;i++)
 		{
 			// Create new SightingsInfoButton for state i
 			JButton btn = new SightingsInfoButton(i);
+			
+			alienHeight.add(32);
+			alienWidth.add(24);
 			
 			// Set size of button
 			// TODO: Make button resizable
@@ -83,9 +90,29 @@ public class MapPanel extends JPanel
 			
 			// Add button to panel
 			this.add(btn);
+			buttons.add(btn);
 		}
+		
+		// Testing resizeAlien method
+		this.resizeAlien(10, (int) (24*1.5), (int) (32*1.5));
 	}
 
+	/**
+	 * Changes the size of the alien associated with a given state.
+	 * 
+	 * @param state the number representing the state as defined in model.SoftwareConstants
+	 * @param width the width of the alien and its corresponding button
+	 * @param height the height of the alien and its corresponding button
+	 */
+	public void resizeAlien(int state, int width, int height)
+	{
+		alienWidth.set(state, width);
+		alienHeight.set(state, height);
+		buttons.get(state).setSize(width, height);
+		this.validate();
+		this.repaint();
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g)
 	{
@@ -98,7 +125,7 @@ public class MapPanel extends JPanel
 		for (int i = 0; i < SoftwareConstants.COORDINATES.length; i++)
 		{
 			g.drawImage(alien, SoftwareConstants.COORDINATES[i][SoftwareConstants.X],
-					SoftwareConstants.COORDINATES[i][SoftwareConstants.Y], 24, 32, this);
+					SoftwareConstants.COORDINATES[i][SoftwareConstants.Y], alienWidth.get(i), alienHeight.get(i), this);
 		}
 	}
 }
