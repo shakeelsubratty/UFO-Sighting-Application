@@ -57,7 +57,7 @@ public class ListOfSightings extends JFrame
 	{
 		setLayout(new BorderLayout());
 		
-		ArrayList<Incident> incidents = new Ripley("10tLI3GWut+yVD6ql2OMtA==", "tBgm4pVo/g/VqL46EnH7ew==").getIncidentsInRange("2014-08-09 20:33:33", "2014-08-10 20:33:33");
+		ArrayList<Incident> incidents = new Ripley("10tLI3GWut+yVD6ql2OMtA==", "tBgm4pVo/g/VqL46EnH7ew==").getIncidentsInRange("2014-08-09 20:33:33", "2014-08-14 20:33:33");
 		ArrayList<String> incidentStrings = parseIncidents(incidents);
 		
 		String[] arr = new String[incidentStrings.size()];
@@ -76,7 +76,7 @@ public class ListOfSightings extends JFrame
 		sortModel.addElement("Posted");
 
 		JComboBox<String> sortComboBox = new JComboBox<>(sortModel);
-		sortComboBox.addActionListener(new SortSightingsClickListener(sortModel));
+		sortComboBox.addActionListener(new SortSightingsClickListener(sortModel,listModel));
 		
 		add(sortComboBox,BorderLayout.NORTH);
 		add(jspList,BorderLayout.CENTER);	
