@@ -16,31 +16,23 @@ import api.ripley.Ripley;
 public class Fetch {
 
 	// Ripley key's for communicating with API
-	String privateKey = "10tLI3GWut+yVD6ql2OMtA==";
-	String publicKey = "tBgm4pVo/g/VqL46EnH7ew==";
-	
-	// New Ripley API instance
-	Ripley ripley = new Ripley(privateKey, publicKey);
+	private static final String PRIVATE_KEY = "10tLI3GWut+yVD6ql2OMtA==";
+	public static final String PUBLIC_KEY = "tBgm4pVo/g/VqL46EnH7ew==";
 	
 	// API documentation data
-	String acknowledgement;
-	Double version;
-	Integer startYear;
+	private static String acknowledgement;
+	private static double version;
+	private static int startYear;
 	
 	// Incidents within the API
-	ArrayList<Incident> incidents;
-	
-	
-	public Fetch() {
-		
-		// Initialise fetch from API
-		initialise();
-	}
+	private static ArrayList<Incident> incidents;
 	
 	/**
 	 * Collects data from the Ripley API to be used within the program.
 	 */
-	public void initialise() {
+	public static void getData() {
+		
+		Ripley ripley = new Ripley(PRIVATE_KEY, PUBLIC_KEY);
 		
 		// Get working version of the Ripley API.
 		version = ripley.getVersion();
@@ -64,7 +56,7 @@ public class Fetch {
 	 * 
 	 * @return version		The current working version of the API.
 	 */
-	public Double getVersion() {
+	public static double getVersion() {
 		return version;
 	}
 	
@@ -73,7 +65,7 @@ public class Fetch {
 	 * 
 	 * @return acknowledgement		The acknowledgement string provided by the API.
 	 */
-	public String getAcknowledgement() {
+	public static String getAcknowledgement() {
 		return acknowledgement;
 	}
 }

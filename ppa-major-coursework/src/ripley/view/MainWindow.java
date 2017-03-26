@@ -7,6 +7,9 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -17,94 +20,167 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
- * @author afrancht
- *
+ * @author afrancht set JPanel to the center Footer text retrun combo box values
  */
-public class MainWindow extends JFrame {
-	
+public class MainWindow extends JFrame implements Observer {
+
 	private JPanel jpTop;
 	private JPanel jpMid;
 	private JPanel jpBot;
-	
-	private JButton jbLeft; 
+
+	private JButton jbLeft;
 	private JButton jbRight;
-	
+
 	private JLabel jlInfo;
 	private JLabel jlFrom;
 	private JLabel jlTo;
-	
-	private JComboBox jcbFrom;
-	private JComboBox jcbTo;
-	
-	public MainWindow() {
-		
+
+	private JComboBox<Integer> jcbFrom;
+	private JComboBox<Integer> jcbTo;
+
+	//fadfdafa
+	public int currentIndex;
+	public boolean correctDates;
+
+	public MainWindow(Integer[] allYears) {
+
 		super(""); // Sets title for the frame.
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // Ensures program exits upon closing the window.
-		initWidgets(); // Calls our initWIdgets methods to create the widgets.
+		initWidgets(allYears); // Calls our initWIdgets methods to create the widgets.
+		
+		checkIndex();
 	}
-	
+
 	/**
-	 *  Method which initialises and correctly aligns all the widgets that appear in the frame.
+	 * Method which initialises and correctly aligns all the widgets that appear
+	 * in the frame.
 	 */
-	public void initWidgets() {
-		
-		setPreferredSize(new Dimension(600,400)); // Sets desired size of frame.
+	private void initWidgets(Integer[] allYears) {
+
+		/*
+		 * Shows the current index for the current panel that is displayed. 1 -
+		 * Welcome 2 - Map 3 - Statistics 4 - Surprise me
+		 */
+		currentIndex = 1;
+
+		setPreferredSize(new Dimension(600, 400)); // Sets desired size of
+													// frame.
 		setLayout(new BorderLayout()); // Assigns a border layout to the frame.
-		
+
 		jlFrom = new JLabel(" From: "); // Creates label From next to the drop-down menu.
 		jlTo = new JLabel(" To: "); // Creates label To next to the drop-down menu.
-		
-		jcbFrom = new JComboBox(); // Creates the drop-down menu next to the From label.
-		jcbTo = new JComboBox(); // Creates the drop-down menu next to the To label. 
-		
-		// Creates the right and left angled brackets buttons. 
-		jbLeft = new JButton("<"); 
+
+		jcbFrom = new JComboBox<Integer>(allYears); // Creates the drop-down menu next to the From label.
+		jcbTo = new JComboBox<Integer>(allYears); // Creates the drop-down menu next to the To label.
+
+		// Creates the right and left angled brackets buttons.
+		jbLeft = new JButton("<");
 		jbRight = new JButton(">");
-		
-		// Creates panels for the top, mid and bottom. 
+
+		// Creates panels for the top, mid and bottom.
 		jpTop = new JPanel();
 		jpMid = new JPanel();
 		jpBot = new JPanel();
-		
-		// Creates bottom center label. 
-		jlInfo = new JLabel("adfadfad");
+
+		// Creates bottom centre label.
+		jlInfo = new JLabel();
 		jlInfo.setHorizontalAlignment(SwingConstants.CENTER);
-		
-		// Adds layout managers to the top and bottom panels. 
+
+		// Adds layout managers to the top and bottom panels.
 		jpTop.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		jpBot.setLayout(new BorderLayout());
-		
-		// Adds widgets to the top panel. 
+
+		// Adds widgets to the top panel.
 		jpTop.add(jlFrom);
 		jpTop.add(jcbFrom);
 		jpTop.add(jlTo);
 		jpTop.add(jcbTo);
-	
-		// Adds widgets to the bottom panel. 
+
+		// Adds widgets to the bottom panel.
 		jpBot.add(jbLeft, BorderLayout.WEST);
 		jpBot.add(jbRight, BorderLayout.EAST);
 		jpBot.add(jlInfo, BorderLayout.CENTER);
-		
-		// Creates border for the center panel
-		jpMid.setBorder(BorderFactory.createLineBorder(Color.black));
-		
-		//String[] petStrings = { "Bird", "Cat", "Dog", "Rabbit", "Pig" };
 
-		//Create the combo box, select item at index 4.
-		////Indices start at 0, so 4 specifies the pig.
-		//jcbFrom = new JComboBox(petStrings);
-		//jcbFrom.setSelectedIndex(4);
-		//jcbFrom.addActionListener(this);
-		
-		// Adds each panel to the corresponding area in the border layout. 
+		// Creates border for the centre panel
+		jpMid.setBorder(BorderFactory.createLineBorder(Color.black));
+
+		// Adds each panel to the corresponding area in the border layout.
 		add(jpTop, BorderLayout.NORTH);
 		add(jpBot, BorderLayout.SOUTH);
 		add(jpMid, BorderLayout.CENTER);
-		
+
 		pack();
 		setVisible(true);
-		
-		
+
 	}
 
+	/**
+	 * Method which sets the footer text of our window.
+	 * 
+	 * @param footer
+	 *            the string that will become our footer.
+	 */
+	public void setFooter(String footer) {
+
+		jlInfo.setText(footer);
+	}
+
+	/**
+	 * Sets the centre panel of the frame.
+	 * 
+	 * @param centrePanel
+	 *            the panel that will be our centre panel.
+	 */
+	public void setCentrePanel(JPanel centrePanel) {
+
+		jpMid = centrePanel;
+	}
+
+	/**
+	 * Adds action listeners to the two buttons.
+	 * 
+	 * @param one
+	 *            ActionListener
+	 * @param two
+	 *            ActionListener
+	 */
+	public void addListeners(ActionListener one, ActionListener two) {
+
+		jbLeft.addActionListener(one);
+		jbRight.addActionListener(two);
+	}
+
+	@Override
+	public void update(Observable o, Object arg) {
+		// TODO Auto-generated method stub
+
+	}
+
+	public void checkIndex() {
+
+		if (currentIndex == 1) {
+
+			jbLeft.setEnabled(false);
+
+		} else if (currentIndex == 4) {
+
+			jbRight.setEnabled(false);
+
+		} else {
+
+			jbRight.setEnabled(true);
+			jbLeft.setEnabled(true);
+		}
+	}
+
+	// Updates the current Index
+	public void nextIndex() {
+
+		currentIndex++;
+	}
+
+	public void prevIndex() {
+
+		currentIndex--;
+	}
 }
