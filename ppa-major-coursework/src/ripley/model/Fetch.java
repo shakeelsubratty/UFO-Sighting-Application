@@ -57,6 +57,23 @@ public class Fetch {
 		// Fetch all of the incidents within the API
 		// Took ~35 seconds to collect ~105000 records.
 		incidents = ripley.getIncidentsInRange(startYear+"-01-01 00:00:00", currentTime);
-
+	}
+	
+	/**
+	 * Returns the version of the API that is in use.
+	 * 
+	 * @return version		The current working version of the API.
+	 */
+	public Double getVersion() {
+		return version;
+	}
+	
+	/**
+	 * Returns the acknowledgement string that the API provides.
+	 * 
+	 * @return acknowledgement		The acknowledgement string provided by the API.
+	 */
+	public String getAcknowledgement() {
+		return acknowledgement;
 	}
 }
