@@ -56,7 +56,7 @@ public class Fetch {
 	 * 
 	 * @return version		The current working version of the API.
 	 */
-	public Double getVersion() {
+	public static double getVersion() {
 		return version;
 	}
 	
@@ -65,7 +65,7 @@ public class Fetch {
 	 * 
 	 * @return acknowledgement		The acknowledgement string provided by the API.
 	 */
-	public String getAcknowledgement() {
+	public static String getAcknowledgement() {
 		return acknowledgement;
 	}
 }
