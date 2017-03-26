@@ -12,7 +12,6 @@ import javax.swing.SwingConstants;
  * Panel to display the statistics of the data within a given time frame.
  * 
  * @author Lewis - K1630576
- * 		   Aaron - K1630486
  *
  */
 public class StatisticsWindow extends JPanel
