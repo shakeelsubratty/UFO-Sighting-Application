@@ -31,7 +31,7 @@ public class APITest
 		System.out.println("Start year: " + ripley.getStartYear() + "\nLatest year: " + ripley.getLatestYear());
 		
 		//Get incidents from 2016
-		ArrayList<Incident> list = ripley.getIncidentsInRange("2016-01-01 00:00:00", "2016-12-31 23:59:59");
+		ArrayList<Incident> list = ripley.getIncidentsInRange("1997-01-01 00:00:00", "1997-12-31 23:59:59");
 		
 		//Create new set
 		Set<String> cities = new HashSet<>();
@@ -44,9 +44,11 @@ public class APITest
 		{
 			cities.add(list.get(i).getCity());
 		}
-		
+		System.out.println(list.size());
 		//Print set
 		System.out.println(cities.toString());
+		
+		System.out.println(ripley.getAcknowledgementString());
 	}
 }
 
