@@ -23,8 +23,9 @@ public class MainWindowListener {
 		
 		this.model = model;
 		this.view = view;
-		
+		view.setFooter(model.lastUpdated());
 		view.addListeners(new LeftButtonListener(), new RightButtonListener());
+		System.out.println(model.lastUpdated());
 	}
 
 	
@@ -34,6 +35,7 @@ public class MainWindowListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			goNextPanel();
+			System.out.println(view.currentIndex);
 			
 		}
 	}
@@ -44,18 +46,21 @@ public class MainWindowListener {
 		public void actionPerformed(ActionEvent e) {
 			
 			goPreviousPanel();
+			System.out.println(view.currentIndex);
 			
 		}
 	}
 	
 	public void goNextPanel(){
 		
-		
+		view.nextIndex();
+		view.checkIndex();
 		
 	}
 	
 	public void goPreviousPanel() {
 		
-		
+		view.prevIndex();
+		view.checkIndex();
 	}
 }

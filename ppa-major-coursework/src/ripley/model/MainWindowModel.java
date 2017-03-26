@@ -22,23 +22,28 @@ public class MainWindowModel {
 	
 	private Ripley ripley;
 	
-	public MainWindowModel() {
+	public MainWindowModel(Ripley ripley) {
 		
-		ripley = new Ripley("10tLI3GWut+yVD6ql2OMtA==","10tLI3GWut+yVD6ql2OMtA");
+		this.ripley = ripley;
+		
 		
 	}
 	
-	public String[] ripleyYearArray() {
+	/**
+	 * Fetches, creates and returns the string array of all the years available in the ripley API
+	 * @return String with all years in the Ripley API.
+	 */
+	public Integer[] ripleyYearArray() {
 		
 		int startYear = ripley.getStartYear();
 		int endYear = ripley.getLatestYear();
 		int iterator = 0;
 		
-		String[] dateRange = new String[(endYear - startYear)];
+		Integer[] dateRange = new Integer[(endYear - startYear)];
 		
 		for (int i = startYear; i < endYear; i++) {
 			
-			dateRange[iterator] = String.valueOf(i);
+			dateRange[iterator] = i;
 			iterator++;
 		}
 		
@@ -46,8 +51,13 @@ public class MainWindowModel {
 			
 	}
 	
-	
-	
+	/**
+	 * Method that returns string with last updated sighting.
+	 */
+	public String lastUpdated() {
+		
+		return ripley.getLastUpdated();
+	}
 	
 	
 	
