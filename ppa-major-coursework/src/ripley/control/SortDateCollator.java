@@ -29,6 +29,7 @@ public class SortDateCollator extends SortCollator
 			{
 				if(Integer.parseInt(matcher.group(3)) == Integer.parseInt(targetMatcher.group(3)))
 				{
+					//If date is the same, parse the time to determine order
 					return parseTime(matcher,targetMatcher);
 				}
 				else if(Integer.parseInt(matcher.group(3)) >= Integer.parseInt(targetMatcher.group(3)))

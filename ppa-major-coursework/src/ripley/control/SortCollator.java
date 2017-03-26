@@ -5,6 +5,7 @@ import java.text.Collator;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+//Provides general structure for sorting classes to override 
 public abstract class SortCollator extends Collator 
 {
 	private String patternString;
@@ -28,6 +29,9 @@ public abstract class SortCollator extends Collator
 		return 0;
 	}
 	
+	//Subclasses override parse() to implement their own parsing methods
+	//Returns 0,-1,or 1 if the source string should be equal to, behind or ahead of the
+	//target string.
 	abstract public int parse(Matcher matcher, Matcher targetMatcher);
 
 	@Override

@@ -28,6 +28,7 @@ public class SortPostedDateCollator extends SortCollator {
 			{
 				if(Integer.parseInt(matcher.group(3)) == Integer.parseInt(targetMatcher.group(3)))
 				{
+					//If date is equal
 					return 0;
 				}
 				else if(Integer.parseInt(matcher.group(3)) >= Integer.parseInt(targetMatcher.group(3)))

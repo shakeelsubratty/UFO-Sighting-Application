@@ -30,25 +30,14 @@ import ripley.control.SortSightingsClickListener;
 public class ListOfSightings extends JFrame 
 {
 	private JList<String> incidentList;
-	private DefaultComboBoxModel<String> listModel;
-	private DefaultComboBoxModel<String> sortModel;
-	
-	private Pattern pattern;
-	
+	private DefaultComboBoxModel<String> listModel; //Model for the displayed list
+	private DefaultComboBoxModel<String> sortModel;	//Model for the drop down filter
+		
 	public ListOfSightings(String state)
 	{
 		super(state);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(800, 400));
-		
-//		String dateOfIncidentPattern = "\\d\\d\\d\\d-\\d\\d-\\d\\d";
-//		String timeOfIncidentPattern = "\\d\\d:\\d\\d:\\d\\d";
-//		String locationPattern = "([a-zA-Z()]+)\\s\\p{upper}\\p{upper}";
-//		//String shapeOfIncidentPattern = "";
-//		String durationPattern;
-//		String datePostedPattern;
-		
-		//pattern = Pattern.compile(dateOfIncidentPattern);
 		
 		initialise();
 	}
@@ -57,11 +46,12 @@ public class ListOfSightings extends JFrame
 	{
 		setLayout(new BorderLayout());
 		
+		//Get some data, should be changed to fit with model classes
 		ArrayList<Incident> incidents = new Ripley("10tLI3GWut+yVD6ql2OMtA==", "tBgm4pVo/g/VqL46EnH7ew==").getIncidentsInRange("2014-08-09 20:33:33", "2014-08-14 20:33:33");
 		ArrayList<String> incidentStrings = parseIncidents(incidents);
 		
 		String[] arr = new String[incidentStrings.size()];
-		listModel = new DefaultComboBoxModel<>(incidentStrings.toArray(arr));
+		listModel = new DefaultComboBoxModel<>(incidentStrings.toArray(arr));	//Add data to list model
 
 		incidentList = new JList<>(listModel);
 		incidentList.addMouseListener(new ListOfSightingsClickListener(listModel));
@@ -73,7 +63,7 @@ public class ListOfSightings extends JFrame
 		sortModel.addElement("City");
 		sortModel.addElement("Shape");
 		sortModel.addElement("Duration");
-		sortModel.addElement("Posted");
+		sortModel.addElement("Posted");			//Add elements to drop down sort filter
 
 		JComboBox<String> sortComboBox = new JComboBox<>(sortModel);
 		sortComboBox.addActionListener(new SortSightingsClickListener(sortModel,listModel));
@@ -84,6 +74,7 @@ public class ListOfSightings extends JFrame
 		setVisible(true);
 	}
 	
+	//Parse incidents to extract info and present in a concise way
 	private ArrayList<String> parseIncidents(ArrayList<Incident> incArr)
 	{
 		ArrayList<String> newIncidentsArray = new ArrayList<>();

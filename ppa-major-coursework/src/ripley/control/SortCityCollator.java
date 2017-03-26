@@ -8,7 +8,8 @@ import java.util.regex.Pattern;
 
 public class SortCityCollator extends SortCollator 
 {
-	public SortCityCollator(String patternString) {
+	public SortCityCollator(String patternString) 
+	{
 		super(patternString);
 		// TODO Auto-generated constructor stub
 	}
