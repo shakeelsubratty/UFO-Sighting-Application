@@ -80,4 +80,22 @@ public class Fetch {
 		
 		return lastUpdated;
 	}
+	
+	/**
+	 * Returns the start year given by the Ripley API.
+	 * @return startYear 		the first year in the Ripley API.
+	 */
+	public static int getStartDate() {
+		
+		return startYear;
+	}
+	
+	/**
+	 * Returns the last year given by the Ripley API.
+	 * @return endYear 		the last year in the Ripley API.
+	 */
+	public static int getEndYear() {
+		
+		return endYear;
+	}
 }
