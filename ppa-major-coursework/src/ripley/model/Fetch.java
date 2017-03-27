@@ -53,7 +53,7 @@ public class Fetch {
 		
 		// Fetch all of the incidents within the API
 		// Took ~35 seconds to collect ~105000 records.
-		incidents = ripley.getIncidentsInRange(startYear+"-01-01 00:00:00", currentTime);
+		//incidents = ripley.getIncidentsInRange(startYear+"-01-01 00:00:00", currentTime);
 		
 		lastUpdated = ripley.getLastUpdated();
 	}

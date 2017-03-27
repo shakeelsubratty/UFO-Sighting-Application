@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 /**
- * @author afrancht set JPanel to the center Footer text retrun combo box values
+ * @author Alex Franch Tapia - K1631466
  */
 public class MainWindow extends JFrame implements Observer {
 
@@ -38,17 +38,17 @@ public class MainWindow extends JFrame implements Observer {
 	private JComboBox<Integer> jcbFrom;
 	private JComboBox<Integer> jcbTo;
 
-	//fadfdafa
-	public int currentIndex;
-	public boolean correctDates;
+	private int currentIndex;
+	private boolean correctDates;
 
 	public MainWindow(Integer[] allYears) {
 
 		super(""); // Sets title for the frame.
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // Ensures program exits upon closing the window.
 		initWidgets(allYears); // Calls our initWIdgets methods to create the widgets.
+		setLocationRelativeTo(null);
 		
-		checkIndex();
+		
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class MainWindow extends JFrame implements Observer {
 		 */
 		currentIndex = 1;
 
-		setPreferredSize(new Dimension(600, 400)); // Sets desired size of
+		setPreferredSize(new Dimension(800, 600)); // Sets desired size of
 													// frame.
 		setLayout(new BorderLayout()); // Assigns a border layout to the frame.
 
@@ -72,10 +72,15 @@ public class MainWindow extends JFrame implements Observer {
 
 		jcbFrom = new JComboBox<Integer>(allYears); // Creates the drop-down menu next to the From label.
 		jcbTo = new JComboBox<Integer>(allYears); // Creates the drop-down menu next to the To label.
+		jcbFrom.setSelectedItem(null);
+		jcbTo.setSelectedItem(null);
 
 		// Creates the right and left angled brackets buttons.
 		jbLeft = new JButton("<");
 		jbRight = new JButton(">");
+		
+		jbLeft.setEnabled(false);
+		jbRight.setEnabled(false);
 
 		// Creates panels for the top, mid and bottom.
 		jpTop = new JPanel();
@@ -133,7 +138,8 @@ public class MainWindow extends JFrame implements Observer {
 	 */
 	public void setCentrePanel(JPanel centrePanel) {
 
-		jpMid = centrePanel;
+		jpMid.add(centrePanel); 
+		pack();
 	}
 
 	/**
@@ -144,10 +150,12 @@ public class MainWindow extends JFrame implements Observer {
 	 * @param two
 	 *            ActionListener
 	 */
-	public void addListeners(ActionListener one, ActionListener two) {
+	public void addListeners(ActionListener one, ActionListener two, ActionListener three, ActionListener four) {
 
 		jbLeft.addActionListener(one);
 		jbRight.addActionListener(two);
+		jcbFrom.addActionListener(three);
+		jcbTo.addActionListener(four);
 	}
 
 	@Override
@@ -156,15 +164,20 @@ public class MainWindow extends JFrame implements Observer {
 
 	}
 
+	/**
+	 * Checks what the current index is and enables or disables buttons accordingly.  
+	 */
 	public void checkIndex() {
 
 		if (currentIndex == 1) {
 
 			jbLeft.setEnabled(false);
+			jbRight.setEnabled(true);
 
 		} else if (currentIndex == 4) {
 
 			jbRight.setEnabled(false);
+			jbLeft.setEnabled(true);
 
 		} else {
 
@@ -173,14 +186,47 @@ public class MainWindow extends JFrame implements Observer {
 		}
 	}
 
-	// Updates the current Index
+	/**
+	 * Adds one to current index.
+	 */
 	public void nextIndex() {
 
 		currentIndex++;
 	}
 
+	/**
+	 * Subtracts one from current index. 
+	 */
 	public void prevIndex() {
 
 		currentIndex--;
+	}
+
+	/**
+	 * Returns the date from the From: drop down menu. 
+	 * @return integer which represents the starting year.
+	 */
+	public Integer getFromDate() {
+		
+		return (Integer)jcbFrom.getSelectedItem();
+	}
+	
+	/**
+	 * Returns the date from the To: drop down menu. 
+	 * @return integer which represents the ending year.
+	 */
+	public Integer getToDate() {
+		
+		return (Integer)jcbTo.getSelectedItem();
+		
+	}
+
+	/** 
+	 * Disables the drop down menus.
+	 */
+	public void disableDropDowns() {
+		
+		jcbFrom.setEnabled(false);
+		jcbTo.setEnabled(false);
 	}
 }
