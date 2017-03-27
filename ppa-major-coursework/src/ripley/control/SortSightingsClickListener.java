@@ -54,7 +54,7 @@ public class SortSightingsClickListener  implements ActionListener
 	
 	private void sortCity()
 	{
-		String cityPattern = "City: ([a-zA-Z-./]+\\s([a-zA-Z]+\\s)*)";
+		String cityPattern = "City: ([a-zA-Z-./]+\\s([a-zA-Z()]+\\s)*)";
 		SortCollator collator = new SortCityCollator(cityPattern);
 		bucketSort(collator);
 	}
@@ -68,7 +68,7 @@ public class SortSightingsClickListener  implements ActionListener
 	}
 	private void sortDuration()
 	{
-		String durationPattern = "Duration: ((\\d)+\\s(second(s)?|minute(s)?|hour(s)?))";
+		String durationPattern = "Duration: ((([\\d])+)\\s((second(s)?)|(minut(e)?(s)?)|(hour(s)?)?))";
 		SortDurationCollator collator = new SortDurationCollator(durationPattern);
 		bucketSort(collator);
 	}
@@ -82,28 +82,20 @@ public class SortSightingsClickListener  implements ActionListener
 	private void bucketSort(SortCollator collator)
 	{
 		int size = listModel.getSize();
-		System.out.println(size);
-
-		for(int i = 0; i < size; i++)
+		for(int i = 1; i < size; i++)
 		{
 			for(int j = 1; j < (size - i); j++)
 			{
 
-				switch (collator.compare(listModel.getElementAt(j-1), listModel.getElementAt(j))) 
+				if(collator.compare(listModel.getElementAt(j-1), listModel.getElementAt(j)) > 0) 
 				{
-				case 1:
 					String temp1 = listModel.getElementAt(j-1);
 					String temp2 = listModel.getElementAt(j);
-
+					
 					listModel.removeElementAt(j-1);
 					listModel.insertElementAt(temp2, j-1);
 					listModel.removeElementAt(j);
 					listModel.insertElementAt(temp1, j);
-
-					break;
-
-				default:
-					break;
 				}
 			}
 		}

@@ -36,7 +36,7 @@ public class ListOfSightings extends JFrame
 	public ListOfSightings(String state)
 	{
 		super(state);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setPreferredSize(new Dimension(800, 400));
 		
 		initialise();

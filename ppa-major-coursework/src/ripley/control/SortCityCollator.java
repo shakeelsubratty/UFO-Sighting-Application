@@ -18,6 +18,7 @@ public class SortCityCollator extends SortCollator
 	{
 		if(targetMatcher.find())
 		{
+			System.out.println(matcher.group(1));
 			return matcher.group(1).compareTo(targetMatcher.group(1));
 		}
 		return 0;
