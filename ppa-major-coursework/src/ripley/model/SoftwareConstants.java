@@ -113,6 +113,6 @@ public class SoftwareConstants
 	public static final int X = 0;
 	public static final int Y = 1;
 	
-	public static final String ALIEN_PATH = 'img/alien.png';
-	public static final String MAP_PATH = 'img/map.png';
+	public static final String ALIEN_PATH = "img/alien.png";
+	public static final String MAP_PATH = "img/map.png";
 }
