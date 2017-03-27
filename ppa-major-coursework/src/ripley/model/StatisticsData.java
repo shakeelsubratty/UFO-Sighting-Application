@@ -62,4 +62,8 @@ public class StatisticsData {
 		return activePanel;
 		
 	}
+	
+	public static void setActivePanel(StatisticsPanel nextPanel) {
+		activePanel = nextPanel;
+	}
 }
