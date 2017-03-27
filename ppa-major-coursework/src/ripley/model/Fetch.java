@@ -56,6 +56,11 @@ public class Fetch {
 		lastUpdated = ripley.getLastUpdated();
 	}
 	
+	public static String getIncidentDetails(String id)
+	{
+		return ripley.getIncidentDetails(id);
+	}
+	
 	/**
 	 * Returns the arraylist of incidents between the chosen dates.
 	 * @param startDate
@@ -65,6 +70,7 @@ public class Fetch {
 	public static ArrayList<Incident> getIncidents(int startDate, int endDate)
 	{
 		incidents = ripley.getIncidentsInRange(startDate+"-01-01 00:00:00", endDate+"-01-01 00:00:00");
+		System.out.println(incidents.get(0).toString());
 		return incidents;
 	}
 	

@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import ripley.model.Fetch;
+
 /**
  * @author Alex Franch Tapia - K1631466
  */
@@ -162,7 +164,7 @@ public class MainWindow extends JFrame implements Observer {
 	public void update(Observable o, Object arg) 
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	/**

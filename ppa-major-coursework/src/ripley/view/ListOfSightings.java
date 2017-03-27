@@ -2,28 +2,15 @@ package ripley.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JList;
-import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
-import com.mysql.jdbc.StreamingNotifiable;
-
 import api.ripley.Incident;
-import api.ripley.Ripley;
-import ripley.control.DoubleClickListener;
 import ripley.control.ListOfSightingsClickListener;
 import ripley.control.SortSightingsClickListener;
 import ripley.model.Fetch;
@@ -88,7 +75,7 @@ public class ListOfSightings extends JFrame
 		ArrayList<String> newIncidentsArray = new ArrayList<>();
 		for (Incident incident : incArr) 
 		{
-			newIncidentsArray.add("Time: " + incident.getDateAndTime() + " | City: " + incident.getCity() +
+			newIncidentsArray.add("ID: " + incident.getIncidentID() + " | Time: " + incident.getDateAndTime() + " | City: " + incident.getCity() +
 					" | Shape: " + incident.getShape() + " | Duration: " + incident.getDuration()
 					+ " | Posted: " + incident.getPosted());
 		}

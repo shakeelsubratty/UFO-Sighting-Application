@@ -6,6 +6,10 @@ package ripley.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import javax.swing.JPanel;
+
+import com.mysql.fabric.xmlrpc.base.Array;
+
 import api.ripley.Incident;
 
 /**
@@ -25,13 +29,14 @@ public class MainWindowModel extends Observable
 	 * brackets in name (ie outside the usa) methods for stats - perhaps Lewis.
 	 * 
 	 */
+
 	
 	private ArrayList<Incident> incidents;
-
 	private Integer[] dateRange;
 
-	public MainWindowModel() {
-
+	public MainWindowModel() 
+	{
+		
 	}
 
 	/**
