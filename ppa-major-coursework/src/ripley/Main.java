@@ -1,7 +1,12 @@
 package ripley;
 
+import ripley.control.MainWindowListener;
+import ripley.model.Fetch;
 import ripley.model.MainWindowModel;
+import ripley.model.SoftwareConstants;
 import ripley.view.MainWindow;
+import ripley.view.MapPanel;
+import ripley.view.WelcomePanel;
 
 /**
  * 
@@ -9,7 +14,7 @@ import ripley.view.MainWindow;
  * @author Lewis - K1630576
  * @author Aaron - K1630486
  * @author Shakeel - K1631133
- * @author Alex - K1631466
+ * @author Alex Franch Tapia - K1631466
  *
  */
 public class Main {
@@ -20,11 +25,16 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		MainWindowModel windowModel = new MainWindowModel();
-		MainWindow mainWindow = new MainWindow(windowModel.ripleyYearArray());
 		
-		mainWindow.setVisible(true);
+		Fetch.getData();
+		MainWindowModel mainWindowModel = new MainWindowModel();
+		WelcomePanel welcomePanel = new WelcomePanel();
+		MainWindow mainWindow = new MainWindow(mainWindowModel.ripleyYearArray());
+		MainWindowListener controller = new MainWindowListener(mainWindowModel, mainWindow);
 		
+		//MapPanel mapPanel = new MapPanel(SoftwareConstants.ALIEN_PATH);
+		
+	
 		//Observable needs to be added to required model management class.
 	}
 }
