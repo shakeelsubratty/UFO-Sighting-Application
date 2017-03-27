@@ -15,6 +15,7 @@ import api.ripley.Ripley;
  */
 public class Fetch {
 
+	private static Ripley ripley;
 	// Ripley key's for communicating with API
 	private static final String PRIVATE_KEY = "10tLI3GWut+yVD6ql2OMtA==";
 	public static final String PUBLIC_KEY = "tBgm4pVo/g/VqL46EnH7ew==";
@@ -34,7 +35,7 @@ public class Fetch {
 	 */
 	public static void getData() {
 		
-		Ripley ripley = new Ripley(PRIVATE_KEY, PUBLIC_KEY);
+		ripley = new Ripley(PRIVATE_KEY, PUBLIC_KEY);
 		
 		// Get working version of the Ripley API.
 		version = ripley.getVersion();
@@ -51,11 +52,41 @@ public class Fetch {
 		// Current date and time
 		String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
 		
-		// Fetch all of the incidents within the API
-		// Took ~35 seconds to collect ~105000 records.
-		//incidents = ripley.getIncidentsInRange(startYear+"-01-01 00:00:00", currentTime);
 		
 		lastUpdated = ripley.getLastUpdated();
+	}
+	
+	/**
+	 * Returns the arraylist of incidents between the chosen dates.
+	 * @param startDate
+	 * @param endDate
+	 * @return
+	 */
+	public static ArrayList<Incident> getIncidents(int startDate, int endDate)
+	{
+		incidents = ripley.getIncidentsInRange(startDate+"-01-01 00:00:00", endDate+"-01-01 00:00:00");
+		return incidents;
+	}
+	
+	/**
+	 * Loops through all incidents that have been loaded, and returns those that occurred
+	 * in the specified state.
+	 * @param state
+	 * @return
+	 */
+	public static ArrayList<Incident> getIncidentsInState(int state)
+	{
+		System.out.println("hi");
+
+		ArrayList<Incident> stateIncidents = new ArrayList<>();
+		for(Incident incident : incidents)
+		{
+			if(incident.getState().equals(SoftwareConstants.STATES[state]))
+			{
+				stateIncidents.add(incident);
+			}
+		}
+		return stateIncidents;
 	}
 	
 	/**

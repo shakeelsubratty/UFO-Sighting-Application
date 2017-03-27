@@ -23,10 +23,10 @@ public class StatisticsData {
 	
 	public void initialise() {
 		panels = new HashMap<String, Integer>();
-		panels.put("Hoaxes", 1);
-		panels.put("Non US Sightings", 2);
-		panels.put("Likeliest States", 3);
-		panels.put("Sightings via Other Platforms", 4);
+		panels.put("Hoaxes", null);
+		panels.put("Non US Sightings", null);
+		panels.put("Likeliest States", null);
+		panels.put("Sightings via Other Platforms", null);
 
 		// activePanel =;
 	}
