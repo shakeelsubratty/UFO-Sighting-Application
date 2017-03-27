@@ -25,11 +25,11 @@ public class StatisticsPanel extends JPanel
 	private String title;
 	private String info;
 	
-	public StatisticsPanel(String title, Integer integer)
+	public StatisticsPanel(String title, String string)
 	{
 		// Update object states
 		this.title = title;
-		this.info = integer.toString();
+		this.info = string;
 		
 		// Initialise GUI components
 		initialise();

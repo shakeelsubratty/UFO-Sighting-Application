@@ -15,20 +15,14 @@ import ripley.view.StatisticsPanel;
 public class StatisticsData {
 	
 	static StatisticsPanel activePanel;
-	static Map<String, Integer> panels;
-
-	public StatisticsData() {
-		initialise();
-	}
+	static Map<String, String> panels;
 	
 	public void initialise() {
-		panels = new HashMap<String, Integer>();
-		panels.put("Hoaxes", null);
-		panels.put("Non US Sightings", null);
-		panels.put("Likeliest States", null);
-		panels.put("Sightings via Other Platforms", null);
-
-		// activePanel =;
+		panels = new HashMap<String, String>();
+		panels.put("Hoaxes", Integer.toString(StatisticsParse.hoaxes));
+		panels.put("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings));
+		panels.put("Likeliest States", StatisticsParse.likeliestState);
+		panels.put("Sightings via Other Platforms", Integer.toString(StatisticsParse.sightingsOtherPlatforms));
 	}
 	
 	/**
@@ -36,7 +30,7 @@ public class StatisticsData {
 	 * 
 	 * @return panels		StatisticsPanel's inside of panels HashMap
 	 */
-	public static Map<String, Integer> getPanels() {
+	public static Map<String, String> getPanels() {
 		return panels;
 	}
 	
@@ -55,7 +49,7 @@ public class StatisticsData {
 	 * @param key		The key to collect data in relation to
 	 * @return panels.get(key)		Return the data related to the specified key
 	 */
-	public static Integer getData(String key) {
+	public static String getData(String key) {
 		return panels.get(key);
 	}
 	
