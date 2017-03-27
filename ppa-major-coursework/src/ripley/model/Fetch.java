@@ -69,6 +69,27 @@ public class Fetch {
 	}
 	
 	/**
+	 * Loops through all incidents that have been loaded, and returns those that occurred
+	 * in the specified state.
+	 * @param state
+	 * @return
+	 */
+	public static ArrayList<Incident> getIncidentsInState(int state)
+	{
+		System.out.println("hi");
+
+		ArrayList<Incident> stateIncidents = new ArrayList<>();
+		for(Incident incident : incidents)
+		{
+			if(incident.getState().equals(SoftwareConstants.STATES[state]))
+			{
+				stateIncidents.add(incident);
+			}
+		}
+		return stateIncidents;
+	}
+	
+	/**
 	 * Returns the version of the API that is in use.
 	 * 
 	 * @return version		The current working version of the API.

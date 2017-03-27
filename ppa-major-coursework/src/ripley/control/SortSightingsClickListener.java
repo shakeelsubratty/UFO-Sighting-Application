@@ -2,17 +2,19 @@ package ripley.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 
+import com.mysql.fabric.xmlrpc.base.Array;
+
 public class SortSightingsClickListener  implements ActionListener 
 {
-	private DefaultComboBoxModel<String> model;
 	private DefaultComboBoxModel<String> listModel;
-	public SortSightingsClickListener(DefaultComboBoxModel<String> model,DefaultComboBoxModel<String> listModel) 
+	
+	public SortSightingsClickListener(DefaultComboBoxModel<String> listModel) 
 	{
-		this.model = model;
 		this.listModel = listModel;
 	}
 
@@ -100,4 +102,5 @@ public class SortSightingsClickListener  implements ActionListener
 			}
 		}
 	}
+	
 }
