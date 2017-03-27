@@ -8,22 +8,23 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
 import api.ripley.Ripley;
+import ripley.model.Fetch;
 
 public class WelcomePanel extends JPanel 
 {
-	public WelcomePanel(Ripley ripley)
+	public WelcomePanel()
 	{
-		initialise(ripley);
+		initialise();
 	}
 	
-	private void initialise(Ripley ripley)
+	private void initialise()
 	{
 		//BorderLayout manager
 		setPreferredSize(new Dimension(450, 450));
 		this.setLayout(new BorderLayout());
 	
 		JLabel text = new JLabel();
-		String str = "Welcome to the Ripley API v" + ripley.getVersion()
+		String str = "Welcome to the Ripley API v" + Fetch.getVersion()
 				+ " <br>Please select from the range of dates above, "
 				+ " <br> in order to begin analysing UFO sighting data"
 				+ " <br>"
