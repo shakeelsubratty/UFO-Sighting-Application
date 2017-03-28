@@ -4,9 +4,10 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+
+import ripley.model.StatisticsData;
+import ripley.model.StatisticsParse;
 
 /**
  * Panel to display the statistics of the data within a given time frame.
@@ -23,11 +24,11 @@ public class StatisticsWindow extends JPanel
 	
 	public StatisticsWindow()
 	{	
-		StatisticsPanel hoaxes = new StatisticsPanel("Hoaxes", "test");
-		StatisticsPanel nonUSASightings = new StatisticsPanel("Non US Sightings", "test");
-		StatisticsPanel likeliestStates = new StatisticsPanel("Likeliest States", "test");
-		StatisticsPanel otherPlatformSightings = new StatisticsPanel("Sightings via Other Platforms", "test");
-		activePanel = hoaxes;
+		for(String key : StatisticsData.getPanelsKeySet()) {
+			new StatisticsPanel(key, StatisticsData.getData(key));
+		}
+		
+		//activePanel = StatisticsData.getActivePanel();
 		// Initialise GUI components
 		initialise();
 	}
