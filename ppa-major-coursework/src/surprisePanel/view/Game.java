@@ -42,7 +42,7 @@ public class Game extends JFrame
 		// ArrayList<ControlPanel> controls
 		controls.add(new ControlPanel("UFO"));
 		controls.add(new ControlPanel("Alien"));
-		controls.add(new ControlPanel("Dog"));
+		controls.add(new ControlPanel("Scrap"));
 		controls.add(new ControlPanel("Bone"));
 		controls.add(new ControlPanel("Martin"));
 		
