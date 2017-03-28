@@ -85,13 +85,18 @@ public class Fetch {
 		System.out.println("hi");
 
 		ArrayList<Incident> stateIncidents = new ArrayList<>();
+		
 		for(Incident incident : incidents)
 		{
-			if(incident.getState().equals(SoftwareConstants.STATES[state]))
+			System.out.print(incident.getState() + ", \t");
+			System.out.println(incident.toString());
+			if(incident.getState().equals(SoftwareConstants.STATE_ABBREVIATIONS[state]))
 			{
+				
 				stateIncidents.add(incident);
 			}
 		}
+		System.out.println(stateIncidents.size());
 		return stateIncidents;
 	}
 	
