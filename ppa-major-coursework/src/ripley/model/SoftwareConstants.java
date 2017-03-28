@@ -33,15 +33,15 @@ public class SoftwareConstants
 	// 							Y -> (Y/720) * map.getHeight()
 	
 	public static final int[][] COORDINATES = {
-			{0, 0},				// Alabama
+			{787, 475},			// Alabama
 			{265, 395},			// Arizona
 			{650, 420},			// Arkansas
 			{141, 392},			// California
 			{374, 299},			// Colorado
 			{0, 0},				// Conneticut 1054, 203
 			{0, 0},				// Delaware
-			{0, 0},				// Florida
-			{0, 0},				// Georgia
+			{922, 555},			// Florida
+			{857, 455},			// Georgia
 			{224, 160},			// Idaho
 			{726, 265},			// Illinois
 			{790, 260},			// Indiana
@@ -54,7 +54,7 @@ public class SoftwareConstants
 			{0, 0},				// Massechusets 1116, 188
 			{799, 195},			// Michigan
 			{612, 121},			// Minnesota
-			{0, 0},				// Mississippi
+			{725, 470},			// Mississippi
 			{651, 321},			// Missouri
 			{393, 106},			// Montana
 			{509, 245},			// Nebraska
@@ -63,20 +63,20 @@ public class SoftwareConstants
 			{0, 0},				// New Jersey 1051, 257
 			{385, 410},			// New Mexico
 			{1000, 172},		// New York
-			{0, 0},				// North Carolina
+			{952, 380},			// North Carolina
 			{492, 92},			// North Dakota
 			{877, 254},			// Ohio
 			{545, 405},			// Oklahoma
 			{97, 126},			// Oregon
 			{964, 229},			// Pennsylvania
 			{0, 0},				// Rhode Island 1242, 224
-			{0, 0},				// South Carolina
+			{922, 430},			// South Carolina
 			{477, 166},			// South Dakota
-			{0, 0},				// Tennessee
+			{777, 405},			// Tennessee
 			{575, 540},			// Texas
 			{255, 263},			// Utah
 			{0, 0},				// Vermont 1031, 147
-			{954, 310},			// Virginia
+			{964, 320},			// Virginia
 			{119, 39},			// Washington
 			{905, 308},			// West Virginia
 			{696, 160},			// Wisconsin
