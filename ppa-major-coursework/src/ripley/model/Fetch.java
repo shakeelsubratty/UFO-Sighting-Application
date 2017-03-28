@@ -105,7 +105,6 @@ public class Fetch {
 				count++;
 			}
 		}
-		System.out.println(SoftwareConstants.STATES[state] + ": " + count);
 		return count;
 	}
 	
@@ -131,7 +130,6 @@ public class Fetch {
 	
 	public static int getIncidentCount()
 	{
-		System.out.println("Total: " + incidents.size());
 		return incidents.size();
 	}
 	
