@@ -1,9 +1,19 @@
 package ripley.model;
 
+/**
+ * Returns the month with the most sightings.
+ * 
+ * @author Aaron - K1630486
+ *
+ */
 public class MostCommonMonth
 {
 	int[] monthCount = new int[12];
 	
+	/**
+	 * 
+	 * @return the month with the most sightings
+	 */
 	public String getMostPopularMonth()
 	{
 		for(int i=0;i<monthCount.length;i++)

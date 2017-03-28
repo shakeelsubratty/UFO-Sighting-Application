@@ -58,6 +58,7 @@ public class Fetch {
 		lastUpdated = ripley.getLastUpdated();
 	}
 	
+	
 	public static String getIncidentDetails(String id)
 	{
 		return ripley.getIncidentDetails(id);
