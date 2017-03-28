@@ -1,5 +1,8 @@
 package surprisePanel.view;
 
+import surprisePanel.model.CurrentGameStates;
+import surprisePanel.model.GameConstants;
+
 public class PlayGame
 {
 	private static Game game;
@@ -9,7 +12,13 @@ public class PlayGame
 	 */
 	public static void reset()
 	{
-		game.dispose();
+		if(game != null)
+		{
+			game.dispose();
+			PassengersPanel.reset();
+			CurrentGameStates.startGame(GameConstants.NO_OF_CHARACTERS);
+		}
+		
 		game = new Game();
 		game.setVisible(true);
 	}
@@ -34,12 +43,12 @@ public class PlayGame
 	
 	public static void start()
 	{
+		
 		java.awt.EventQueue.invokeLater(new Runnable()
 		{
 			public void run()
 			{
-				game = new Game();
-				game.setVisible(true);
+				reset();
 			}
 		});
 	}

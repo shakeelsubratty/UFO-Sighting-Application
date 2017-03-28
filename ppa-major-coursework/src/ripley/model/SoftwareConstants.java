@@ -38,8 +38,9 @@ public class SoftwareConstants
 			{650, 420},			// Arkansas
 			{141, 392},			// California
 			{374, 299},			// Colorado
-			{0, 0},				// Conneticut 1054, 203
-			{0, 0},				// Delaware
+			{1147, 225},		// Conneticut
+			{1107, 300},		// Delaware
+			{1082, 380}, 		// Dist. of Columbia
 			{922, 555},			// Florida
 			{857, 455},			// Georgia
 			{224, 160},			// Idaho
@@ -50,8 +51,8 @@ public class SoftwareConstants
 			{827, 335},			// Kentucky
 			{665, 520},			// Louisiana
 			{1104, 93},			// Maine
-			{0, 0},				// Maryland
-			{0, 0},				// Massechusets 1116, 188
+			{1132, 345},		// Maryland
+			{1147, 135},		// Massechusets
 			{799, 195},			// Michigan
 			{612, 121},			// Minnesota
 			{725, 470},			// Mississippi
@@ -59,8 +60,8 @@ public class SoftwareConstants
 			{393, 106},			// Montana
 			{509, 245},			// Nebraska
 			{158, 233},			// Nevada
-			{0, 0},				// New Hamshire 1061, 157
-			{0, 0},				// New Jersey 1051, 257
+			{1024, 33},			// New Hamshire
+			{1137, 265},		// New Jersey
 			{385, 410},			// New Mexico
 			{1000, 172},		// New York
 			{952, 380},			// North Carolina
@@ -69,13 +70,13 @@ public class SoftwareConstants
 			{545, 405},			// Oklahoma
 			{97, 126},			// Oregon
 			{964, 229},			// Pennsylvania
-			{0, 0},				// Rhode Island 1242, 224
+			{1167, 180},		// Rhode Island
 			{922, 430},			// South Carolina
 			{477, 166},			// South Dakota
 			{777, 405},			// Tennessee
 			{575, 540},			// Texas
 			{255, 263},			// Utah
-			{0, 0},				// Vermont 1031, 147
+			{974, 53},			// Vermont
 			{964, 320},			// Virginia
 			{119, 39},			// Washington
 			{905, 308},			// West Virginia

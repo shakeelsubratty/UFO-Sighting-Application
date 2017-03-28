@@ -41,6 +41,12 @@ public class PassengersPanel extends JPanel
 		this.add(rightPassenger);
 	}
 	
+	public static void reset()
+	{
+		leftPassenger = new JLabel();
+		rightPassenger = new JLabel();
+	}
+	
 	/**
 	 * @return the leftPassenger
 	 */
