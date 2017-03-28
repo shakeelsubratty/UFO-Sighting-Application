@@ -212,4 +212,9 @@ public class SoftwareConstants
 	
 	public static final String ALIEN_PATH = "img/alien.png";
 	public static final String MAP_PATH = "img/map.png";
+	
+	public static final String TWITTER_CONSUMER_KEY = "McNmPhDpgqznhvle9WLbY4mhI";
+	public static final String TWITTER_CONSUMER_SECRET = "fBbRvDSmTuq5vmZTO7OTmstmP40P2TgeTbmB27lGbgrw8Sjhdb";
+	public static final String TWITTER_ACCESS_TOKEN = "323440607-8INMdd9TAQlqxWJxUlRwH6RLjZ6VAJFQ29tvimrm";
+	public static final String TWITTER_ACCESS_TOKEN_SECRET = "CRyONObtVUz1vUQDLXDBrGspSCpTUtAG0m4YJBNuW4Re6";
 }

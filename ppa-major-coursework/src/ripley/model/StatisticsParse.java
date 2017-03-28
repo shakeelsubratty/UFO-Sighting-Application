@@ -35,6 +35,7 @@ public class StatisticsParse {
 			parseHoax(incidentSummary);
 			parseNonUSSightings(incidentState);
 			//parseLikeliestState(incidentState);
+			parseNonUSSightings("Alien");
 		}
 	}
 	
@@ -100,7 +101,7 @@ public class StatisticsParse {
 	/**
 	 * Check other platforms for sightings.
 	 */
-	public static final void parseSightingsOtherPlatforms() {
-		// Sightings via other platforms.
+	public static final void parseSightingsOtherPlatforms(String searchTerm) {
+		sightingsOtherPlatforms = StatisticsTwitter.fetch(searchTerm);
 	}
 }
