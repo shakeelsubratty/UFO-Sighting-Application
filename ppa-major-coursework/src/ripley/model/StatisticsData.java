@@ -30,7 +30,7 @@ public class StatisticsData extends Observable {
 		panels.add(new StatisticsPanel("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
 		panels.add(new StatisticsPanel("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
 		panels.add(new StatisticsPanel("Likeliest States", StatisticsParse.likeliestState));
-		//panels.add(new StatisticsPanel("Sightings via Other Platforms", ""));
+		panels.add(new StatisticsPanel("Sightings via Other Platforms", Integer.toString(StatisticsParse.nonUSSightings)));
 		
 		activePanelIndex = 0;
 		activePanel = panels.get(activePanelIndex);
