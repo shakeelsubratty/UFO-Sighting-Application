@@ -74,6 +74,7 @@ public class WelcomePanel extends JPanel implements Observer
 		
 	}
 
+
 	@Override
 	public void update(Observable o, Object arg) 
 	{

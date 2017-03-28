@@ -4,22 +4,29 @@
 package ripley.model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import javax.swing.JPanel;
+
+import api.ripley.Incident;
 
 /**
  * @author Alex Franch Tapia - K1631466
  *
  */
-public class MainWindowModel {
+public class MainWindowModel extends Observable {
 	
 	private Integer startDate;
 	private Integer endDate;
+	
+	private static long searchTime;
 	
 	private ArrayList<JPanel> panels;
 	
 	private int currentIndex; 
 
+	private ArrayList<Incident> incidents;
+	
 	private Integer[] dateRange;
 
 	public MainWindowModel() {
@@ -58,6 +65,19 @@ public class MainWindowModel {
 
 		return Fetch.getLastUpdated();
 	}
+	
+	/**
+	 * Fetches incidents arraylist bewteen two given dates.
+	 * @param startDate
+	 * @param endDate
+	 */
+	public void getIncidentsInSelectedRange(int startDate,int endDate)
+	{
+		long x = System.currentTimeMillis();
+		incidents = Fetch.getIncidents(startDate,endDate);
+		searchTime = System.currentTimeMillis() - x;
+		System.out.println(incidents.size());
+	}
 
 	/**
 	 * Method that checks if the two dates inputed are null, greater than 
@@ -88,6 +108,11 @@ public class MainWindowModel {
 		
 		startDate = start;
 		endDate = end;
+		setChanged();
+		notifyObservers(new DateRange(startDate, endDate));
+		getIncidentsInSelectedRange(start, end);
+		setChanged();
+		notifyObservers(searchTime);
 	}
 
 	/**

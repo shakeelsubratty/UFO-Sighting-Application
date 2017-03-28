@@ -70,7 +70,7 @@ public class Fetch {
 	public static ArrayList<Incident> getIncidents(int startDate, int endDate)
 	{
 		incidents = ripley.getIncidentsInRange(startDate+"-01-01 00:00:00", endDate+"-01-01 00:00:00");
-		System.out.println(incidents.get(0).toString());
+		//System.out.println(incidents.get(0).toString());
 		return incidents;
 	}
 	

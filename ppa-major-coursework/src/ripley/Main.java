@@ -42,6 +42,8 @@ public class Main {
 		MainWindow mainWindow = new MainWindow(mainWindowModel.ripleyYearArray());
 		MainWindowListener controller = new MainWindowListener(mainWindowModel, mainWindow);
 		
+		mainWindowModel.addObserver(welcomePanel);
+		
 		MapPanel mapPanel = new MapPanel(SoftwareConstants.MAP_PATH, SoftwareConstants.ALIEN_PATH);
 		
 		mainWindowModel.addPanel(welcomePanel);
