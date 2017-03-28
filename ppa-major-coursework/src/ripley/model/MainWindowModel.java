@@ -3,25 +3,28 @@
  */
 package ripley.model;
 
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
 /**
- * @author afrancht
+ * @author Alex Franch Tapia - K1631466
  *
  */
 public class MainWindowModel {
 	
 	private Integer startDate;
 	private Integer endDate;
-
-	/*
-	 * TODO: Method years to string Access arraylist incident Find cities with
-	 * brackets in name (ie outside the usa) methods for stats - perhaps Lewis.
-	 * 
-	 */
+	
+	private ArrayList<JPanel> panels;
+	
+	private int currentIndex; 
 
 	private Integer[] dateRange;
 
 	public MainWindowModel() {
 
+		panels = new ArrayList<JPanel>();
 	}
 
 	/**
@@ -56,6 +59,10 @@ public class MainWindowModel {
 		return Fetch.getLastUpdated();
 	}
 
+	/**
+	 * Method that checks if the two dates inputed are null, greater than 
+	 * each other and returns an integer depending on the case.
+	 */
 	public int verifyDate(Integer from, Integer to) {
 
 		if (from == null || to == null) {
@@ -72,10 +79,64 @@ public class MainWindowModel {
 		}
 	}
 	
+	/**
+	 * Sets the startDate and endDate (date range) used in the programs.
+	 * @param start 	start date.
+	 * @param end		end date.
+	 */
 	public void setDateRange(Integer start, Integer end) {
 		
 		startDate = start;
 		endDate = end;
 	}
 
+	/**
+	 * Adds a panel to the panels array list.
+	 * @param panel panel introduced into the array
+	 */
+	public void addPanel(JPanel panel) {
+		
+		panels.add(panel);
+		
+	}
+
+	/**
+	 * Returns the current index (refers to the current panel displayed)
+	 * 
+	 * @return currentIndex
+	 */
+	public int getCurrentIndex() {
+		
+		return currentIndex;
+	}
+
+	/**
+	 * Returns the arraylist panels.
+	 * @return panels
+	 */
+	public ArrayList<JPanel> getPanels() {
+		
+		return panels;
+	}
+
+	/**
+	 * Adds one to current index.
+	 */
+	public void nextIndex() {
+
+		
+		currentIndex++;
+	}
+
+	/**
+	 * Subtracts one from current index. 
+	 */
+	public void prevIndex() {
+
+		if ( currentIndex > 0) {
+			
+			currentIndex--;
+		}
+		
+	}
 }

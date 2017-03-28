@@ -32,9 +32,15 @@ public class Main {
 		MainWindow mainWindow = new MainWindow(mainWindowModel.ripleyYearArray());
 		MainWindowListener controller = new MainWindowListener(mainWindowModel, mainWindow);
 		
-		//MapPanel mapPanel = new MapPanel(SoftwareConstants.ALIEN_PATH);
+		MapPanel mapPanel = new MapPanel(SoftwareConstants.MAP_PATH, SoftwareConstants.ALIEN_PATH);
 		
-	
-		//Observable needs to be added to required model management class.
+		mainWindowModel.addPanel(welcomePanel);
+		mainWindowModel.addPanel(mapPanel);
+		
+		mainWindow.setCentrePanel(mainWindowModel.getPanels().get(0));
+		
+		
 	}
+		//Observable needs to be added to required model management class.
+	
 }
