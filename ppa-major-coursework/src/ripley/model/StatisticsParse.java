@@ -34,7 +34,7 @@ public class StatisticsParse {
 			
 			parseHoax(incidentSummary);
 			parseNonUSSightings(incidentState);
-			//parseLikeliestState(incidentState);
+			parseLikeliestState(incidentState);
 			parseNonUSSightings("Alien");
 		}
 	}
@@ -83,19 +83,22 @@ public class StatisticsParse {
 	 */
 	public static final void parseLikeliestState(String incidentState) {
 		
-		// Create HashMap, storing amount of incidents per state.
-		if(stateStats.containsKey(incidentState)) {
-			stateStats.put(incidentState, stateStats.get(incidentState)+1);
-		} else {
-			stateStats.put(incidentState, 1);
-		}
+		int highestStateIndex = 0;
+		int highestStateValue = 0;
+		int count = 0; 
+		int stateCountValue;
+		
+		for(String state: SoftwareConstants.STATES) {
 			
-		// Loop through states
-		for(String stateKey : stateStats.keySet()) {
-			if(stateStats.get(stateKey) > stateStats.get(likeliestState)) {
-				likeliestState = stateKey;
+			stateCountValue = Fetch.getIncidentCountInState(count);
+			if(highestStateValue < stateCountValue) {
+				highestStateIndex = count;
+				highestStateValue = stateCountValue;
 			}
+			count++;
 		}
+		
+		likeliestState = SoftwareConstants.STATES[highestStateIndex];
 	}
 	
 	/**
