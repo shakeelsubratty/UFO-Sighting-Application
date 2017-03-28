@@ -1,11 +1,7 @@
 package ripley;
 
 
-import java.util.ArrayList;
-
-import javax.swing.JPanel;
-
-
+import ripley.control.GameListener;
 import ripley.control.MainWindowListener;
 import ripley.model.Fetch;
 import ripley.model.MainWindowModel;
@@ -13,9 +9,8 @@ import ripley.model.SoftwareConstants;
 import ripley.model.StatisticsData;
 import ripley.view.MainWindow;
 import ripley.view.MapPanel;
-
-import ripley.view.StatisticsPanel;
 import ripley.view.StatisticsWindow;
+import ripley.view.SurprisePanel;
 import ripley.view.WelcomePanel;
 
 /**
@@ -52,9 +47,14 @@ public class Main {
 		
 		MapPanel mapPanel = new MapPanel(SoftwareConstants.MAP_PATH, SoftwareConstants.ALIEN_PATH);
 		
+		SurprisePanel surprisePanel = new SurprisePanel();
+		GameListener surprisePanelListener = new GameListener();
+		
+		
 		mainWindowModel.addPanel(welcomePanel);
 		mainWindowModel.addPanel(mapPanel);
 		mainWindowModel.addPanel(statisticsWindow);
+		mainWindowModel.addPanel(surprisePanel);
 		
 		mainWindow.setCentrePanel(mainWindowModel.getPanels().get(0));
 		
