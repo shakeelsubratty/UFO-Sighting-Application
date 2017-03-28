@@ -25,6 +25,7 @@ public class Fetch {
 	private static double version;
 	private static int startYear;
 	private static int endYear;
+	private static int mostSightings = -1;
 	private static String lastUpdated;
 	
 	// Incidents within the API
@@ -82,22 +83,57 @@ public class Fetch {
 	 */
 	public static ArrayList<Incident> getIncidentsInState(int state)
 	{
-		System.out.println("hi");
-
 		ArrayList<Incident> stateIncidents = new ArrayList<>();
 		
 		for(Incident incident : incidents)
 		{
-			System.out.print(incident.getState() + ", \t");
-			System.out.println(incident.toString());
 			if(incident.getState().equals(SoftwareConstants.STATE_ABBREVIATIONS[state]))
 			{
 				
 				stateIncidents.add(incident);
 			}
 		}
-		System.out.println(stateIncidents.size());
 		return stateIncidents;
+	}
+	
+	public static int getIncidentCountInState(int state)
+	{
+		int count = 0;
+		for(Incident incident : incidents)
+		{
+			if(incident.getState().equals(SoftwareConstants.STATE_ABBREVIATIONS[state]))
+			{
+				count++;
+			}
+		}
+		System.out.println(SoftwareConstants.STATES[state] + ": " + count);
+		return count;
+	}
+	
+	public static int getMostSightingsCount()
+	{
+		if(mostSightings == -1)
+		{
+			int largest = 0;
+			for(int i=0;i<SoftwareConstants.STATES.length;i++)
+			{
+				int temp = getIncidentCountInState(i);
+				
+				if(temp > largest)
+				{
+					largest = temp;
+				}
+			}
+			mostSightings = largest;
+			return largest;
+		}
+		return mostSightings;
+	}
+	
+	public static int getIncidentCount()
+	{
+		System.out.println("Total: " + incidents.size());
+		return incidents.size();
 	}
 	
 	/**

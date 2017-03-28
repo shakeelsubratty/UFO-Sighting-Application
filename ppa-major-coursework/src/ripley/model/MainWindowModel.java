@@ -9,6 +9,7 @@ import java.util.Observable;
 import javax.swing.JPanel;
 
 import api.ripley.Incident;
+import ripley.view.MapPanel;
 
 /**
  * @author Alex Franch Tapia - K1631466
@@ -113,6 +114,15 @@ public class MainWindowModel extends Observable {
 		getIncidentsInSelectedRange(start, end);
 		setChanged();
 		notifyObservers(searchTime);
+		for(int i=0;i<panels.size();i++)
+		{
+			if(panels.get(i) instanceof MapPanel)
+			{
+				System.out.println("Buttons updated.");
+				((MapPanel) panels.get(1)).updateButtons();
+			}
+		}
+		
 	}
 
 	/**
