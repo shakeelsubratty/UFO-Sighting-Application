@@ -31,7 +31,6 @@ public class MainWindowListener {
 		view.setFooter(model.lastUpdated());
 		view.addListeners(new LeftButtonListener(), new RightButtonListener(), new ComboBoxFromListener(), new ComboBoxToListener());
 		System.out.println(model.lastUpdated());
-	
 	}
 
 	/**
