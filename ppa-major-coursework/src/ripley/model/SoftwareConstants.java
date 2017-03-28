@@ -73,7 +73,7 @@ public class SoftwareConstants
 	
 	public static final String[] STATES = {
 			"Arizona",
-			"CA",
+			"California",
 			"Colorado",
 			"Conneticut",
 			"Idaho",
