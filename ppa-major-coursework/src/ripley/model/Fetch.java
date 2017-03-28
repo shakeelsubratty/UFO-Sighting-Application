@@ -128,6 +128,11 @@ public class Fetch {
 		return mostSightings;
 	}
 	
+	public static int getIncidentMonth(int i)
+	{
+		return Integer.parseInt(incidents.get(i).getDateAndTime().substring(5, 7));
+	}
+	
 	public static int getIncidentCount()
 	{
 		return incidents.size();
