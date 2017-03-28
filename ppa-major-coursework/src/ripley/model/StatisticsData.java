@@ -1,10 +1,13 @@
 package ripley.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 import java.util.Set;
 
 import ripley.view.StatisticsPanel;
+import ripley.view.StatisticsWindow;
 
 /**
  * Model for the statistics window & panel.
@@ -12,45 +15,27 @@ import ripley.view.StatisticsPanel;
  * @author Lewis - K1630576
  *
  */
-public class StatisticsData {
+public class StatisticsData extends Observable {
 	
-	static StatisticsPanel activePanel;
-	static Map<String, String> panels;
+	private static StatisticsPanel activePanel;
+	private static int activePanelIndex;
+	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
+	
+	public StatisticsData() {
+		
+	}
 	
 	public void initialise() {
-		panels = new HashMap<String, String>();
-		panels.put("Hoaxes", Integer.toString(StatisticsParse.hoaxes));
-		panels.put("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings));
-		panels.put("Likeliest States", StatisticsParse.likeliestState);
-		panels.put("Sightings via Other Platforms", Integer.toString(StatisticsParse.sightingsOtherPlatforms));
-	}
-	
-	/**
-	 * Returns the panels stored in the panels HashMap.
-	 * 
-	 * @return panels		StatisticsPanel's inside of panels HashMap
-	 */
-	public static Map<String, String> getPanels() {
-		return panels;
-	}
-	
-	/**
-	 * Get the set of keys within the panels HashMap.
-	 * 
-	 * @return	panels.keySet()		Returns the keys within the HashMap
-	 */
-	public static Set<String> getPanelsKeySet() {
-		return panels.keySet();
-	}
-	
-	/**
-	 * Get the contents of a specific key within the HashMap.
-	 * 
-	 * @param key		The key to collect data in relation to
-	 * @return panels.get(key)		Return the data related to the specified key
-	 */
-	public static String getData(String key) {
-		return panels.get(key);
+		StatisticsParse.initialise();
+		panels.add(new StatisticsPanel("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
+		panels.add(new StatisticsPanel("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
+		panels.add(new StatisticsPanel("Likeliest States", StatisticsParse.likeliestState));
+		//panels.add(new StatisticsPanel("Sightings via Other Platforms", ""));
+		
+		activePanelIndex = 0;
+		activePanel = panels.get(activePanelIndex);
+		setChanged();
+		notifyObservers();
 	}
 	
 	/**
@@ -60,10 +45,22 @@ public class StatisticsData {
 	 */
 	public static StatisticsPanel getActivePanel() {
 		return activePanel;
-		
 	}
 	
-	public static void setActivePanel(StatisticsPanel nextPanel) {
-		activePanel = nextPanel;
+	public static void setActivePanel(int direction) {
+		if(direction == 0) {
+			if(activePanelIndex == 0) {
+				activePanelIndex = panels.size()-1;
+			} else {
+				activePanelIndex--;
+			}
+		} else if(direction == 1) {
+			if(activePanelIndex == panels.size()-1) {
+				activePanelIndex = 0;
+			} else {
+				activePanelIndex++;
+			}
+		}
+		activePanel = panels.get(activePanelIndex);
 	}
 }

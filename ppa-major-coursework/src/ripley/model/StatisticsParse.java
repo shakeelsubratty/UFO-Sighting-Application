@@ -17,17 +17,14 @@ public class StatisticsParse {
 	public static int nonUSSightings;
 	public static String likeliestState;
 	public static int sightingsOtherPlatforms;
-	static Map<String, Integer> stateStats = new HashMap<String, Integer>();;
-	
-	static ArrayList<Incident> incidents = Fetch.getIncidents(Fetch.getStartYear(), Fetch.getEndYear());
+	private static Map<String, Integer> stateStats;
 	
 	/**
 	 * Initialise, parsing through each incident that is stored.
 	 */
 	public static void initialise() {
-		
 		//Loop through each incident
-		for(Incident incident : incidents) {
+		for(Incident incident : Fetch.incidents) {
 			
 			// The summary of the incident
 			String incidentSummary = incident.getSummary().toLowerCase();
@@ -37,7 +34,7 @@ public class StatisticsParse {
 			
 			parseHoax(incidentSummary);
 			parseNonUSSightings(incidentState);
-			parseLikeliestState(incidentState);
+			//parseLikeliestState(incidentState);
 		}
 	}
 	
@@ -47,7 +44,7 @@ public class StatisticsParse {
 	 * @param incidentSummary		The summary of the incident.
 	 */
 	public static final void parseHoax(String incidentSummary) {
-		if(incidentSummary.contains("(hoax)")) {
+		if(incidentSummary.contains("hoax")) {
 			hoaxes++;
 		}
 	}

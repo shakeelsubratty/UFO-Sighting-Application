@@ -27,9 +27,10 @@ public class Fetch {
 	private static int endYear;
 	private static int mostSightings = -1;
 	private static String lastUpdated;
+
 	
 	// Incidents within the API
-	private static ArrayList<Incident> incidents;
+	protected static ArrayList<Incident> incidents;
 	
 	/**
 	 * Collects data from the Ripley API to be used within the program.
@@ -68,11 +69,9 @@ public class Fetch {
 	 * @param endDate
 	 * @return
 	 */
-	public static ArrayList<Incident> getIncidents(int startDate, int endDate)
+	public static void fetchIncidents(int startDate, int endDate)
 	{
-		incidents = ripley.getIncidentsInRange(startDate+"-01-01 00:00:00", endDate+"-01-01 00:00:00");
-		//System.out.println(incidents.get(0).toString());
-		return incidents;
+		incidents = ripley.getIncidentsInRange(startDate+"-01-01 00:00:00", endDate+"-12-31 23:59:59");
 	}
 	
 	/**
