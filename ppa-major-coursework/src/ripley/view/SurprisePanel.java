@@ -14,6 +14,11 @@ public class SurprisePanel extends JPanel
 	private JButton button;
 	private JLabel text;
 	
+	public SurprisePanel()
+	{
+		super();
+	}
+	
 	private void initialise()
 	{
 		String str = "Alien Capture!"
