@@ -24,8 +24,6 @@ public class MainWindowModel extends Observable {
 	private ArrayList<JPanel> panels;
 	
 	private int currentIndex; 
-
-	private ArrayList<Incident> incidents;
 	
 	private Integer[] dateRange;
 
@@ -74,9 +72,8 @@ public class MainWindowModel extends Observable {
 	public void getIncidentsInSelectedRange(int startDate,int endDate)
 	{
 		long x = System.currentTimeMillis();
-		incidents = Fetch.getIncidents(startDate,endDate);
+		Fetch.fetchIncidents(startDate,endDate);
 		searchTime = System.currentTimeMillis() - x;
-		System.out.println(incidents.size());
 	}
 
 	/**
@@ -103,14 +100,17 @@ public class MainWindowModel extends Observable {
 	 * Sets the startDate and endDate (date range) used in the programs.
 	 * @param start 	start date.
 	 * @param end		end date.
-	 */
-	public void setDateRange(Integer start, Integer end) {
+	 */ 
+	public void setDateRange(Integer start, Integer end, StatisticsData statisticsData) {
 		
 		startDate = start;
 		endDate = end;
 		setChanged();
 		notifyObservers(new DateRange(startDate, endDate));
+		
 		getIncidentsInSelectedRange(start, end);
+		statisticsData.initialise();
+		
 		setChanged();
 		notifyObservers(searchTime);
 	}

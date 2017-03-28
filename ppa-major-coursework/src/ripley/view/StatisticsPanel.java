@@ -52,16 +52,4 @@ public class StatisticsPanel extends JPanel
 		this.add(titleLabel, BorderLayout.NORTH);
 		this.add(infoLabel, BorderLayout.CENTER);
 	}
-	
-	public void setTitle(String title)
-	{
-		titleLabel.setText(title);
-		this.update(this.getGraphics());
-	}
-	
-	public void setInfo(String info)
-	{
-		infoLabel.setText(info);
-		this.update(this.getGraphics());
-	}
 }

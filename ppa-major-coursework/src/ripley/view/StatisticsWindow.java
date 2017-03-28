@@ -1,14 +1,15 @@
 package ripley.view;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import ripley.control.StatisticsPanelToggle;
 import ripley.model.StatisticsData;
-import ripley.model.StatisticsParse;
 
 /**
  * Panel to display the statistics of the data within a given time frame.
@@ -16,17 +17,22 @@ import ripley.model.StatisticsParse;
  * @author Lewis - K1630576
  *
  */
-public class StatisticsWindow extends JPanel
+public class StatisticsWindow extends JPanel implements Observer
 {
 	// GUI Components
-	private JButton leftButton;
-	private JButton rightButton;
-	private StatisticsPanel activePanel;
+	private static JButton leftButton;
+	private static JButton rightButton;
+	private static StatisticsPanel activePanel;
+	private static StatisticsPanelToggle statisticsActionListener;
+	private static StatisticsData statisticsData;
 	
 	public StatisticsWindow()
 	{
+		setPreferredSize(new Dimension(450, 450));
+		activePanel = new StatisticsPanel("", "");
+		statisticsActionListener = new StatisticsPanelToggle();
+		statisticsActionListener.addObserver(this);
 		
-		//activePanel = StatisticsData.getActivePanel();
 		// Initialise GUI components
 		initialise();
 	}
@@ -38,9 +44,12 @@ public class StatisticsWindow extends JPanel
 		
 		// JButton leftButton
 		leftButton = new JButton("<");
+		leftButton.addActionListener(statisticsActionListener);
+		
 		
 		// JButton rightButton
 		rightButton = new JButton(">");
+		rightButton.addActionListener(statisticsActionListener);
 		
 		// Add components to panel
 		this.add(leftButton, BorderLayout.WEST);
@@ -48,13 +57,16 @@ public class StatisticsWindow extends JPanel
 		this.add(rightButton, BorderLayout.EAST);
 	}
 	
-	public void setLeftButtonListener(ActionListener l)
-	{
-		leftButton.addActionListener(new StatisticsPanelToggle());
-	}
-	
-	public void setRightButtonListener(ActionListener l)
-	{
-		rightButton.addActionListener(new StatisticsPanelToggle());
+
+	@Override
+	public void update(Observable o, Object arg) {
+		activePanel = StatisticsData.getActivePanel();
+		
+		// validate() and repaint() ?? 
+		this.remove(activePanel);
+		this.add(activePanel, BorderLayout.CENTER);
+		
+		this.validate();
+		this.repaint();
 	}
 }

@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ripley.model.MainWindowModel;
+import ripley.model.StatisticsData;
 import ripley.view.MainWindow;
 
 /**
@@ -21,13 +22,16 @@ public class MainWindowListener {
 
 	private MainWindowModel model;
 	private MainWindow view;
+	private StatisticsData statisticsData;
 
 	
 
-	public MainWindowListener(MainWindowModel model, MainWindow view) {
+	public MainWindowListener(MainWindowModel model, MainWindow view, StatisticsData statisticsData) {
 
 		this.model = model;
 		this.view = view;
+		this.statisticsData = statisticsData;
+		
 		view.setFooter(model.lastUpdated());
 		view.addListeners(new LeftButtonListener(), new RightButtonListener(), new ComboBoxFromListener(), new ComboBoxToListener());
 		System.out.println(model.lastUpdated());
@@ -114,7 +118,7 @@ public class MainWindowListener {
 		} else if ( comparator == 3 ) {
 			
 
-			model.setDateRange(view.getFromDate(), view.getToDate());
+			model.setDateRange(view.getFromDate(), view.getToDate(), statisticsData);
 			view.disableDropDowns();
 			checkIndex();
 		}

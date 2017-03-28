@@ -2,6 +2,7 @@ package ripley.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
 
 import ripley.model.StatisticsData;
 
@@ -11,14 +12,16 @@ import ripley.model.StatisticsData;
  * @author Lewis - K1630576
  *
  */
-public class StatisticsPanelToggle implements ActionListener {
+public class StatisticsPanelToggle extends Observable implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "<") {
-			StatisticsData.setActivePanel(StatisticsData.getActivePanel());
+			StatisticsData.setActivePanel(0);
 		} else if(e.getActionCommand() == ">") {
-			StatisticsData.setActivePanel(StatisticsData.getActivePanel());
+			StatisticsData.setActivePanel(1);
 		}
+		setChanged();
+		notifyObservers();
 	}
 }
