@@ -1,5 +1,6 @@
 package ripley.control;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -21,6 +22,8 @@ public class ListOfSightingsClickListener extends DoubleClickListener
 	private String idRegex = "ID: ([\\da-zA-Z]+)";
 	private Pattern idPattern = Pattern.compile(idRegex);
 	
+	private String incidentDetails;
+	
 	public ListOfSightingsClickListener(DefaultComboBoxModel<String> model) 
 	{
 		super(model);
@@ -34,10 +37,31 @@ public class ListOfSightingsClickListener extends DoubleClickListener
 		if(matcher.find())
 		{
 			//TODO: Make sure pop up is at the right size.
-			JLabel textLabel = new JLabel("<html>"+Fetch.getIncidentDetails(matcher.group(1)) + "</html>");
+			
+			incidentDetails = Fetch.getIncidentDetails(matcher.group(1));
+		
+			
+			JLabel textLabel = new JLabel("<html>"+ formatIncidentDetails(incidentDetails) + "</html>");
 			JOptionPane.showMessageDialog(e.getComponent(),textLabel);
-			System.out.println(matcher.group());
+			System.out.println(incidentDetails);
 		}
+	}
+	
+	private String formatIncidentDetails(String incidentDetails) 
+	{
+		String returnedIncidentDetails = "";
+		String newLine = "<br>";
+		String[] detailsArr = incidentDetails.split(" ");
+		for(int i = 0; i < detailsArr.length; i++)
+		{
+				if(Math.floorMod(i, 30) == 1 && i != 1)
+				{
+					detailsArr[i] += newLine;
+				}
+			
+			returnedIncidentDetails += " " + detailsArr[i] + " ";
+		}
+		return returnedIncidentDetails;
 	}
 
 }
