@@ -32,9 +32,8 @@ public class PlayGame
 		game.setPlayable(aFlag);
 	}
 	
-	public static void main(String[] args)
+	public static void start()
 	{
-		// Create new instance of the application
 		java.awt.EventQueue.invokeLater(new Runnable()
 		{
 			public void run()
