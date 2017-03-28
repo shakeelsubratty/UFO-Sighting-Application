@@ -26,9 +26,9 @@ public class GameConstants
 	 * IMAGE SOURCES
 	 * =============
 	 * Alien: http://www.iconarchive.com/show/purple-monsters-icons-by-hopstarter/Alien-displeased-icon.html
-	 * Dog: http://www.iconarchive.com/show/animal-icons-by-martin-berube/dog-icon.html
+	 * Scrap: http://www.iconarchive.com/show/animal-icons-by-martin-berube/dog-icon.html
 	 * Bone: http://www.iconarchive.com/show/ios7-icons-by-icons8/Animals-Dog-Bone-icon.html
-	 * Human: http://www.iconarchive.com/show/face-avatars-icons-by-hopstarter/Male-Face-A4-icon.html
+	 * Martin: http://martinchapman.servehttp.com/images/chapman/face.jpg
 	 * UFO: http://www.iconarchive.com/show/transport-icons-by-aha-soft/UFO-icon.html
 	 */
 	public static final String[] IMAGE_NAMES = {"fox.png", "goose.png", "beans.png", "farmer.png", "boat.png", "water.png", "grass.png"};

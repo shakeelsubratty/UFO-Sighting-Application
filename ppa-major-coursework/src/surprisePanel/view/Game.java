@@ -70,7 +70,6 @@ public class Game extends JFrame
 		}
 		
 		// JFrame setup
-		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.add(buttonPanel, BorderLayout.SOUTH);
 		this.add(gamePanel, BorderLayout.CENTER);
 		this.setResizable(false);
