@@ -17,6 +17,7 @@ public class SurprisePanel extends JPanel
 	public SurprisePanel()
 	{
 		super();
+		initialise();
 	}
 	
 	private void initialise()
