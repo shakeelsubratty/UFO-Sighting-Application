@@ -1,6 +1,6 @@
 package ripley.view;
 
-import java.awt.FlowLayout;
+import java.awt.BorderLayout;
 
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -23,6 +23,7 @@ public class SurprisePanel extends JPanel
 	private void initialise()
 	{
 		String str = "Alien Capture!"
+				+ " <br> "
 				+ " <br> Martin has travelled to space in the hope of catching an alien"
 				+ " <br> and was successful in his journey! However, when landing, his"
 				+ " <br> rocket crashed and he couldn't use it to get home!"
@@ -36,6 +37,7 @@ public class SurprisePanel extends JPanel
 				+ " <br> him alone with the bone, he'll eat it!"
 				+ " <br> "
 				+ " <br> Are you ready to take on the challenge?"
+				+ " <br> "
 				;
 		text = new JLabel(str);
 		text.setHorizontalAlignment(SwingConstants.CENTER);
@@ -43,10 +45,10 @@ public class SurprisePanel extends JPanel
 		
 		button = new JButton("Begin");
 		
-		this.setLayout(new FlowLayout());
+		this.setLayout(new BorderLayout());
 		
-		this.add(text);
-		this.add(button);
+		this.add(text, BorderLayout.CENTER);
+		this.add(button, BorderLayout.SOUTH);
 		
 		button.addActionListener(new GameListener());
 	}
