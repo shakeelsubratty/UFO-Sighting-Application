@@ -29,6 +29,7 @@ public class WelcomePanel extends JPanel implements Observer
 	private String grabbingData;
 	private String timeForGrab;
 	private String interaction;
+	private String acknowledgement;
 		
 	private JLabel text;
 	public WelcomePanel()
@@ -49,6 +50,7 @@ public class WelcomePanel extends JPanel implements Observer
 		grabbingData = "";
 		timeForGrab = "";
 		interaction = "";
+		acknowledgement = Fetch.getAcknowledgement();
 	
 		text = new JLabel();
 		updateText(text);
@@ -59,19 +61,21 @@ public class WelcomePanel extends JPanel implements Observer
 	private void updateText(JLabel text)
 	{
 		String str = "Welcome to the Ripley API v" + Fetch.getVersion()
-			+ " <br>Please select from the range of dates above, "
-			+ " <br> in order to begin analysing UFO sighting data."
-			+ " <br> "
-			+ " <br> PLEASE NOTE: Date ranges wider than 10 years"
-			+ " <br> may take a while to process."
-			+ " <br>"
-			+ " <br>" + dateSelected
-			+ " <br>"
-			+ " <br>" + grabbingData
-			+ " <br>"
-			+ " <br>" + timeForGrab
-			+ " <br>"
-			+ " <br>" + interaction;
+			+ " <br/>Please select from the range of dates above, "
+			+ " <br/> in order to begin analysing UFO sighting data."
+			+ " <br/> "
+			+ " <br/> PLEASE NOTE: Date ranges wider than 10 years"
+			+ " <br/> may take a while to process."
+			+ " <br/>"
+			+ " <br/>" + dateSelected
+			+ " <br/>"
+			+ " <br/>" + grabbingData
+			+ " <br/>"
+			+ " <br/>" + timeForGrab
+			+ " <br/>"
+			+ " <br/>" + interaction
+			+ " <br/>"
+			+ " <br/>" + acknowledgement;
 		text.setHorizontalAlignment(SwingConstants.CENTER);
 		text.setText("<html> <div style='text-align: center;'>" + str + "</div>");
 		
