@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
+import ripley.control.StatisticsPanelToggle;
 import ripley.model.StatisticsData;
 import ripley.model.StatisticsParse;
 
@@ -23,10 +24,7 @@ public class StatisticsWindow extends JPanel
 	private StatisticsPanel activePanel;
 	
 	public StatisticsWindow()
-	{	
-		for(String key : StatisticsData.getPanelsKeySet()) {
-			new StatisticsPanel(key, StatisticsData.getData(key));
-		}
+	{
 		
 		//activePanel = StatisticsData.getActivePanel();
 		// Initialise GUI components
@@ -52,11 +50,11 @@ public class StatisticsWindow extends JPanel
 	
 	public void setLeftButtonListener(ActionListener l)
 	{
-		leftButton.addActionListener(l);
+		leftButton.addActionListener(new StatisticsPanelToggle());
 	}
 	
 	public void setRightButtonListener(ActionListener l)
 	{
-		rightButton.addActionListener(l);
+		rightButton.addActionListener(new StatisticsPanelToggle());
 	}
 }
