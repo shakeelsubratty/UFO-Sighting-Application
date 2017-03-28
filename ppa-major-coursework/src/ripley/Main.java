@@ -1,11 +1,20 @@
 package ripley;
 
+
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+
 import ripley.control.MainWindowListener;
 import ripley.model.Fetch;
 import ripley.model.MainWindowModel;
 import ripley.model.SoftwareConstants;
 import ripley.view.MainWindow;
 import ripley.view.MapPanel;
+
+import ripley.view.StatisticsPanel;
+
 import ripley.view.WelcomePanel;
 
 /**
@@ -24,6 +33,7 @@ public class Main {
 	 * 
 	 * @param args
 	 */
+
 	public static void main(String[] args) {
 		
 		Fetch.getData();
@@ -38,7 +48,6 @@ public class Main {
 		mainWindowModel.addPanel(mapPanel);
 		
 		mainWindow.setCentrePanel(mainWindowModel.getPanels().get(0));
-		
 		
 	}
 		//Observable needs to be added to required model management class.

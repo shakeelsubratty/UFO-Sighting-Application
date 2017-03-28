@@ -7,6 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import ripley.model.StatisticsData;
+import ripley.model.StatisticsParse;
 
 /**
  * Panel to display the statistics of the data within a given time frame.

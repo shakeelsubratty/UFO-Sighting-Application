@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import ripley.model.Fetch;
+
 /**
  * @author Alex Franch Tapia - K1631466
  */
@@ -40,13 +42,13 @@ public class MainWindow extends JFrame implements Observer {
 
 	private int currentIndex;
 
-	public MainWindow(Integer[] allYears) {
+	public MainWindow(Integer[] allYears) 
+	{
 
 		super(""); // Sets title for the frame.
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // Ensures program exits upon closing the window.
 		initWidgets(allYears); // Calls our initWIdgets methods to create the widgets.
 		setLocationRelativeTo(null);
-		
 		
 	}
 
@@ -161,9 +163,10 @@ public class MainWindow extends JFrame implements Observer {
 	}
 
 	@Override
-	public void update(Observable o, Object arg) {
+	public void update(Observable o, Object arg) 
+	{
 		// TODO Auto-generated method stub
-
+		
 	}
 	
 	/** 
