@@ -108,20 +108,28 @@ public class MainWindowModel extends Observable {
 		endDate = end;
 		setChanged();
 		notifyObservers(new DateRange(startDate, endDate));
-		
-		getIncidentsInSelectedRange(start, end);
-		statisticsData.initialise();
-		
-		setChanged();
-		notifyObservers(searchTime);
-		for(int i=0;i<panels.size();i++)
+		java.awt.EventQueue.invokeLater(new Runnable()
 		{
-			if(panels.get(i) instanceof MapPanel)
+			public void run()
 			{
-				System.out.println("Buttons updated.");
-				((MapPanel) panels.get(1)).updateButtons();
+				getIncidentsInSelectedRange(start, end);
+				statisticsData.initialise();
+				setChanged();
+				notifyObservers(searchTime);
+				for(int i=0;i<panels.size();i++)
+				{
+					if(panels.get(i) instanceof MapPanel)
+					{
+						System.out.println("Buttons updated.");
+						((MapPanel) panels.get(1)).updateButtons();
+					}
+				}
 			}
-		}
+		});
+		
+		
+		
+		
 		
 	}
 

@@ -60,7 +60,10 @@ public class WelcomePanel extends JPanel implements Observer
 	{
 		String str = "Welcome to the Ripley API v" + Fetch.getVersion()
 			+ " <br>Please select from the range of dates above, "
-			+ " <br> in order to begin analysing UFO sighting data"
+			+ " <br> in order to begin analysing UFO sighting data."
+			+ " <br> "
+			+ " <br> PLEASE NOTE: Date ranges wider than 10 years"
+			+ " <br> may take a while to process."
 			+ " <br>"
 			+ " <br>" + dateSelected
 			+ " <br>"
@@ -82,13 +85,13 @@ public class WelcomePanel extends JPanel implements Observer
 		{
 			startDate = ""+((DateRange)arg).getStartDate();
 			endDate = ((DateRange)arg).getEndDate()+"";
-			dateSelected = "Date selected " + startDate + "-" + endDate;
+			dateSelected = "Dates selected: " + startDate + "-" + endDate;
 			grabbingData = "Grabbing data...";
 			updateText(text);
 		}
 		if(arg instanceof Long)
 		{
-			timeForGrab = "Data grabbed in "+((Long)arg)+" milliseconds";
+			timeForGrab = "Data grabbed in "+ ((Long)arg/1000) +" seconds (" + (Long) arg + " milliseconds)";
 			interaction = "<b>Please now interact with the buttons below</b>";
 			updateText(text);
 		}

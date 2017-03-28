@@ -122,9 +122,6 @@ public class MapPanel extends JPanel
 		{
 			int count = Fetch.getIncidentCountInState(i);
 			
-			//double tempWidth = (36 * (Fetch.getIncidentCountInState(i)/Fetch.getIncidentCount()) * 10);
-			//double tempHeight = (48 * (Fetch.getIncidentCountInState(i)/Fetch.getIncidentCount()) * 10);
-			
 			int tempWidth = 0;
 			int tempHeight = 0;
 			
@@ -163,11 +160,7 @@ public class MapPanel extends JPanel
 				}
 			}
 			
-			//alienWidth.set(i, tempWidth);
-			//alienHeight.set(i, tempHeight);
-			
 			resizeAlien(i, tempWidth, tempHeight);
-			System.out.println("Width: " + tempWidth + ", Height: " + tempHeight);
 		}
 	}
 	
