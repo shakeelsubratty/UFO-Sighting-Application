@@ -4,6 +4,9 @@
 package ripley.model;
 
 import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
 import java.util.Observable;
 
 import javax.swing.JPanel;
@@ -13,7 +16,7 @@ import com.mysql.fabric.xmlrpc.base.Array;
 import api.ripley.Incident;
 
 /**
- * @author afrancht
+ * @author Alex Franch Tapia - K1631466
  *
  */
 public class MainWindowModel extends Observable
@@ -22,21 +25,21 @@ public class MainWindowModel extends Observable
 	private Integer startDate;
 	private Integer endDate;
 	
-	private long searchTime;
 
-	/*
-	 * TODO: Method years to string Access arraylist incident Find cities with
-	 * brackets in name (ie outside the usa) methods for stats - perhaps Lewis.
-	 * 
-	 */
+	private ArrayList<JPanel> panels;
+	
+	private int currentIndex; 
+
 
 	
 	private ArrayList<Incident> incidents;
 	private Integer[] dateRange;
 
-	public MainWindowModel() 
-	{
-		
+
+	public MainWindowModel() {
+
+		panels = new ArrayList<JPanel>();
+
 	}
 
 	/**
@@ -79,6 +82,10 @@ public class MainWindowModel extends Observable
 		return Fetch.getLastUpdated();
 	}
 
+	/**
+	 * Method that checks if the two dates inputed are null, greater than 
+	 * each other and returns an integer depending on the case.
+	 */
 	public int verifyDate(Integer from, Integer to) {
 
 		if (from == null || to == null) {
@@ -94,10 +101,12 @@ public class MainWindowModel extends Observable
 			return 3;
 		}
 	}
+	
 	/**
-	 * Sets user selected date range and notifies observers of this selection
-	 * @param start
-	 * @param end
+	 * Sets the startDate and endDate (date range) used in the programs.
+	 * @param start 	start date.
+	 * @param end		end date.
+
 	 */
 	public void setDateRange(Integer start, Integer end) {
 		
@@ -110,4 +119,53 @@ public class MainWindowModel extends Observable
 		notifyObservers(searchTime);
 	}
 
+	/**
+	 * Adds a panel to the panels array list.
+	 * @param panel panel introduced into the array
+	 */
+	public void addPanel(JPanel panel) {
+		
+		panels.add(panel);
+		
+	}
+
+	/**
+	 * Returns the current index (refers to the current panel displayed)
+	 * 
+	 * @return currentIndex
+	 */
+	public int getCurrentIndex() {
+		
+		return currentIndex;
+	}
+
+	/**
+	 * Returns the arraylist panels.
+	 * @return panels
+	 */
+	public ArrayList<JPanel> getPanels() {
+		
+		return panels;
+	}
+
+	/**
+	 * Adds one to current index.
+	 */
+	public void nextIndex() {
+
+		
+		currentIndex++;
+	}
+
+	/**
+	 * Subtracts one from current index. 
+	 */
+	public void prevIndex() {
+
+		if ( currentIndex > 0) {
+			
+			currentIndex--;
+		}
+		
+	}
 }

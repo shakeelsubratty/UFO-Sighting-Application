@@ -41,7 +41,6 @@ public class MainWindow extends JFrame implements Observer {
 	private JComboBox<Integer> jcbTo;
 
 	private int currentIndex;
-	private boolean correctDates;
 
 	public MainWindow(Integer[] allYears) 
 	{
@@ -65,8 +64,7 @@ public class MainWindow extends JFrame implements Observer {
 		 */
 		currentIndex = 1;
 
-		setPreferredSize(new Dimension(800, 600)); // Sets desired size of
-													// frame.
+		setMinimumSize(new Dimension(1300, 825)); // Sets desired size of				// frame.
 		setLayout(new BorderLayout()); // Assigns a border layout to the frame.
 
 		jlFrom = new JLabel(" From: "); // Creates label From next to the drop-down menu.
@@ -140,9 +138,13 @@ public class MainWindow extends JFrame implements Observer {
 	 */
 	public void setCentrePanel(JPanel centrePanel) {
 
-		jpMid.add(centrePanel); 
-		pack();
+		jpMid.removeAll();
+		jpMid.repaint();
+		jpMid.revalidate();
+		jpMid.add(centrePanel);
+
 	}
+	
 
 	/**
 	 * Adds action listeners to the two buttons.
@@ -166,44 +168,33 @@ public class MainWindow extends JFrame implements Observer {
 		// TODO Auto-generated method stub
 		
 	}
-
-	/**
-	 * Checks what the current index is and enables or disables buttons accordingly.  
+	
+	/** 
+	 * Method which enables and disables buttons according to the 
+	 * boolean values inputed in the constructor. 
 	 */
-	public void checkIndex() {
-
-		if (currentIndex == 1) {
-
+	public void enableButtons(boolean left, boolean right) {
+		
+		if ( left == true && right == true ) {
+			
+			jbRight.setEnabled(true);
+			jbLeft.setEnabled(true);
+		
+		} else if ( left == false && right == true ) {
+			
 			jbLeft.setEnabled(false);
 			jbRight.setEnabled(true);
-
-		} else if (currentIndex == 4) {
-
+		
+		} else if ( left == true && right == false) {
+			
 			jbRight.setEnabled(false);
-			jbLeft.setEnabled(true);
-
-		} else {
-
-			jbRight.setEnabled(true);
 			jbLeft.setEnabled(true);
 		}
 	}
 
-	/**
-	 * Adds one to current index.
-	 */
-	public void nextIndex() {
 
-		currentIndex++;
-	}
 
-	/**
-	 * Subtracts one from current index. 
-	 */
-	public void prevIndex() {
 
-		currentIndex--;
-	}
 
 	/**
 	 * Returns the date from the From: drop down menu. 
