@@ -114,8 +114,6 @@ public class MainWindowListener {
 		} else if ( comparator == 3 ) {
 			
 
-			view.checkIndex();
-      
 			model.setDateRange(view.getFromDate(), view.getToDate());
 			view.disableDropDowns();
 			checkIndex();

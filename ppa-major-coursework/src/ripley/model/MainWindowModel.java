@@ -7,39 +7,24 @@ import java.util.ArrayList;
 
 import javax.swing.JPanel;
 
-import java.util.Observable;
-
-import javax.swing.JPanel;
-
-import com.mysql.fabric.xmlrpc.base.Array;
-
-import api.ripley.Incident;
-
 /**
  * @author Alex Franch Tapia - K1631466
  *
  */
-public class MainWindowModel extends Observable
-{
+public class MainWindowModel {
 	
 	private Integer startDate;
 	private Integer endDate;
 	
-
 	private ArrayList<JPanel> panels;
 	
 	private int currentIndex; 
 
-
-	
-	private ArrayList<Incident> incidents;
 	private Integer[] dateRange;
-
 
 	public MainWindowModel() {
 
 		panels = new ArrayList<JPanel>();
-
 	}
 
 	/**
@@ -64,14 +49,6 @@ public class MainWindowModel extends Observable
 
 		return dateRange;
 
-	}
-	
-	public void getIncidentsInSelectedRange(int startDate,int endDate)
-	{
-		long x = System.currentTimeMillis();
-		incidents = Fetch.getIncidents(startDate,endDate);
-		searchTime = System.currentTimeMillis() - x;
-		System.out.println(incidents.size());
 	}
 
 	/**
@@ -106,17 +83,11 @@ public class MainWindowModel extends Observable
 	 * Sets the startDate and endDate (date range) used in the programs.
 	 * @param start 	start date.
 	 * @param end		end date.
-
 	 */
 	public void setDateRange(Integer start, Integer end) {
 		
 		startDate = start;
 		endDate = end;
-		setChanged();
-		notifyObservers(new DateRange(startDate, endDate));
-		getIncidentsInSelectedRange(start, end);
-		setChanged();
-		notifyObservers(searchTime);
 	}
 
 	/**
