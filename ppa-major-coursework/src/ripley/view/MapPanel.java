@@ -11,6 +11,7 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -82,12 +83,12 @@ public class MapPanel extends JPanel
 			// Create new SightingsInfoButton for state i
 			JButton btn = new SightingsInfoButton(i);
 			
-			alienHeight.add(32);
-			alienWidth.add(24);
+			alienHeight.add(MAX_HEIGHT);
+			alienWidth.add(MAX_WIDTH);
 			
 			// Set size of button
 			// TODO: Make button resizable
-			btn.setSize(32, 24);
+			btn.setSize(MAX_HEIGHT, MAX_WIDTH);
 			
 			// Set location of button to the location of the state as defined in model.SoftwareConstants
 			btn.setLocation(SoftwareConstants.COORDINATES[i][SoftwareConstants.X], 
@@ -184,5 +185,15 @@ public class MapPanel extends JPanel
 			g.drawImage(alien, SoftwareConstants.COORDINATES[i][SoftwareConstants.X],
 					SoftwareConstants.COORDINATES[i][SoftwareConstants.Y], alienWidth.get(i), alienHeight.get(i), this);
 		}
+	}
+	
+	public static void main(String[] args)
+	{
+		JFrame frame = new JFrame();
+		
+		frame.add(new MapPanel(SoftwareConstants.MAP_PATH, SoftwareConstants.ALIEN_PATH));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
 	}
 }
