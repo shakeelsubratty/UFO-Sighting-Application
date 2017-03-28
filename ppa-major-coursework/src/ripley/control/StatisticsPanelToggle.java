@@ -4,8 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import ripley.model.StatisticsData;
-import ripley.view.StatisticsWindow;
 
+/**
+ * Changes the statistics panel that is in view when a button is pressed.
+ * 
+ * @author Lewis - K1630576
+ *
+ */
 public class StatisticsPanelToggle implements ActionListener {
 
 	@Override
@@ -15,7 +20,5 @@ public class StatisticsPanelToggle implements ActionListener {
 		} else if(e.getActionCommand() == ">") {
 			StatisticsData.setActivePanel(StatisticsData.getActivePanel());
 		}
-		
 	}
-
 }
