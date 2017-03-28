@@ -3,14 +3,26 @@
  */
 package ripley.model;
 
+import java.util.ArrayList;
+import java.util.Observable;
+
+import javax.swing.JPanel;
+
+import com.mysql.fabric.xmlrpc.base.Array;
+
+import api.ripley.Incident;
+
 /**
  * @author afrancht
  *
  */
-public class MainWindowModel {
+public class MainWindowModel extends Observable
+{
 	
 	private Integer startDate;
 	private Integer endDate;
+	
+	private long searchTime;
 
 	/*
 	 * TODO: Method years to string Access arraylist incident Find cities with
@@ -18,10 +30,13 @@ public class MainWindowModel {
 	 * 
 	 */
 
+	
+	private ArrayList<Incident> incidents;
 	private Integer[] dateRange;
 
-	public MainWindowModel() {
-
+	public MainWindowModel() 
+	{
+		
 	}
 
 	/**
@@ -47,6 +62,14 @@ public class MainWindowModel {
 		return dateRange;
 
 	}
+	
+	public void getIncidentsInSelectedRange(int startDate,int endDate)
+	{
+		long x = System.currentTimeMillis();
+		incidents = Fetch.getIncidents(startDate,endDate);
+		searchTime = System.currentTimeMillis() - x;
+		System.out.println(incidents.size());
+	}
 
 	/**
 	 * Method that returns string with last updated sighting.
@@ -71,11 +94,20 @@ public class MainWindowModel {
 			return 3;
 		}
 	}
-	
+	/**
+	 * Sets user selected date range and notifies observers of this selection
+	 * @param start
+	 * @param end
+	 */
 	public void setDateRange(Integer start, Integer end) {
 		
 		startDate = start;
 		endDate = end;
+		setChanged();
+		notifyObservers(new DateRange(startDate, endDate));
+		getIncidentsInSelectedRange(start, end);
+		setChanged();
+		notifyObservers(searchTime);
 	}
 
 }
