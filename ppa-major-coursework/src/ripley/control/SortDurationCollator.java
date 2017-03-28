@@ -1,11 +1,11 @@
 package ripley.control;
 
-import java.text.CollationKey;
-import java.text.Collator;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
-public class SortDurationCollator extends SortCollator {
+public class SortDurationCollator extends SortCollator 
+{
+	private int sourcePos;
+	private int targetPos;
 
 	public SortDurationCollator(String patternString) 
 	{
@@ -16,21 +16,46 @@ public class SortDurationCollator extends SortCollator {
 	{
 		if(targetMatcher.find())
 		{
-//			//System.out.println(matcher.group(3));
-//			if(matcher.group(3)!=null && targetMatcher.group(3)!=null)
-//			{
-//				System.out.println(matcher.group(3) + matcher.group() + " + " + matcher.group() +targetMatcher.group(3));
-////				if(Integer.parseInt(matcher.group(2)) > Integer.parseInt(targetMatcher.group(2)))
-////				{
-////					System.out.println(Integer.parseInt(matcher.group(2)) +" > "+ Integer.parseInt(targetMatcher.group(2)));
-////
-////					return 1;
-////				}
-//				
-//			}
-//			//return matcher.group(1).compareTo(targetMatcher.group(1));
+			if(matcher.group(3)!=null && targetMatcher.group(3)!=null)
+			{
+				sourcePos = order(matcher);
+				targetPos = order(targetMatcher);
+				if (sourcePos > targetPos) 
+					return 1;
+				else if(sourcePos == targetPos)
+				{
+					if(Integer.parseInt(matcher.group(2)) > Integer.parseInt(targetMatcher.group(2)))
+						return 1;
+				}
+			}
 		}
 		return 0;
 	}
 
+	private int order(Matcher matcher)
+	{
+		int x = 0;
+		if(matcher.group(5)!=null)
+		{
+			if(matcher.group(6)!=null)
+				x = 2;
+			else
+				x = 1;
+		}
+		else if(matcher.group(7)!=null)
+		{
+			if(matcher.group(9)!=null)
+				x = 4;
+			else
+				x = 3;
+		}
+		else 
+		{
+			if(matcher.group(11)!=null)
+				x = 6;
+			else
+				x = 5;
+		}
+		return x;
+	}
 }
