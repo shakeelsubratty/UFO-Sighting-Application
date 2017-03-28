@@ -58,6 +58,7 @@ public class Fetch {
 		lastUpdated = ripley.getLastUpdated();
 	}
 	
+	
 	public static String getIncidentDetails(String id)
 	{
 		return ripley.getIncidentDetails(id);
@@ -126,6 +127,11 @@ public class Fetch {
 			return largest;
 		}
 		return mostSightings;
+	}
+	
+	public static int getIncidentMonth(int i)
+	{
+		return Integer.parseInt(incidents.get(i).getDateAndTime().substring(5, 7));
 	}
 	
 	public static int getIncidentCount()
