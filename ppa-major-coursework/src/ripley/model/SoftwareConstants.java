@@ -35,52 +35,52 @@ public class SoftwareConstants
 	public static final int[][] COORDINATES = {
 			{0, 0},				// Alabama
 			{265, 395},			// Arizona
-			{0, 0},				// Arkansas
-			{151, 402},			// California
-			{454, 339},			// Colorado
-			{1054, 203},		// Conneticut
+			{650, 420},			// Arkansas
+			{141, 392},			// California
+			{374, 299},			// Colorado
+			{0, 0},				// Conneticut 1054, 203
 			{0, 0},				// Delaware
 			{0, 0},				// Florida
 			{0, 0},				// Georgia
-			{224, 170},			// Idaho
-			{753, 325},			// Illinois
-			{800, 310},			// Indiana
-			{670, 272},			// Iowa
-			{595, 360},			// Kansas
-			{847, 345},			// Kentucky
-			{0, 0},				// Louisiana
-			{1104, 63},			// Maine
+			{224, 160},			// Idaho
+			{726, 265},			// Illinois
+			{790, 260},			// Indiana
+			{620, 232},			// Iowa
+			{525, 325},			// Kansas
+			{827, 335},			// Kentucky
+			{665, 520},			// Louisiana
+			{1104, 93},			// Maine
 			{0, 0},				// Maryland
-			{1116, 188},		// Massechusets
-			{834, 225},			// Michigan
-			{622, 181},			// Minnesota
+			{0, 0},				// Massechusets 1116, 188
+			{799, 195},			// Michigan
+			{612, 121},			// Minnesota
 			{0, 0},				// Mississippi
-			{691, 371},			// Missouri
-			{393, 146},			// Montana
-			{579, 280},			// Nebraska
-			{178, 333},			// Nevada
-			{1061, 157},		// New Hamshire
-			{1051, 257},		// New Jersey
+			{651, 321},			// Missouri
+			{393, 106},			// Montana
+			{509, 245},			// Nebraska
+			{158, 233},			// Nevada
+			{0, 0},				// New Hamshire 1061, 157
+			{0, 0},				// New Jersey 1051, 257
 			{385, 410},			// New Mexico
-			{980, 192},			// New York
+			{1000, 172},		// New York
 			{0, 0},				// North Carolina
-			{562, 137},			// North Dakota
-			{877, 274},			// Ohio
-			{0, 0},				// Oklahoma
-			{147, 196},			// Oregon
-			{994, 249},			// Pennsylvania
-			{1242, 224},		// Rhode Island
+			{492, 92},			// North Dakota
+			{877, 254},			// Ohio
+			{545, 405},			// Oklahoma
+			{97, 126},			// Oregon
+			{964, 229},			// Pennsylvania
+			{0, 0},				// Rhode Island 1242, 224
 			{0, 0},				// South Carolina
-			{567, 206},			// South Dakota
+			{477, 166},			// South Dakota
 			{0, 0},				// Tennessee
 			{575, 540},			// Texas
-			{300, 323},			// Utah
-			{1031, 147},		// Vermont
-			{979, 330},			// Virginia
-			{159, 59},			// Washington
-			{925, 328},			// West Virginia
-			{721, 205},			// Wisconsin
-			{400, 249}			// Wyoming
+			{255, 263},			// Utah
+			{0, 0},				// Vermont 1031, 147
+			{954, 310},			// Virginia
+			{119, 39},			// Washington
+			{905, 308},			// West Virginia
+			{696, 160},			// Wisconsin
+			{340, 189}			// Wyoming
 	};
 	
 	public static final String[] STATES = {
