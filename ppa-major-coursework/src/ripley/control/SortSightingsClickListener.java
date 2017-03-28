@@ -2,12 +2,9 @@ package ripley.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
-
-import com.mysql.fabric.xmlrpc.base.Array;
 
 public class SortSightingsClickListener  implements ActionListener 
 {
@@ -70,7 +67,7 @@ public class SortSightingsClickListener  implements ActionListener
 	}
 	private void sortDuration()
 	{
-		String durationPattern = "Duration: ((([\\d])+)\\s((second(s)?)|(minut(e)?(s)?)|(hour(s)?)?))";
+		String durationPattern = "Duration: ((-)?(\\d+))";
 		SortDurationCollator collator = new SortDurationCollator(durationPattern);
 		bucketSort(collator);
 	}
@@ -84,9 +81,9 @@ public class SortSightingsClickListener  implements ActionListener
 	private void bucketSort(SortCollator collator)
 	{
 		int size = listModel.getSize();
-		for(int i = 1; i < size; i++)
+		for(int i = 0; i < size; i++)
 		{
-			for(int j = 1; j < (size - i); j++)
+			for(int j = 1; j < (size); j++)
 			{
 
 				if(collator.compare(listModel.getElementAt(j-1), listModel.getElementAt(j)) > 0) 
