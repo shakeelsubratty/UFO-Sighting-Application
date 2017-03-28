@@ -11,9 +11,11 @@ import java.util.ArrayList;
 
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import ripley.model.Fetch;
 import ripley.model.SoftwareConstants;
 /**
  * Panel that displays a map of the USA, with a clickable alien on each state that displays information about sightings.
@@ -26,13 +28,17 @@ public class MapPanel extends JPanel
 	// GUI Components
 	private Image map;
 	private Image alien;
-	private ArrayList<JButton> buttons;
-	private ArrayList<Integer> alienHeight;
-	private ArrayList<Integer> alienWidth;
+	
+	private static ArrayList<JButton> buttons;
+	private static ArrayList<Integer> alienHeight;
+	private static ArrayList<Integer> alienWidth;
 
 	// Object states
 	private String mapPath;
 	private String alienPath;
+	
+	private static int MAX_WIDTH = 48;
+	private static int MAX_HEIGHT = 64;
 
 	/**
 	 * Constructor for MapPanel
@@ -77,12 +83,12 @@ public class MapPanel extends JPanel
 			// Create new SightingsInfoButton for state i
 			JButton btn = new SightingsInfoButton(i);
 			
-			alienHeight.add(32);
-			alienWidth.add(24);
+			alienHeight.add(MAX_HEIGHT);
+			alienWidth.add(MAX_WIDTH);
 			
 			// Set size of button
 			// TODO: Make button resizable
-			btn.setSize(24, 32);
+			btn.setSize(MAX_HEIGHT, MAX_WIDTH);
 			
 			// Set location of button to the location of the state as defined in model.SoftwareConstants
 			btn.setLocation(SoftwareConstants.COORDINATES[i][SoftwareConstants.X], 
@@ -92,9 +98,6 @@ public class MapPanel extends JPanel
 			this.add(btn);
 			buttons.add(btn);
 		}
-		
-		// Testing resizeAlien method
-		this.resizeAlien(10, (int) (24*1.5), (int) (32*1.5));
 	}
 
 	/**
@@ -113,6 +116,61 @@ public class MapPanel extends JPanel
 		this.repaint();
 	}
 	
+	public void updateButtons()
+	{
+		for(int i=0;i<buttons.size();i++)
+		{
+			int count = Fetch.getIncidentCountInState(i);
+			
+			//double tempWidth = (36 * (Fetch.getIncidentCountInState(i)/Fetch.getIncidentCount()) * 10);
+			//double tempHeight = (48 * (Fetch.getIncidentCountInState(i)/Fetch.getIncidentCount()) * 10);
+			
+			int tempWidth = 0;
+			int tempHeight = 0;
+			
+			if(count != 0)
+			{
+				
+				if(count > ((Fetch.getMostSightingsCount() / 6) * 5))
+				{
+					tempWidth = ((MAX_WIDTH)/6) * 6;
+					tempHeight = ((MAX_HEIGHT)/6) * 6;
+				}
+				else if(count > ((Fetch.getMostSightingsCount() / 6) * 4))
+				{
+					tempWidth = ((MAX_WIDTH)/6) * 5;
+					tempHeight = ((MAX_HEIGHT)/6) * 5;
+				}
+				else if(count > ((Fetch.getMostSightingsCount() / 6) * 3))
+				{
+					tempWidth = ((MAX_WIDTH)/6) * 4;
+					tempHeight = ((MAX_HEIGHT)/6) * 4;
+				}
+				else if(count > ((Fetch.getMostSightingsCount() / 6) * 2))
+				{
+					tempWidth = ((MAX_WIDTH)/6) * 3;
+					tempHeight = ((MAX_HEIGHT)/6) * 3;
+				}
+				else if(count > ((Fetch.getMostSightingsCount() / 6) * 1))
+				{
+					tempWidth = ((MAX_WIDTH)/6) * 2;
+					tempHeight = ((MAX_HEIGHT)/6) * 2;
+				}
+				else
+				{
+					tempWidth = ((MAX_WIDTH)/6) * 1;
+					tempHeight = ((MAX_HEIGHT)/6) * 1;
+				}
+			}
+			
+			//alienWidth.set(i, tempWidth);
+			//alienHeight.set(i, tempHeight);
+			
+			resizeAlien(i, tempWidth, tempHeight);
+			System.out.println("Width: " + tempWidth + ", Height: " + tempHeight);
+		}
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g)
 	{
@@ -127,5 +185,15 @@ public class MapPanel extends JPanel
 			g.drawImage(alien, SoftwareConstants.COORDINATES[i][SoftwareConstants.X],
 					SoftwareConstants.COORDINATES[i][SoftwareConstants.Y], alienWidth.get(i), alienHeight.get(i), this);
 		}
+	}
+	
+	public static void main(String[] args)
+	{
+		JFrame frame = new JFrame();
+		
+		frame.add(new MapPanel(SoftwareConstants.MAP_PATH, SoftwareConstants.ALIEN_PATH));
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(true);
 	}
 }
