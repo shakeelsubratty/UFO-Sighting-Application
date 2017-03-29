@@ -2,6 +2,9 @@ package ripley.model;
 
 import java.util.List;
 
+import twitter4j.JSONArray;
+import twitter4j.JSONException;
+import twitter4j.JSONObject;
 import twitter4j.Query;
 import twitter4j.QueryResult;
 import twitter4j.Status;
@@ -18,14 +21,15 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class StatisticsTwitter {
 	
+	private static String tweetTimeStamp = "";
+	
 	/**
 	 * Counts the amount of public Tweets that contain a searchTerm.
 	 * 
 	 * @param searchTerm		The term to search for within tweets
 	 * @return tweetCount		The amount of public tweets that contain the term
 	 */
-	public static int fetch(String searchTerm) {
-		int tweetCount = 0;
+	public static String fetch(String searchTerm) {
         ConfigurationBuilder cb = new ConfigurationBuilder();
         cb.setDebugEnabled(true)
 	        .setOAuthConsumerKey(SoftwareConstants.TWITTER_CONSUMER_KEY)
@@ -39,8 +43,12 @@ public class StatisticsTwitter {
             QueryResult result;
             result = twitter.search(query);
             List<Status> tweets = result.getTweets();
-            tweetCount = tweets.size();
+
+			JSONObject obj = new JSONObject(tweets.get(0));
+			try {
+				tweetTimeStamp = obj.getString("createdAt");
+			} catch (JSONException e) {}
         } catch (TwitterException te) {}
-        return tweetCount;
+        return tweetTimeStamp;
 	}
 }

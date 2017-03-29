@@ -36,7 +36,7 @@ public class StatisticsData extends Observable {
 		panels.add(new StatisticsOutput("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
 		panels.add(new StatisticsOutput("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
 		panels.add(new StatisticsOutput("Likeliest States", StatisticsParse.likeliestState));
-		panels.add(new StatisticsOutput("Recent Tweets containing: 'Alien'", Integer.toString(StatisticsParse.sightingsOtherPlatforms)));
+		panels.add(new StatisticsOutput("Recent Tweets containing: 'Alien'", StatisticsParse.sightingsOtherPlatforms));
 		panels.add(new AverageDurationPanel("Average Duration Per State"));
 
 		activePanel = panels.get(activePanelIndex);

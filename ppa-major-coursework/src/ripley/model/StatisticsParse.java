@@ -13,7 +13,7 @@ public class StatisticsParse {
 	public static int hoaxes;
 	public static int nonUSSightings;
 	public static String likeliestState;
-	public static int sightingsOtherPlatforms;
+	public static String sightingsOtherPlatforms;
 	private static boolean initialised;
 	
 	/**
@@ -90,7 +90,6 @@ public class StatisticsParse {
 		int stateCountValue;
 		
 		for(String state: SoftwareConstants.STATES) {
-			
 			stateCountValue = Fetch.getIncidentCountInState(count);
 			if(highestStateValue < stateCountValue) {
 				highestStateIndex = count;
