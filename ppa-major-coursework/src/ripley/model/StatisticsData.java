@@ -22,6 +22,7 @@ public class StatisticsData extends Observable {
 	private static StatisticsOutput activePanel;
 	private static int activePanelIndex;
 	private static ArrayList<StatisticsOutput> panels = new ArrayList<StatisticsOutput>();
+	private static ArrayList<StatisticsOutput> activePanels = new ArrayList<StatisticsOutput>();
 	
 	public StatisticsData() {
 		
@@ -35,8 +36,10 @@ public class StatisticsData extends Observable {
 		panels.add(new StatisticsOutput("Recent Tweets containing: 'Alien'", Integer.toString(StatisticsParse.sightingsOtherPlatforms)));
 		panels.add(new AverageDurationPanel("Average Duration Per State"));
 		
+		System.out.println(StatisticsParse.sightingsOtherPlatforms);
 		activePanelIndex = 0;
 		activePanel = panels.get(activePanelIndex);
+		activePanels.add(activePanel);
 		setChanged();
 		notifyObservers();
 	}
@@ -51,11 +54,18 @@ public class StatisticsData extends Observable {
 	}
 	
 	public static void setActivePanel(int direction) {
+		//activePanels.remove(activePanelIndex);
 		if(direction == 0) {
 			if(activePanelIndex == 0) {
 				activePanelIndex = panels.size()-1;
 			} else {
 				activePanelIndex--;
+			}
+			
+			for(int i=0; i<panels.size(); i++) {
+				if(panels.get(activePanelIndex) != null) {
+					activePanelIndex--;
+				}
 			}
 		} else if(direction == 1) {
 			if(activePanelIndex == panels.size()-1) {
@@ -63,7 +73,15 @@ public class StatisticsData extends Observable {
 			} else {
 				activePanelIndex++;
 			}
+			
+			for(int i=0; i<panels.size(); i++) {
+				if(panels.get(activePanelIndex) != null) {
+					activePanelIndex++;
+				}
+			}
 		}
+
 		activePanel = panels.get(activePanelIndex);
+		activePanels.add(activePanel);
 	}
 }

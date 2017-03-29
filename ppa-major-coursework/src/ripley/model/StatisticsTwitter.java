@@ -25,6 +25,7 @@ public class StatisticsTwitter {
 	 * @return tweetCount		The amount of public tweets that contain the term
 	 */
 	public static int fetch(String searchTerm) {
+		System.out.print("Fetch Twitter");
 		int tweetCount = 0;
 		
 		ConfigurationBuilder cb = new ConfigurationBuilder();
