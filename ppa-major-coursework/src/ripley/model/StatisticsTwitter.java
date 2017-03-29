@@ -19,10 +19,10 @@ import twitter4j.conf.ConfigurationBuilder;
 public class StatisticsTwitter {
 	
 	/**
-	 * Counts the amount of Tweets that contain a searchTerm on twitter.
+	 * Counts the amount of public Tweets that contain a searchTerm.
 	 * 
 	 * @param searchTerm		The term to search for within tweets
-	 * @return tweetCount		The amount of tweets that contain the term
+	 * @return tweetCount		The amount of public tweets that contain the term
 	 */
 	public static int fetch(String searchTerm) {
 		int tweetCount = 0;

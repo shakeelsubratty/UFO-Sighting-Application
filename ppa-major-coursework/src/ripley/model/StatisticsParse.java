@@ -1,8 +1,5 @@
 package ripley.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import api.ripley.Incident;
 
 /**
@@ -17,7 +14,6 @@ public class StatisticsParse {
 	public static int nonUSSightings;
 	public static String likeliestState;
 	public static int sightingsOtherPlatforms;
-	private static Map<String, Integer> stateStats;
 	
 	/**
 	 * Initialise, parsing through each incident that is stored.
@@ -98,7 +94,11 @@ public class StatisticsParse {
 			count++;
 		}
 		
-		likeliestState = SoftwareConstants.STATES[highestStateIndex];
+		if(highestStateValue != 0) {
+			likeliestState = SoftwareConstants.STATES[highestStateIndex];
+		} else {
+			likeliestState = "Not enough data";
+		}
 	}
 	
 	/**

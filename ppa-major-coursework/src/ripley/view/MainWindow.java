@@ -46,8 +46,6 @@ public class MainWindow extends JFrame implements Observer {
 		setDefaultCloseOperation(EXIT_ON_CLOSE); // Ensures program exits upon closing the window.
 		initWidgets(allYears); // Calls our initWIdgets methods to create the widgets.
 		setLocationRelativeTo(null);
-		
-		
 	}
 
 	/**

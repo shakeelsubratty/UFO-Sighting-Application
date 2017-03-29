@@ -37,8 +37,7 @@ public class Main {
 		WelcomePanel welcomePanel = new WelcomePanel();
 		
 		StatisticsData statisticsData = new StatisticsData();
-		StatisticsWindow statisticsWindow = new StatisticsWindow();
-		statisticsData.addObserver(statisticsWindow);
+		StatisticsWindow statisticsWindow = new StatisticsWindow(statisticsData);
 		
 		MainWindow mainWindow = new MainWindow(mainWindowModel.ripleyYearArray());
 		MainWindowListener controller = new MainWindowListener(mainWindowModel, mainWindow, statisticsData);

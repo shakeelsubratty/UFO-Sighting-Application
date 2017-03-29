@@ -6,6 +6,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
 
+import ripley.view.AverageDurationPanel;
+import ripley.view.StatisticsOutput;
 import ripley.view.StatisticsPanel;
 import ripley.view.StatisticsWindow;
 
@@ -17,9 +19,9 @@ import ripley.view.StatisticsWindow;
  */
 public class StatisticsData extends Observable {
 	
-	private static StatisticsPanel activePanel;
+	private static StatisticsOutput activePanel;
 	private static int activePanelIndex;
-	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
+	private static ArrayList<StatisticsOutput> panels = new ArrayList<StatisticsOutput>();
 	
 	public StatisticsData() {
 		
@@ -27,10 +29,11 @@ public class StatisticsData extends Observable {
 	
 	public void initialise() {
 		StatisticsParse.initialise();
-		panels.add(new StatisticsPanel("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
-		panels.add(new StatisticsPanel("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
-		panels.add(new StatisticsPanel("Likeliest States", StatisticsParse.likeliestState));
-		panels.add(new StatisticsPanel("Sightings via Other Platforms", Integer.toString(StatisticsParse.nonUSSightings)));
+		panels.add(new StatisticsOutput("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
+		panels.add(new StatisticsOutput("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
+		panels.add(new StatisticsOutput("Likeliest States", StatisticsParse.likeliestState));
+		panels.add(new StatisticsOutput("Recent Tweets containing: 'Alien'", Integer.toString(StatisticsParse.sightingsOtherPlatforms)));
+		panels.add(new AverageDurationPanel("Average Duration Per State"));
 		
 		activePanelIndex = 0;
 		activePanel = panels.get(activePanelIndex);
@@ -43,7 +46,7 @@ public class StatisticsData extends Observable {
 	 * 
 	 * @return activePanel		Return the panel that is in active display to the user
 	 */
-	public static StatisticsPanel getActivePanel() {
+	public static StatisticsOutput getActivePanel() {
 		return activePanel;
 	}
 	

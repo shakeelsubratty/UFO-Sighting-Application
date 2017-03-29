@@ -1,6 +1,7 @@
 package ripley.model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
 import api.ripley.Incident;
 
@@ -10,7 +11,7 @@ import api.ripley.Incident;
  * @author Alex Franch Tapia - K1631466
  *
  */
-public class AverageDurationModel {
+public class AverageDurationModel extends Observable {
 	
 	private ArrayList<Incident> currentList; // stores incidents in a certain state.
 	private int state; // references the state by its index.
