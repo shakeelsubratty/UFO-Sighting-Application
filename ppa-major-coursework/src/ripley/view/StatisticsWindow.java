@@ -20,7 +20,7 @@ public class StatisticsWindow extends JPanel
 {
 	private StatisticsData statisticsData;
 	private static int panelNumber = 4;
-	private ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
+	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
 	
 	public StatisticsWindow(StatisticsData statisticsData)
 	{	
@@ -37,6 +37,12 @@ public class StatisticsWindow extends JPanel
 			panels.add(statisticsPanel);
 			statisticsData.addObserver(statisticsPanel);
 			add(statisticsPanel);
+		}
+	}
+	
+	public static void update() {
+		for(StatisticsPanel panel : panels) {
+			panel.updateStats();
 		}
 	}
 }

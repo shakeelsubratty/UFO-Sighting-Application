@@ -18,18 +18,15 @@ public class AverageDurationListener implements ActionListener {
 	private AverageDurationModel avgDModel;
 	
 	public AverageDurationListener(AverageDurationPanel avgDPanel, AverageDurationModel avgDModel) {
-		
 		this.avgDPanel = avgDPanel;
 		this.avgDModel = avgDModel;
-		avgDPanel.addListener(this);
 	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
 		// generates stat with a given string and sets the stat in the correct label. 
-		avgDModel.generateStat(avgDPanel.getDropDownState());
-		avgDPanel.setInfo(avgDModel.getAverage());	
+		//avgDModel.generateStat(avgDPanel.getDropDownState());
+		//avgDPanel.setInfo(avgDModel.getAverage());	
 	}
 
 }

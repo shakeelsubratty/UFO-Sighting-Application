@@ -2,6 +2,7 @@ package ripley.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
@@ -20,13 +21,11 @@ import ripley.view.StatisticsWindow;
 public class StatisticsData extends Observable {
 	
 	private StatisticsOutput activePanel;
-	private int activePanelIndex;
+	private int activePanelIndex = 0;
 	private static ArrayList<StatisticsOutput> panels = new ArrayList<StatisticsOutput>();
 	private static ArrayList<StatisticsOutput> activePanels = new ArrayList<StatisticsOutput>();
 	
-	public StatisticsData() {
-		
-	}
+	public StatisticsData() {}
 	
 	public void initialise() {
 		StatisticsParse.initialise();
@@ -37,8 +36,6 @@ public class StatisticsData extends Observable {
 		panels.add(new AverageDurationPanel("Average Duration Per State"));
 		
 		System.out.println(StatisticsParse.sightingsOtherPlatforms);
-		activePanelIndex = 0;
-		setActivePanel(0);
 		activePanel = panels.get(activePanelIndex);
 		activePanels.add(activePanel);
 		setChanged();
@@ -55,11 +52,19 @@ public class StatisticsData extends Observable {
 	}
 	
 	public void setActivePanel(int direction) {
+		
+		ListIterator<StatisticsOutput> panelList = panels.listIterator();
+		if(direction == 0) {
+			activePanelIndex = panelList.previousIndex();
+		} else {
+			activePanelIndex = panelList.nextIndex();
+		}
+		
 		//activePanels.remove(activePanelIndex);
 		
+		/*System.out.println(panels.size());
 		// If left
 		if(direction == 0) {
-			System.out.println("Left Direction");
 			// If at start.
 			if(activePanelIndex == 0) {
 				activePanelIndex = panels.size()-1;
@@ -67,19 +72,20 @@ public class StatisticsData extends Observable {
 				activePanelIndex--;
 			}
 		} else {
-			System.out.println("Right Direction");
 			// If at end
 			if(activePanelIndex == panels.size()-1) {
 				activePanelIndex = 0;
 			} else {
 				activePanelIndex++;
 			}
+			*/
 			/*if(activePanels.get(activePanelIndex) != null) {
 				setActivePanel(direction);
 			}*/
-		}
+		/*}*/
 
-		activePanel = panels.get(activePanelIndex);
+		System.out.println(activePanelIndex);
+		activePanel = panels.get(0);
 		//activePanels.add(activePanel);
 	}
 }
