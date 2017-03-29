@@ -6,7 +6,9 @@ import java.awt.event.ActionListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import ripley.model.ListOfSightingsModel;
 import ripley.model.SoftwareConstants;
+import ripley.model.SortSightingsModel;
 import ripley.view.ListOfSightings;
 
 /**
@@ -34,7 +36,9 @@ public class AlienListener implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		ListOfSightings stateSightings = new ListOfSightings(state);
+		ListOfSightingsModel stateSightingsModel = new ListOfSightingsModel(state);
+		SortSightingsModel stateSortModel = new SortSightingsModel();
+		ListOfSightings stateSightings = new ListOfSightings(state,stateSightingsModel.getListModel(),stateSortModel.getSortModel());
 	}
 
 }
