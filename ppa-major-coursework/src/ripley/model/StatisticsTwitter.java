@@ -43,6 +43,4 @@ public class StatisticsTwitter {
         } catch (TwitterException te) {}
         return tweetCount;
 	}
-	
-	
 }

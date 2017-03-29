@@ -14,13 +14,18 @@ import ripley.model.StatisticsData;
  */
 public class StatisticsPanelToggle extends Observable implements ActionListener {
 
+	private StatisticsData statisticsData;
+	public StatisticsPanelToggle(StatisticsData statisticsData) {
+		this.statisticsData = statisticsData;
+	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand() == "<") {
-			StatisticsData.setActivePanel(0);
+			statisticsData.setActivePanel(0);
 		} else if(e.getActionCommand() == ">") {
-			StatisticsData.setActivePanel(1);
+			statisticsData.setActivePanel(1);
 		}
+		
 		setChanged();
 		notifyObservers();
 	}

@@ -33,7 +33,7 @@ public class StatisticsWindow extends JPanel
 	private void initialise()
 	{
 		for(int i=0; i<panelNumber; i++) {
-			StatisticsPanel statisticsPanel = new StatisticsPanel();
+			StatisticsPanel statisticsPanel = new StatisticsPanel(statisticsData);
 			panels.add(statisticsPanel);
 			statisticsData.addObserver(statisticsPanel);
 			add(statisticsPanel);

@@ -19,8 +19,8 @@ import ripley.view.StatisticsWindow;
  */
 public class StatisticsData extends Observable {
 	
-	private static StatisticsOutput activePanel;
-	private static int activePanelIndex;
+	private StatisticsOutput activePanel;
+	private int activePanelIndex;
 	private static ArrayList<StatisticsOutput> panels = new ArrayList<StatisticsOutput>();
 	private static ArrayList<StatisticsOutput> activePanels = new ArrayList<StatisticsOutput>();
 	
@@ -38,6 +38,7 @@ public class StatisticsData extends Observable {
 		
 		System.out.println(StatisticsParse.sightingsOtherPlatforms);
 		activePanelIndex = 0;
+		setActivePanel(0);
 		activePanel = panels.get(activePanelIndex);
 		activePanels.add(activePanel);
 		setChanged();
@@ -49,39 +50,36 @@ public class StatisticsData extends Observable {
 	 * 
 	 * @return activePanel		Return the panel that is in active display to the user
 	 */
-	public static StatisticsOutput getActivePanel() {
+	public StatisticsOutput getActivePanel() {
 		return activePanel;
 	}
 	
-	public static void setActivePanel(int direction) {
+	public void setActivePanel(int direction) {
 		//activePanels.remove(activePanelIndex);
+		
+		// If left
 		if(direction == 0) {
+			System.out.println("Left Direction");
+			// If at start.
 			if(activePanelIndex == 0) {
 				activePanelIndex = panels.size()-1;
 			} else {
 				activePanelIndex--;
 			}
-			
-			for(int i=0; i<panels.size(); i++) {
-				if(panels.get(activePanelIndex) != null) {
-					activePanelIndex--;
-				}
-			}
-		} else if(direction == 1) {
+		} else {
+			System.out.println("Right Direction");
+			// If at end
 			if(activePanelIndex == panels.size()-1) {
 				activePanelIndex = 0;
 			} else {
 				activePanelIndex++;
 			}
-			
-			for(int i=0; i<panels.size(); i++) {
-				if(panels.get(activePanelIndex) != null) {
-					activePanelIndex++;
-				}
-			}
+			/*if(activePanels.get(activePanelIndex) != null) {
+				setActivePanel(direction);
+			}*/
 		}
 
 		activePanel = panels.get(activePanelIndex);
-		activePanels.add(activePanel);
+		//activePanels.add(activePanel);
 	}
 }

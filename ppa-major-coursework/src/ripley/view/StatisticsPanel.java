@@ -26,11 +26,12 @@ public class StatisticsPanel extends JPanel implements Observer
 	private static StatisticsPanelToggle statisticsActionListener;
 	private static StatisticsData statisticsData;
 	
-	public StatisticsPanel()
+	public StatisticsPanel(StatisticsData statisticsData)
 	{
+		StatisticsPanel.statisticsData = statisticsData;
 		//setPreferredSize(new Dimension(450, 450));
 		activePanel = new StatisticsOutput("", "");
-		statisticsActionListener = new StatisticsPanelToggle();
+		statisticsActionListener = new StatisticsPanelToggle(statisticsData);
 		statisticsActionListener.addObserver(this);
 		
 		// Initialise GUI components
@@ -60,7 +61,7 @@ public class StatisticsPanel extends JPanel implements Observer
 
 	@Override
 	public void update(Observable o, Object arg) {
-		activePanel = StatisticsData.getActivePanel();
+		activePanel = statisticsData.getActivePanel();
 		
 		// validate() and repaint() ?? 
 		this.remove(activePanel);
