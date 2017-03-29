@@ -20,15 +20,15 @@ import ripley.model.StatisticsData;
 public class StatisticsPanel extends JPanel implements Observer
 {
 	// GUI Components
-	private static JButton leftButton;
-	private static JButton rightButton;
-	private static StatisticsOutput activePanel;
-	private static StatisticsPanelToggle statisticsActionListener;
-	private static StatisticsData statisticsData;
+	private JButton leftButton;
+	private JButton rightButton;
+	private StatisticsOutput activePanel;
+	private StatisticsPanelToggle statisticsActionListener;
+	private StatisticsData statisticsData;
 	
-	public StatisticsPanel(StatisticsData statisticsData)
+	public StatisticsPanel()
 	{
-		StatisticsPanel.statisticsData = statisticsData;
+		statisticsData = new StatisticsData();
 		activePanel = new StatisticsOutput("", "");
 		//setPreferredSize(new Dimension(450, 450));
 		statisticsActionListener = new StatisticsPanelToggle(statisticsData);
@@ -60,6 +60,9 @@ public class StatisticsPanel extends JPanel implements Observer
 	
 	public void updateStats() {
 		System.out.println("Update Stats");
+		if(statisticsData.getActivePanel() == null) {
+			statisticsData.initialise();
+		}
 		statisticsData.setActivePanel(0);
 		activePanel = statisticsData.getActivePanel();
 	}

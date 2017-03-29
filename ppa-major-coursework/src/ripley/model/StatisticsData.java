@@ -21,11 +21,15 @@ import ripley.view.StatisticsWindow;
 public class StatisticsData extends Observable {
 	
 	private StatisticsOutput activePanel;
-	private int activePanelIndex = 0;
-	private static ArrayList<StatisticsOutput> panels = new ArrayList<StatisticsOutput>();
-	private static ArrayList<StatisticsOutput> activePanels = new ArrayList<StatisticsOutput>();
+	private int activePanelIndex;
+	private ArrayList<StatisticsOutput> panels;
+	private ArrayList<StatisticsOutput> activePanels;
 	
-	public StatisticsData() {}
+	public StatisticsData() {
+		activePanelIndex = 0;
+		panels = new ArrayList<StatisticsOutput>();
+		activePanels = new ArrayList<StatisticsOutput>();
+	}
 	
 	public void initialise() {
 		StatisticsParse.initialise();
@@ -34,8 +38,7 @@ public class StatisticsData extends Observable {
 		panels.add(new StatisticsOutput("Likeliest States", StatisticsParse.likeliestState));
 		panels.add(new StatisticsOutput("Recent Tweets containing: 'Alien'", Integer.toString(StatisticsParse.sightingsOtherPlatforms)));
 		panels.add(new AverageDurationPanel("Average Duration Per State"));
-		
-		System.out.println(StatisticsParse.sightingsOtherPlatforms);
+
 		activePanel = panels.get(activePanelIndex);
 		activePanels.add(activePanel);
 		setChanged();
@@ -53,16 +56,19 @@ public class StatisticsData extends Observable {
 	
 	public void setActivePanel(int direction) {
 		
-		ListIterator<StatisticsOutput> panelList = panels.listIterator();
+		System.out.println("Size: "+panels.size());
+		System.out.println("Original: "+activePanelIndex);
+		activePanels.remove(activePanelIndex);
+		
+/*		ListIterator<StatisticsOutput> panelList = panels.listIterator();
+
 		if(direction == 0) {
 			activePanelIndex = panelList.previousIndex();
 		} else {
 			activePanelIndex = panelList.nextIndex();
 		}
-		
-		//activePanels.remove(activePanelIndex);
-		
-		/*System.out.println(panels.size());
+	*/	
+		//System.out.println(panels.size());
 		// If left
 		if(direction == 0) {
 			// If at start.
@@ -78,14 +84,16 @@ public class StatisticsData extends Observable {
 			} else {
 				activePanelIndex++;
 			}
-			*/
-			/*if(activePanels.get(activePanelIndex) != null) {
+			if(activePanels.get(activePanelIndex) != null) {
 				setActivePanel(direction);
-			}*/
-		/*}*/
+			}
+		}
 
-		System.out.println(activePanelIndex);
-		activePanel = panels.get(0);
+		System.out.println("After: "+activePanelIndex);
+		//activePanel = panels.get(0);
+		
+		//setChanged();
+		//notifyObservers();
 		//activePanels.add(activePanel);
 	}
 }

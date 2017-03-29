@@ -103,7 +103,7 @@ public class MainWindowModel extends Observable {
 	 * @param start 	start date.
 	 * @param end		end date.
 	 */ 
-	public void setDateRange(Integer start, Integer end, StatisticsData statisticsData) {
+	public void setDateRange(Integer start, Integer end) {
 		
 		startDate = start;
 		endDate = end;

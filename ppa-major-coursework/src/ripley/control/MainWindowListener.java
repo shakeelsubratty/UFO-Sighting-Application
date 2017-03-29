@@ -22,15 +22,12 @@ public class MainWindowListener {
 
 	private MainWindowModel model;
 	private MainWindow view;
-	private StatisticsData statisticsData;
-
 	
 
-	public MainWindowListener(MainWindowModel model, MainWindow view, StatisticsData statisticsData) {
+	public MainWindowListener(MainWindowModel model, MainWindow view) {
 
 		this.model = model;
 		this.view = view;
-		this.statisticsData = statisticsData;
 		
 		view.setFooter(model.lastUpdated());
 		view.addListeners(new LeftButtonListener(), new RightButtonListener(), new ComboBoxFromListener(), new ComboBoxToListener());
@@ -117,7 +114,7 @@ public class MainWindowListener {
 		} else if ( comparator == 3 ) {
 			
 
-			model.setDateRange(view.getFromDate(), view.getToDate(), statisticsData);
+			model.setDateRange(view.getFromDate(), view.getToDate());
 			view.disableDropDowns();
 			checkIndex();
 		}

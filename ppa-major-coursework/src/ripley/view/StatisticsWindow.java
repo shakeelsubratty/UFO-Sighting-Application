@@ -22,18 +22,19 @@ public class StatisticsWindow extends JPanel
 	private static int panelNumber = 4;
 	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
 	
-	public StatisticsWindow(StatisticsData statisticsData)
+	public StatisticsWindow()
 	{	
+		
 		setLayout(new GridLayout(2,2));
 		setPreferredSize(new Dimension(650, 650));
-		this.statisticsData = statisticsData;
+		statisticsData = new StatisticsData();
 		initialise();
 	}
 	
 	private void initialise()
 	{
 		for(int i=0; i<panelNumber; i++) {
-			StatisticsPanel statisticsPanel = new StatisticsPanel(statisticsData);
+			StatisticsPanel statisticsPanel = new StatisticsPanel();
 			panels.add(statisticsPanel);
 			statisticsData.addObserver(statisticsPanel);
 			add(statisticsPanel);
