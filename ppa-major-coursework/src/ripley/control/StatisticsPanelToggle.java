@@ -21,9 +21,11 @@ public class StatisticsPanelToggle extends Observable implements ActionListener 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		System.out.println("Action Performed");
-		if(e.getActionCommand() == "<") {
+		if(e.getActionCommand().equals("<")) {
+			System.out.print("left");
 			statisticsData.setActivePanel(0);
-		} else if(e.getActionCommand() == ">") {
+		} else if(e.getActionCommand().equals(">")) {
+			System.out.println("Right");
 			statisticsData.setActivePanel(1);
 		}
 		

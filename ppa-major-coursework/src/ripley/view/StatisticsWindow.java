@@ -46,7 +46,7 @@ public class StatisticsWindow extends JPanel
 	}
 	
 	public static void update() {
-		System.out.println("Window Update");
+		System.out.println("Update Window");
 		activePanelIndexes.clear();
 		for(StatisticsPanel panel : panels) {
 			activePanelIndexes.add(panel.getActivePanelIndex());
