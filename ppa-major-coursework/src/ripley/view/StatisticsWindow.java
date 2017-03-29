@@ -21,29 +21,36 @@ public class StatisticsWindow extends JPanel
 	private StatisticsData statisticsData;
 	private static int panelNumber = 4;
 	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
+	private static ArrayList<Integer> activePanelIndexes = new ArrayList<Integer>();
 	
 	public StatisticsWindow()
 	{	
-		
 		setLayout(new GridLayout(2,2));
-		setPreferredSize(new Dimension(650, 650));
-		statisticsData = new StatisticsData();
+		setPreferredSize(new Dimension(850, 600));
 		initialise();
 	}
 	
 	private void initialise()
 	{
 		for(int i=0; i<panelNumber; i++) {
-			StatisticsPanel statisticsPanel = new StatisticsPanel();
+			statisticsData = new StatisticsData();
+			StatisticsPanel statisticsPanel = new StatisticsPanel(statisticsData);
 			panels.add(statisticsPanel);
 			statisticsData.addObserver(statisticsPanel);
 			add(statisticsPanel);
 		}
 	}
 	
+	public static Integer getActiveIndexes(int index) {
+		return activePanelIndexes.get(index);
+	}
+	
 	public static void update() {
+		activePanelIndexes.clear();
 		for(StatisticsPanel panel : panels) {
-			panel.updateStats();
+			activePanelIndexes.add(panel.getActivePanelIndex());
+			System.out.println(activePanelIndexes.toString());
+			panel.updateStats(activePanelIndexes);
 		}
 	}
 }

@@ -121,7 +121,6 @@ public class MainWindowModel extends Observable {
 				{
 					if(panels.get(i) instanceof MapPanel)
 					{
-						System.out.println("Buttons updated.");
 						((MapPanel) panels.get(1)).updateButtons();
 					}
 				}

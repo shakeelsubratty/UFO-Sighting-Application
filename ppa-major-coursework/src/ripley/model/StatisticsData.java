@@ -23,12 +23,10 @@ public class StatisticsData extends Observable {
 	private StatisticsOutput activePanel;
 	private int activePanelIndex;
 	private ArrayList<StatisticsOutput> panels;
-	private ArrayList<StatisticsOutput> activePanels;
 	
 	public StatisticsData() {
 		activePanelIndex = 0;
 		panels = new ArrayList<StatisticsOutput>();
-		activePanels = new ArrayList<StatisticsOutput>();
 	}
 	
 	public void initialise() {
@@ -36,11 +34,11 @@ public class StatisticsData extends Observable {
 		panels.add(new StatisticsOutput("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
 		panels.add(new StatisticsOutput("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
 		panels.add(new StatisticsOutput("Likeliest States", StatisticsParse.likeliestState));
-		panels.add(new StatisticsOutput("Recent Tweets containing: 'Alien'", StatisticsParse.sightingsOtherPlatforms));
+		panels.add(new StatisticsOutput("TimeStamp of Last Tweet Containing: 'Alien'", StatisticsParse.sightingsOtherPlatforms));
 		panels.add(new AverageDurationPanel("Average Duration Per State"));
+		panels.add(new StatisticsOutput("Most Common Month", MostCommonMonth.getMostPopularMonth()));
 
-		activePanel = panels.get(activePanelIndex);
-		activePanels.add(activePanel);
+		setActivePanel(0);
 		setChanged();
 		notifyObservers();
 	}
@@ -54,21 +52,12 @@ public class StatisticsData extends Observable {
 		return activePanel;
 	}
 	
+	public int getActivePanelIndex() {
+		return activePanelIndex;
+	}
+	
 	public void setActivePanel(int direction) {
-		
-		System.out.println("Size: "+panels.size());
-		System.out.println("Original: "+activePanelIndex);
-		activePanels.remove(activePanelIndex);
-		
-/*		ListIterator<StatisticsOutput> panelList = panels.listIterator();
 
-		if(direction == 0) {
-			activePanelIndex = panelList.previousIndex();
-		} else {
-			activePanelIndex = panelList.nextIndex();
-		}
-	*/	
-		//System.out.println(panels.size());
 		// If left
 		if(direction == 0) {
 			// If at start.
@@ -84,16 +73,20 @@ public class StatisticsData extends Observable {
 			} else {
 				activePanelIndex++;
 			}
+		}
+		
+		/*if(StatisticsWindow.getActivePanels(activePanelIndex) != null) {
+			setActivePanel(direction);
+		}*/
+		/*
+		 * 			
 			if(activePanels.get(activePanelIndex) != null) {
 				setActivePanel(direction);
 			}
-		}
-
-		System.out.println("After: "+activePanelIndex);
-		//activePanel = panels.get(0);
+		 */
+		activePanel = panels.get(activePanelIndex);
 		
-		//setChanged();
-		//notifyObservers();
-		//activePanels.add(activePanel);
+		setChanged();
+		notifyObservers();
 	}
 }

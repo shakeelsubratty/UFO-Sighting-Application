@@ -2,6 +2,7 @@ package ripley.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -26,10 +27,9 @@ public class StatisticsPanel extends JPanel implements Observer
 	private StatisticsPanelToggle statisticsActionListener;
 	private StatisticsData statisticsData;
 	
-	public StatisticsPanel()
+	public StatisticsPanel(StatisticsData statisticsData)
 	{
-		statisticsData = new StatisticsData();
-		statisticsData.addObserver(this);
+		this.statisticsData = statisticsData;
 		activePanel = new StatisticsOutput("", "");
 		//setPreferredSize(new Dimension(450, 450));
 		statisticsActionListener = new StatisticsPanelToggle(statisticsData);
@@ -59,19 +59,22 @@ public class StatisticsPanel extends JPanel implements Observer
 		this.add(rightButton, BorderLayout.EAST);
 	}
 	
-	public void updateStats() {
-		System.out.println("Update Stats");
+	public void updateStats(ArrayList<Integer> activePanelIndexes) {
 		if(statisticsData.getActivePanel() == null) {
 			statisticsData.initialise();
 		}
-		statisticsData.setActivePanel(0);
 		activePanel = statisticsData.getActivePanel();
+	}
+	
+	public int getActivePanelIndex() {
+		return statisticsData.getActivePanelIndex();
 	}
 	
 
 	@Override
 	public void update(Observable o, Object arg) {
 		activePanel = statisticsData.getActivePanel();
+		StatisticsWindow.update();
 		
 		// validate() and repaint() ?? 
 		this.remove(activePanel);

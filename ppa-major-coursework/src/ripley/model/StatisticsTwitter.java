@@ -1,4 +1,4 @@
-package ripley.model;
+ package ripley.model;
 
 import java.util.List;
 
