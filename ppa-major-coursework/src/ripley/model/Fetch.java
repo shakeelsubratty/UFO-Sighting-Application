@@ -4,6 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.mysql.fabric.xmlrpc.base.Array;
+
 import api.ripley.Incident;
 import api.ripley.Ripley;
 
@@ -73,6 +75,11 @@ public class Fetch {
 	public static void fetchIncidents(int startDate, int endDate)
 	{
 		incidents = ripley.getIncidentsInRange(startDate+"-01-01 00:00:00", endDate+"-12-31 23:59:59");
+	}
+	
+	public static ArrayList<Incident> getIncidents()
+	{
+		return incidents;
 	}
 	
 	/**
