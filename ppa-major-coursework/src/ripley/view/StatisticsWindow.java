@@ -26,7 +26,7 @@ public class StatisticsWindow extends JPanel
 	public StatisticsWindow()
 	{	
 		setLayout(new GridLayout(2,2));
-		setPreferredSize(new Dimension(850, 600));
+		setPreferredSize(new Dimension(950, 600));
 		initialise();
 	}
 	
@@ -46,6 +46,7 @@ public class StatisticsWindow extends JPanel
 	}
 	
 	public static void update() {
+		System.out.println("Window Update");
 		activePanelIndexes.clear();
 		for(StatisticsPanel panel : panels) {
 			activePanelIndexes.add(panel.getActivePanelIndex());

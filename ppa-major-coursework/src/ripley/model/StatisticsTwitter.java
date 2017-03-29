@@ -21,7 +21,7 @@ import twitter4j.conf.ConfigurationBuilder;
  */
 public class StatisticsTwitter {
 	
-	private static String tweetTimeStamp = "";
+	private static String tweetTimeStamp = "[Unable to get Tweets] Please try again.";
 	
 	/**
 	 * Counts the amount of public Tweets that contain a searchTerm.

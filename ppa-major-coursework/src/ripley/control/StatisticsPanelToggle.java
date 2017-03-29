@@ -20,6 +20,7 @@ public class StatisticsPanelToggle extends Observable implements ActionListener 
 	}
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		System.out.println("Action Performed");
 		if(e.getActionCommand() == "<") {
 			statisticsData.setActivePanel(0);
 		} else if(e.getActionCommand() == ">") {
