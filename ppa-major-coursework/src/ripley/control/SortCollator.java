@@ -26,7 +26,7 @@ public abstract class SortCollator extends Collator
 			Matcher targetMatcher = pattern.matcher(target);
 			return parse(matcher, targetMatcher);
 		}
-		return 0;
+		return -1;
 	}
 	
 	//Subclasses override parse() to implement their own parsing methods

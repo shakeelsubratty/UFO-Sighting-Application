@@ -1,9 +1,6 @@
 package ripley.control;
 
-import java.text.CollationKey;
-import java.text.Collator;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SortShapeCollator extends SortCollator {
 

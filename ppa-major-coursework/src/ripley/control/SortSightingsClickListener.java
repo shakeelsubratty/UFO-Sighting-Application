@@ -2,6 +2,7 @@ package ripley.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Arrays;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
@@ -48,55 +49,49 @@ public class SortSightingsClickListener  implements ActionListener
 		String timeOfIncidentPattern = "((\\d\\d):(\\d\\d):(\\d\\d))";
 		
 		SortDateCollator collator = new SortDateCollator(dateOfIncidentPattern + timeOfIncidentPattern);
-		bucketSort(collator);
+		mergeSort(collator);
 	}
 	
 	private void sortCity()
 	{
-		String cityPattern = "City: ([a-zA-Z-./]+\\s([a-zA-Z()]+\\s)*)";
-		SortCollator collator = new SortCityCollator(cityPattern);
-		bucketSort(collator);
+		String cityPattern = "City: (([\\S]+\\s([\\S\\s]+)*)([a-zA-Z()]+)?)";
+		SortCityCollator collator = new SortCityCollator(cityPattern);
+		mergeSort(collator);
 	}
 	
 	private void sortShape()
 	{
 		String shapePattern = "Shape: ([a-zA-Z-./]+\\s([a-zA-Z]+\\s)*)";
 		SortShapeCollator collator = new SortShapeCollator(shapePattern);
-		bucketSort(collator);
+		mergeSort(collator);
 
 	}
 	private void sortDuration()
 	{
 		String durationPattern = "Duration: ((-)?(\\d+))";
 		SortDurationCollator collator = new SortDurationCollator(durationPattern);
-		bucketSort(collator);
+		mergeSort(collator);
 	}
 	
 	private void sortPosted()
 	{
 		String datePostedPattern = "Posted: (\\d\\d\\d\\d)-(\\d\\d)-(\\d\\d)";
 		SortPostedDateCollator collator = new SortPostedDateCollator(datePostedPattern);
-		bucketSort(collator);
+		mergeSort(collator);
 	}
-	private void bucketSort(SortCollator collator)
+	
+	private void mergeSort(SortCollator collator)
 	{
-		int size = listModel.getSize();
-		for(int i = 0; i < size; i++)
+		String[] arr = new String[listModel.getSize()];
+		for(int  i = 0; i < listModel.getSize(); i++)
 		{
-			for(int j = 1; j < (size); j++)
-			{
-
-				if(collator.compare(listModel.getElementAt(j-1), listModel.getElementAt(j)) > 0) 
-				{
-					String temp1 = listModel.getElementAt(j-1);
-					String temp2 = listModel.getElementAt(j);
-					
-					listModel.removeElementAt(j-1);
-					listModel.insertElementAt(temp2, j-1);
-					listModel.removeElementAt(j);
-					listModel.insertElementAt(temp1, j);
-				}
-			}
+			arr[i] = listModel.getElementAt(i);
+		}
+		listModel.removeAllElements();
+		Arrays.sort(arr,collator);
+		for(int  i = 0; i < arr.length; i++)
+		{
+			listModel.addElement(arr[i]);
 		}
 	}
 	
