@@ -25,20 +25,15 @@ public class StatisticsTwitter {
 	 * @return tweetCount		The amount of public tweets that contain the term
 	 */
 	public static int fetch(String searchTerm) {
-		System.out.print("Fetch Twitter");
 		int tweetCount = 0;
-		
-		ConfigurationBuilder cb = new ConfigurationBuilder();
-		
-	    cb.setDebugEnabled(true)
-	          .setOAuthConsumerKey(SoftwareConstants.TWITTER_CONSUMER_KEY)
-	          .setOAuthConsumerSecret(SoftwareConstants.TWITTER_CONSUMER_SECRET)
-	          .setOAuthAccessToken(SoftwareConstants.TWITTER_ACCESS_TOKEN)
-	          .setOAuthAccessTokenSecret(SoftwareConstants.TWITTER_CONSUMER_SECRET);
-	    
-	    TwitterFactory tf = new TwitterFactory(cb.build());
-	    Twitter twitter = tf.getInstance();
-	    
+        ConfigurationBuilder cb = new ConfigurationBuilder();
+        cb.setDebugEnabled(true)
+	        .setOAuthConsumerKey(SoftwareConstants.TWITTER_CONSUMER_KEY)
+	        .setOAuthConsumerSecret(SoftwareConstants.TWITTER_CONSUMER_SECRET)
+	        .setOAuthAccessToken(SoftwareConstants.TWITTER_ACCESS_TOKEN)
+	        .setOAuthAccessTokenSecret(SoftwareConstants.TWITTER_ACCESS_TOKEN_SECRET);
+        TwitterFactory tf = new TwitterFactory(cb.build());
+        Twitter twitter = tf.getInstance();
         try {
             Query query = new Query(searchTerm);
             QueryResult result;
@@ -48,4 +43,6 @@ public class StatisticsTwitter {
         } catch (TwitterException te) {}
         return tweetCount;
 	}
+	
+	
 }
