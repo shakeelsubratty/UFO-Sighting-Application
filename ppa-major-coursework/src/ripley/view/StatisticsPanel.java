@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -51,5 +52,15 @@ public class StatisticsPanel extends JPanel
 		// Add components to panel
 		this.add(titleLabel, BorderLayout.NORTH);
 		this.add(infoLabel, BorderLayout.CENTER);
+	}
+
+	/**
+	 * Method which sets text for the infoLabel.
+	 *
+	 * @param str		text to set the infoLabel to.
+	 */
+	public void setInfo(String str) {
+		
+		infoLabel.setText(str);
 	}
 }
