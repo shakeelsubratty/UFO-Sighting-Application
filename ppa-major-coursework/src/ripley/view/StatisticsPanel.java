@@ -29,6 +29,7 @@ public class StatisticsPanel extends JPanel implements Observer
 	public StatisticsPanel()
 	{
 		statisticsData = new StatisticsData();
+		statisticsData.addObserver(this);
 		activePanel = new StatisticsOutput("", "");
 		//setPreferredSize(new Dimension(450, 450));
 		statisticsActionListener = new StatisticsPanelToggle(statisticsData);

@@ -14,24 +14,29 @@ public class StatisticsParse {
 	public static int nonUSSightings;
 	public static String likeliestState;
 	public static int sightingsOtherPlatforms;
+	private static boolean initialised;
 	
 	/**
 	 * Initialise, parsing through each incident that is stored.
 	 */
 	public static void initialise() {
-		//Loop through each incident
-		for(Incident incident : Fetch.incidents) {
+		if(!initialised) {
 			
-			// The summary of the incident
-			String incidentSummary = incident.getSummary().toLowerCase();
-			
-			// The state of the incident
-			String incidentState = incident.getState().toLowerCase();
-			
-			parseHoax(incidentSummary);
-			parseNonUSSightings(incidentState);
-			parseLikeliestState(incidentState);
-			parseSightingsOtherPlatforms("Alien");
+			//Loop through each incident
+			for(Incident incident : Fetch.incidents) {
+				
+				// The summary of the incident
+				String incidentSummary = incident.getSummary().toLowerCase();
+				
+				// The state of the incident
+				String incidentState = incident.getState().toLowerCase();
+				
+				parseHoax(incidentSummary);
+				parseNonUSSightings(incidentState);
+				parseLikeliestState(incidentState);
+				parseSightingsOtherPlatforms("Alien");
+				initialised=true;
+			}
 		}
 	}
 	
@@ -105,7 +110,6 @@ public class StatisticsParse {
 	 * Check other platforms for sightings.
 	 */
 	public static final void parseSightingsOtherPlatforms(String searchTerm) {
-		System.out.println("Called Parse");
 		sightingsOtherPlatforms = StatisticsTwitter.fetch(searchTerm);
 	}
 }
