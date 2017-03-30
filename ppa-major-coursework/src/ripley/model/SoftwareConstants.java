@@ -9,29 +9,9 @@ import java.awt.Point;
  */
 public class SoftwareConstants
 {
-	/* ------------------
-	 * STATES LEFT TO ADD
-	 * ------------------
-	 * 
-	 * Oklahoma
-	 * Arkansas
-	 * Louisiana
-	 * Mississipi
-	 * Alabama
-	 * Georgia
-	 * Florida
-	 * Tenessee
-	 * North Carolina
-	 * South Carolina
-	 * Delaware
-	 * Maryland
-	 * Washington D.C.
-	 * 
+	/**
+	 * Coordinates at which each alien should be placed.
 	 */
-	
-	// TO MAKE COORDS DYNAMIC: 	X -> (X/1280) * map.getWidth()
-	// 							Y -> (Y/720) * map.getHeight()
-	
 	public static final int[][] COORDINATES = {
 			{787, 475},			// Alabama
 			{265, 395},			// Arizona
@@ -84,10 +64,11 @@ public class SoftwareConstants
 			{340, 189}			// Wyoming
 	};
 	
+	/**
+	 * Names of states
+	 */
 	public static final String[] STATES = {
-			"Alabama", 
-		    //"Alaska", 
-		    //"American Samoa", 
+			"Alabama",
 		    "Arizona", 
 		    "Arkansas", 
 		    "California", 
@@ -96,9 +77,7 @@ public class SoftwareConstants
 		    "Delaware", 
 		    "Dist. of Columbia", 
 		    "Florida", 
-		    "Georgia", 
-		    //"Guam", 
-		    //"Hawaii", 
+		    "Georgia",
 		    "Idaho", 
 		    "Illinois", 
 		    "Indiana", 
@@ -107,11 +86,9 @@ public class SoftwareConstants
 		    "Kentucky", 
 		    "Louisiana", 
 		    "Maine", 
-		    "Maryland", 
-		    //"Marshall Islands", 
+		    "Maryland",
 		    "Massachusetts", 
-		    "Michigan", 
-		    //"Micronesia", 
+		    "Michigan",
 		    "Minnesota", 
 		    "Mississippi", 
 		    "Missouri",
@@ -124,13 +101,10 @@ public class SoftwareConstants
 		    "New York", 
 		    "North Carolina", 
 		    "North Dakota", 
-		    //"Northern Marianas", 
 		    "Ohio", 
 		    "Oklahoma", 
 		    "Oregon", 
-		    //"Palau", 
 		    "Pennsylvania", 
-		    //"Puerto Rico", 
 		    "Rhode Island", 
 		    "South Carolina", 
 		    "South Dakota", 
@@ -139,17 +113,17 @@ public class SoftwareConstants
 		    "Utah", 
 		    "Vermont", 
 		    "Virginia", 
-		    //"Virgin Islands", 
 		    "Washington", 
 		    "West Virginia", 
 		    "Wisconsin", 
 		    "Wyoming"
 	};
 	
+	/**
+	 * Official abbreviations of states
+	 */
 	public static final String[] STATE_ABBREVIATIONS = {
 			"AL", 
-		    //"AK", 
-		    //"AS", 
 		    "AZ", 
 		    "AR", 
 		    "CA", 
@@ -159,8 +133,6 @@ public class SoftwareConstants
 		    "DC", 
 		    "FL", 
 		    "GA", 
-		    //"GU", 
-		    //"HI", 
 		    "ID", 
 		    "IL", 
 		    "IN", 
@@ -170,10 +142,8 @@ public class SoftwareConstants
 		    "LA", 
 		    "ME", 
 		    "MD", 
-		    //"MH", 
 		    "MA", 
 		    "MI", 
-		    //"FM", 
 		    "MN", 
 		    "MS", 
 		    "MO",
@@ -186,13 +156,10 @@ public class SoftwareConstants
 		    "NY", 
 		    "NC", 
 		    "ND", 
-		    //"MP", 
 		    "OH", 
 		    "OK", 
 		    "OR", 
-		    //"PW", 
 		    "PA", 
-		    //"PR", 
 		    "RI", 
 		    "SC", 
 		    "SD", 
@@ -200,24 +167,53 @@ public class SoftwareConstants
 		    "TX", 
 		    "UT", 
 		    "VT", 
-		    "VA", 
-		    //"VI", 
+		    "VA",  
 		    "WA", 
 		    "WV", 
 		    "WI", 
 		    "WY"
 	};
 	
+	/**
+	 * Used globally to represent X value
+	 */
 	public static final int X = 0;
+	
+	/**
+	 * Used globally to represent Y value
+	 */
 	public static final int Y = 1;
 	
+	/**
+	 * Path of alien image
+	 */
 	public static final String ALIEN_PATH = "img/alien.png";
+	
+	/**
+	 * Path of map image
+	 */
 	public static final String MAP_PATH = "img/map.png";
+	
+	/**
+	 * Path of statistics panel save file
+	 */
 	public static final String SAVE_DATA_PATH = "sav/stats.sav";
 	
 	// Twitter API Credentials
+	/**
+	 * Twitter consumer public key
+	 */
 	public static final String TWITTER_CONSUMER_KEY = "McNmPhDpgqznhvle9WLbY4mhI";
+	/**
+	 * Twitter consumer private key
+	 */
 	public static final String TWITTER_CONSUMER_SECRET = "fBbRvDSmTuq5vmZTO7OTmstmP40P2TgeTbmB27lGbgrw8Sjhdb";
+	/**
+	 * Twitter access public key
+	 */
 	public static final String TWITTER_ACCESS_TOKEN = "323440607-8INMdd9TAQlqxWJxUlRwH6RLjZ6VAJFQ29tvimrm";
+	/**
+	 * Twitter access private key
+	 */
 	public static final String TWITTER_ACCESS_TOKEN_SECRET = "CRyONObtVUz1vUQDLXDBrGspSCpTUtAG0m4YJBNuW4Re6";
 }

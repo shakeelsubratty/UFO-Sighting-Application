@@ -16,11 +16,13 @@ public class MostCommonMonth
 	 */
 	public static String getMostPopularMonth()
 	{
+		// Set default values for monthCount
 		for(int i=0;i<monthCount.length;i++)
 		{
 			monthCount[i] = 0;
 		}
 		
+		//Store matches for each month
 		for(int i=0;i<Fetch.getIncidentCount();i++)
 		{
 			monthCount[Fetch.getIncidentMonth(i)-1]++;
@@ -28,6 +30,7 @@ public class MostCommonMonth
 		
 		int largestIndex = 0;
 		
+		// Find largest value
 		for(int i=0;i<monthCount.length;i++)
 		{
 			if(monthCount[largestIndex] < monthCount[i])
@@ -38,6 +41,7 @@ public class MostCommonMonth
 		
 		String str = "";
 		
+		// Return month based on value of largestIndex
 		switch(largestIndex)
 		{
 			case 0:

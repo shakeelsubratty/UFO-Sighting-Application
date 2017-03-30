@@ -9,19 +9,33 @@ import javax.swing.SwingConstants;
 
 import ripley.control.GameListener;
 
+/**
+ * Panel introducing the Alien Capture game.
+ * 
+ * @author Aaron - K1630486
+ *
+ */
 public class SurprisePanel extends JPanel
 {
+	// GUI Components
 	private JButton button;
 	private JLabel text;
 	
+	/**
+	 * Constructor for panel
+	 */
 	public SurprisePanel()
 	{
 		super();
 		initialise();
 	}
 	
+	/**
+	 * Initialises GUI components
+	 */
 	private void initialise()
 	{
+		// Message to show
 		String str = "Alien Capture!"
 				+ " <br> "
 				+ " <br> Martin has travelled to space in the hope of catching an alien"
@@ -37,19 +51,24 @@ public class SurprisePanel extends JPanel
 				+ " <br> him alone with the bone, he'll eat it!"
 				+ " <br> "
 				+ " <br> Are you ready to take on the challenge?"
-				+ " <br> "
-				;
+				+ " <br> ";
+		
+		// Format text and add to panel
 		text = new JLabel(str);
 		text.setHorizontalAlignment(SwingConstants.CENTER);
 		text.setText("<html> <div style='text-align: center;'>" + str + "</div>");
 		
+		// Add button
 		button = new JButton("Begin");
 		
+		// Configure panel
 		this.setLayout(new BorderLayout());
 		
+		// Add components
 		this.add(text, BorderLayout.CENTER);
 		this.add(button, BorderLayout.SOUTH);
 		
+		// Add listener to button
 		button.addActionListener(new GameListener());
 	}
 }
