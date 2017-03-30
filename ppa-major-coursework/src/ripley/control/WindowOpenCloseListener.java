@@ -10,17 +10,25 @@ import javax.swing.JOptionPane;
 import ripley.model.SoftwareConstants;
 import ripley.view.StatisticsWindow;
 
+/**
+ * Saves/loads statistics panel on close/opening
+ * 
+ * @author Aaron - K1630486
+ *
+ */
 public class WindowOpenCloseListener implements WindowListener
 {	
 	@Override
 	public void windowOpened(WindowEvent e)
 	{
+		// Load statistics
 		StatisticsWindow.load(SoftwareConstants.SAVE_DATA_PATH);
 	}
 
 	@Override
 	public void windowClosing(WindowEvent e)
 	{
+		// Save statistics
 		StatisticsWindow.save(SoftwareConstants.SAVE_DATA_PATH);
 	}
 
