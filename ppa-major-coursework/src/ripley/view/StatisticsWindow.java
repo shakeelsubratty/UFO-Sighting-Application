@@ -29,17 +29,28 @@ public class StatisticsWindow extends JPanel
 	private StatisticsData statisticsData;
 	private static int panelNumber = 4;
 	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
-	private static ArrayList<Integer> activePanelIndexes = new ArrayList<Integer>();
+	private static ArrayList<Integer> activePanelIndexes;
 	
+	/**
+	 * Create view instance of the statistics panel.
+	 */
 	public StatisticsWindow()
 	{	
+		if(activePanelIndexes == null) {
+			activePanelIndexes = new ArrayList<Integer>();
+		}
 		setLayout(new GridLayout(2,2));
 		setPreferredSize(new Dimension(950, 600));
 		initialise();
 	}
 	
+	/**
+	 * Sets up the panel, placing multiple instances inside of the panel to display 
+	 * multiple statistics at one time.
+	 */
 	private void initialise()
 	{
+		// Create the panels.
 		for(int i=0; i<panelNumber; i++) {
 			statisticsData = new StatisticsData();
 			StatisticsPanel statisticsPanel = new StatisticsPanel(statisticsData);
@@ -49,6 +60,12 @@ public class StatisticsWindow extends JPanel
 		}
 	}
 	
+	/**
+	 * Checks the active panels within the StatisticsWindow.
+	 * 
+	 * @param index		The index of the panels to check
+	 * @return	Boolean 	Returns either true/false to indicate if the panel is already active
+	 */
 	public static Boolean checkActiveIndexes(int index) {
 		if(activePanelIndexes.get(index) != null) {
 			return true;
@@ -56,6 +73,9 @@ public class StatisticsWindow extends JPanel
 		return false;
 	}
 	
+	/**
+	 * Updates the panels and windows with view changes.
+	 */
 	public static void update() {
 		System.out.println("Update Window");
 		activePanelIndexes.clear();
@@ -66,6 +86,11 @@ public class StatisticsWindow extends JPanel
 		}
 	}
 	
+	/**
+	 * Saves the indexes of the active panels to be loaded on program start.
+	 * 
+	 * @param filePath		Location to save to
+	 */
 	public static void save(String filePath)
 	{
 		// Create file
@@ -108,6 +133,11 @@ public class StatisticsWindow extends JPanel
 		}
 	}
 	
+	/**
+	 * Loads the active panels from a file.
+	 * 
+	 * @param filePath		The location of the saved file
+	 */
 	public static void load(String filePath)
 	{
 		// Create file
@@ -140,6 +170,8 @@ public class StatisticsWindow extends JPanel
 			{
 				JOptionPane.showMessageDialog(null, "Error: " + e);
 			}
+			
+			System.out.println(activePanelIndexes.toString());
 		}	
 	}
 }

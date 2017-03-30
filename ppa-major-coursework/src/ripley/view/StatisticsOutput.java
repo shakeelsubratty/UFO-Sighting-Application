@@ -25,6 +25,12 @@ public class StatisticsOutput extends JPanel
 	private String title;
 	private String info;
 	
+	/**
+	 * Setup the statistic output.
+	 * 
+	 * @param title		The title of the statistic
+	 * @param info		The statistic to display.
+	 */
 	public StatisticsOutput(String title, String info)
 	{
 		// Update object states
@@ -35,6 +41,9 @@ public class StatisticsOutput extends JPanel
 		initialise();
 	}
 	
+	/**
+	 * Initialise the required components.
+	 */
 	private void initialise()
 	{
 		// Set Layout Manager
@@ -56,7 +65,7 @@ public class StatisticsOutput extends JPanel
 	/**
 	 * Method which sets text for the infoLabel.
 	 *
-	 * @param str		text to set the infoLabel to.
+	 * @param str		Text to set the infoLabel to.
 	 */
 	public void setInfo(String str) {
 		

@@ -57,18 +57,13 @@ public class StatisticsParse {
 	 * @param incidentState		The state of the incident
 	 */
 	public static final void parseNonUSSightings(String incidentState) {
-		
 		boolean matchingState = false;
 		
-		/*
-		 * TBC - Include Hawaii and Alaska.
-		 */
 		for(String state : SoftwareConstants.STATES) {
 			if(incidentState.equals(state.toLowerCase())) {
 				matchingState = true;
 				break;
 			}
-			
 		}
 		
 		// If state in incident is not a US state.
@@ -89,8 +84,11 @@ public class StatisticsParse {
 		int count = 0; 
 		int stateCountValue;
 		
+		// Loop through states
 		for(String state: SoftwareConstants.STATES) {
 			stateCountValue = Fetch.getIncidentCountInState(count);
+			
+			// Compare each state with the current highest
 			if(highestStateValue < stateCountValue) {
 				highestStateIndex = count;
 				highestStateValue = stateCountValue;
