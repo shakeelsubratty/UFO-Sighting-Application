@@ -16,6 +16,7 @@ public class PlayGame
 		{
 			game.dispose();
 			PassengersPanel.reset();
+			BoatPanel.reset();
 			CurrentGameStates.startGame(GameConstants.NO_OF_CHARACTERS);
 		}
 		
