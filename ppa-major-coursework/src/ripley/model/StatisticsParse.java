@@ -99,7 +99,7 @@ public class StatisticsParse {
 		if(highestStateValue != 0) {
 			likeliestState = SoftwareConstants.STATES[highestStateIndex];
 		} else {
-			likeliestState = "Not enough data";
+			likeliestState = "Not enough data (Year range too small)";
 		}
 	}
 	

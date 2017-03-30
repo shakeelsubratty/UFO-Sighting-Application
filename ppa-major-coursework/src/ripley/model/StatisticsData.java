@@ -111,7 +111,7 @@ public class StatisticsData extends Observable {
 		// Set the new active panel
 		activePanel = panels.get(activePanelIndex);
 		
-		if(StatisticsWindow.checkActiveIndexes(activePanelIndex)) {
+		if(StatisticsWindow.checkActiveIndexes(activePanelIndex) == true) {
 			setActivePanel(direction);
 		}
 		
