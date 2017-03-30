@@ -4,8 +4,16 @@ package ripley.view;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import ripley.model.StatisticsData;
@@ -56,5 +64,82 @@ public class StatisticsWindow extends JPanel
 			System.out.println(activePanelIndexes.toString());
 			panel.updateStats(activePanelIndexes);
 		}
+	}
+	
+	public static void save(String filePath)
+	{
+		// Create file
+		File file = new File(filePath);
+				
+		// Reset file
+		if(file.exists())
+		{
+			file.delete();
+		}
+		try
+		{
+			file.createNewFile();
+		}
+		catch (IOException e)
+		{
+			JOptionPane.showMessageDialog(null, "IOException.\n" + e);
+		}
+		
+		ObjectOutputStream objectOut;
+		
+		try
+		{
+			// Initialise Output Stream
+			objectOut = new ObjectOutputStream(new FileOutputStream(filePath));
+			
+			// Write to file
+			objectOut.writeObject(activePanelIndexes);
+					
+			// Close stream
+			objectOut.close();
+		}
+		catch (FileNotFoundException e)
+		{
+			JOptionPane.showMessageDialog(null, "File not found.\n" + e);
+		}
+		catch (IOException e)
+		{
+			JOptionPane.showMessageDialog(null, "IOException.\n" + e);
+		}
+	}
+	
+	public static void load(String filePath)
+	{
+		// Create file
+		File file = new File(filePath);
+				
+		// Initialise Input Stream
+		ObjectInputStream objectIn;
+		
+		if(file.exists())
+		{
+			try
+			{
+				objectIn = new ObjectInputStream(new FileInputStream(filePath));
+				
+				// Read object from file
+				activePanelIndexes = (ArrayList<Integer>) objectIn.readObject();
+				
+				// Close stream
+				objectIn.close();
+			}
+			catch (FileNotFoundException e)
+			{
+				JOptionPane.showMessageDialog(null, "File not found.\n" + e);
+			}
+			catch (IOException e)
+			{
+				JOptionPane.showMessageDialog(null, "IOException.\n" + e);
+			}
+			catch (ClassNotFoundException e)
+			{
+				JOptionPane.showMessageDialog(null, "Error: " + e);
+			}
+		}	
 	}
 }

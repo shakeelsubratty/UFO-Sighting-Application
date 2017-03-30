@@ -17,10 +17,22 @@ public class MovePieceListener implements ActionListener
 	private RiverBankPanel leftBankPanel;
 	private RiverBankPanel rightBankPanel;
 	private RiverPanel riverPanel;
-	
+
 	private int character;
 	private int buttonDirection;
-	
+
+	/**
+	 * Constructor
+	 * 
+	 * @param gp
+	 *            the panel that holds the game
+	 * @param character
+	 *            the character that is being moved, as defined by the constants
+	 *            given in {@link model.GameConstants}
+	 * @param buttonDirection
+	 *            the direction of the button, as defined by the constants given
+	 *            in {@link model.GameConstants}
+	 */
 	public MovePieceListener(GamePanel gp, int character, int buttonDirection)
 	{
 		leftBankPanel = gp.getLeftBankPanel();
@@ -34,45 +46,48 @@ public class MovePieceListener implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		// If the character is on the boat
-		if(CurrentGameStates.getLocation(character) == GameConstants.ON_BOAT)
+		if (CurrentGameStates.getLocation(character) == GameConstants.ON_BOAT)
 		{
 			// If the button points towards the bank
-			if(buttonDirection == CurrentGameStates.getLocation(GameConstants.BOAT))
+			if (buttonDirection == CurrentGameStates.getLocation(GameConstants.BOAT))
 			{
 				// Disembark the character.
 				disembark();
 			}
 		}
 		// If the character is on the bank.
-		else if(CurrentGameStates.getLocation(character) != buttonDirection)
+		else if (CurrentGameStates.getLocation(character) != buttonDirection)
 		{
 			// Embark the character.
 			embark();
 		}
-		
+
 		// If the game is in a winning state
-		if(MoveValidator.checkWin())
+		if (MoveValidator.checkWin())
 		{
 			// Update title of GUI.
 			PlayGame.setTitle("You win!");
-			
+
 			// Disable game controls.
 			PlayGame.setPlayable(false);
 		}
 	}
-	
+
+	/**
+	 * Moves the character onto the boat.
+	 */
 	public void embark()
 	{
 		// If the character is on the left bank
-		if(buttonDirection == GameConstants.RIGHT)
+		if (buttonDirection == GameConstants.RIGHT)
 		{
 			// If the character is successfully added to the boat
-			if(riverPanel.addToBoat(character))
+			if (riverPanel.addToBoat(character))
 			{
 				// Hide the character on the left bank.
 				leftBankPanel.setCharacterVisible(character, false);
 				leftBankPanel.update(leftBankPanel.getGraphics());
-				
+
 				// Update the character's location in the model.
 				CurrentGameStates.setLocation(character, GameConstants.ON_BOAT);
 			}
@@ -81,47 +96,50 @@ public class MovePieceListener implements ActionListener
 		else
 		{
 			// If the character is successfully added to the boat
-			if(riverPanel.addToBoat(character))
+			if (riverPanel.addToBoat(character))
 			{
 				// Hide the character on the right bank.
 				rightBankPanel.setCharacterVisible(character, false);
 				rightBankPanel.update(rightBankPanel.getGraphics());
-				
+
 				// Update the character's location in the model.
 				CurrentGameStates.setLocation(character, GameConstants.ON_BOAT);
 			}
 		}
 	}
-	
+
+	/**
+	 * Moves the character off of the boat.
+	 */
 	public void disembark()
 	{
 		// If the character is currently on the boat
-		if(CurrentGameStates.getLocation(character) == GameConstants.ON_BOAT)
+		if (CurrentGameStates.getLocation(character) == GameConstants.ON_BOAT)
 		{
 			// If the character is moving to the left bank
-			if(buttonDirection == GameConstants.LEFT)
+			if (buttonDirection == GameConstants.LEFT)
 			{
 				// If the character is successfully removed from the boat
-				if(riverPanel.removeFromBoat(character))
+				if (riverPanel.removeFromBoat(character))
 				{
 					// Show the character on the left bank.
 					leftBankPanel.setCharacterVisible(character, true);
 					leftBankPanel.update(leftBankPanel.getGraphics());
-					
+
 					// Update the character's location in the model.
-					CurrentGameStates.setLocation(character, GameConstants.LEFT );
+					CurrentGameStates.setLocation(character, GameConstants.LEFT);
 				}
 			}
 			// If the character is moving to the right bank
 			else
 			{
 				// If the character is successfully removed from the boat
-				if(riverPanel.removeFromBoat(character))
+				if (riverPanel.removeFromBoat(character))
 				{
 					// Show the character on the right bank.
 					rightBankPanel.setCharacterVisible(character, true);
 					rightBankPanel.update(rightBankPanel.getGraphics());
-					
+
 					// Update the character's location in the model.
 					CurrentGameStates.setLocation(character, GameConstants.RIGHT);
 				}

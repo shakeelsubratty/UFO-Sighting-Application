@@ -62,6 +62,14 @@ public class BoatPanel extends JPanel
 		
 	}
 	
+	public static void reset()
+	{
+		leftPassengerInt = -1;
+		rightPassengerInt = -1;
+		leftSlotFree = true;
+		rightSlotFree = true;
+	}
+	
 	public static boolean embark(int character)
 	{
 		// If the character is the farmer and the left seat on the boat is free

@@ -15,6 +15,14 @@ public class MoveBoatListener implements ActionListener
 	private int position;
 	private RiverPanel riverPanel;
 
+	/**
+	 * 
+	 * @param riverPanel
+	 *            the panel that the boat is on
+	 * @param position
+	 *            the current position of the boat, as defined by the constants
+	 *            given in {@link model.GameConstants}
+	 */
 	public MoveBoatListener(RiverPanel riverPanel, int position)
 	{
 		this.position = position;
@@ -23,29 +31,29 @@ public class MoveBoatListener implements ActionListener
 
 	@Override
 	public void actionPerformed(ActionEvent e)
-	{	
+	{
 		// Check that the move is valid based on the current game state.
-		if(MoveValidator.isValidMove())
+		if (MoveValidator.isValidMove())
 		{
 			// Adjust score to account for the boat moving.
 			CurrentGameStates.incrementScore();
-			
+
 			// Update score on GUI.
 			PlayGame.setTitle("SCORE: " + CurrentGameStates.getScore());
-			
+
 			// Update the location of the boat in the model.
 			CurrentGameStates.setLocation(GameConstants.BOAT, position);
-			
+
 			// Move the boat on the GUI.
 			riverPanel.moveBoat(position);
 		}
 		// If the farmer is on the boat and the move was invalid
-		else if(CurrentGameStates.getLocation(GameConstants.FARMER) == GameConstants.ON_BOAT) 
+		else if (CurrentGameStates.getLocation(GameConstants.FARMER) == GameConstants.ON_BOAT)
 		{
 			String title = "GAME OVER: ";
-			
+
 			// If the fox and the goose are left alone together
-			if(CurrentGameStates.getLocation(GameConstants.FOX) == CurrentGameStates.getLocation(GameConstants.GOOSE))
+			if (CurrentGameStates.getLocation(GameConstants.FOX) == CurrentGameStates.getLocation(GameConstants.GOOSE))
 			{
 				// Update title to display the reason the game ended.
 				title += "The alien killed the dog!";
@@ -56,10 +64,10 @@ public class MoveBoatListener implements ActionListener
 				// Update title to display the reason the game ended.
 				title += "The dog ate the bone!";
 			}
-			
+
 			// Update title of GUI.
 			PlayGame.setTitle(title);
-			
+
 			// Disable the controls for the game.
 			PlayGame.setPlayable(false);
 		}

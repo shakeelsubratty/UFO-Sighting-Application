@@ -213,6 +213,7 @@ public class SoftwareConstants
 	
 	public static final String ALIEN_PATH = "img/alien.png";
 	public static final String MAP_PATH = "img/map.png";
+	public static final String SAVE_DATA_PATH = "sav/stats.sav";
 	
 	public static final String TWITTER_CONSUMER_KEY = "McNmPhDpgqznhvle9WLbY4mhI";
 	public static final String TWITTER_CONSUMER_SECRET = "fBbRvDSmTuq5vmZTO7OTmstmP40P2TgeTbmB27lGbgrw8Sjhdb";
