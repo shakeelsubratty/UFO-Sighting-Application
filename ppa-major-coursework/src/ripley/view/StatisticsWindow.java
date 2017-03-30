@@ -41,8 +41,11 @@ public class StatisticsWindow extends JPanel
 		}
 	}
 	
-	public static Integer getActiveIndexes(int index) {
-		return activePanelIndexes.get(index);
+	public static Boolean checkActiveIndexes(int index) {
+		if(activePanelIndexes.get(index) != null) {
+			return true;
+		}
+		return false;
 	}
 	
 	public static void update() {

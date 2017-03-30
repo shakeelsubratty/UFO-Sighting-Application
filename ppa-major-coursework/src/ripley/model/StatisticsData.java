@@ -75,7 +75,8 @@ public class StatisticsData extends Observable {
 			}
 		}
 		
-		/*if(StatisticsWindow.getActivePanels(activePanelIndex) != null) {
+		/*if(StatisticsWindow.checkActiveIndexes(activePanelIndex)) {
+			System.out.print(activePanelIndex);
 			setActivePanel(direction);
 		}*/
 		/*
