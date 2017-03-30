@@ -19,6 +19,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
+import ripley.control.WindowOpenCloseListener;
+
 /**
  * @author Alex Franch Tapia - K1631466
  */
@@ -109,6 +111,8 @@ public class MainWindow extends JFrame implements Observer {
 		add(jpTop, BorderLayout.NORTH);
 		add(jpBot, BorderLayout.SOUTH);
 		add(jpMid, BorderLayout.CENTER);
+		
+		this.addWindowListener(new WindowOpenCloseListener());
 
 		pack();
 		setVisible(true);
