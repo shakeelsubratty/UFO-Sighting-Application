@@ -74,14 +74,16 @@ public class StatisticsPanel extends JPanel implements Observer
 	@Override
 	public void update(Observable o, Object arg) {
 		System.out.println("Panel Update");
+		
+		this.remove(activePanel);
+		
 		activePanel = statisticsData.getActivePanel();
 		StatisticsWindow.update();
 		
-		// validate() and repaint() ?? 
-		this.remove(activePanel);
-		this.add(activePanel, BorderLayout.CENTER);
-		
-		this.validate();
+		this.revalidate();
 		this.repaint();
+		
+		// validate() and repaint() ?? 
+		this.add(activePanel, BorderLayout.CENTER);
 	}
 }
