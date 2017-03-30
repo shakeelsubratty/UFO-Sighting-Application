@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import api.ripley.Incident;
 import ripley.view.MapPanel;
+import ripley.view.StatisticsWindow;
 
 /**
  * @author Alex Franch Tapia - K1631466
@@ -102,7 +103,7 @@ public class MainWindowModel extends Observable {
 	 * @param start 	start date.
 	 * @param end		end date.
 	 */ 
-	public void setDateRange(Integer start, Integer end, StatisticsData statisticsData) {
+	public void setDateRange(Integer start, Integer end) {
 		
 		startDate = start;
 		endDate = end;
@@ -113,14 +114,13 @@ public class MainWindowModel extends Observable {
 			public void run()
 			{
 				getIncidentsInSelectedRange(start, end);
-				statisticsData.initialise();
+				StatisticsWindow.update();
 				setChanged();
 				notifyObservers(searchTime);
 				for(int i=0;i<panels.size();i++)
 				{
 					if(panels.get(i) instanceof MapPanel)
 					{
-						System.out.println("Buttons updated.");
 						((MapPanel) panels.get(1)).updateButtons();
 					}
 				}
