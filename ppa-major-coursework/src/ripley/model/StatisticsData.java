@@ -5,6 +5,7 @@ import java.util.Observable;
 
 import ripley.view.AverageDurationPanel;
 import ripley.view.StatisticsOutput;
+import ripley.view.StatisticsWindow;
 
 /**
  * Model for the statistics window & panel.
@@ -100,11 +101,6 @@ public class StatisticsData extends Observable {
 				activePanelIndex++;
 			}
 		}
-		
-		/*if(StatisticsWindow.checkActiveIndexes(activePanelIndex)) {
-			System.out.print(activePanelIndex);
-			setActivePanel(direction);
-		}*/
 		/*
 		 * 			
 			if(activePanels.get(activePanelIndex) != null) {
@@ -114,6 +110,10 @@ public class StatisticsData extends Observable {
 		
 		// Set the new active panel
 		activePanel = panels.get(activePanelIndex);
+		
+		if(StatisticsWindow.checkActiveIndexes(activePanelIndex) == true) {
+			setActivePanel(direction);
+		}
 		
 		// Call the view to update
 		setChanged();

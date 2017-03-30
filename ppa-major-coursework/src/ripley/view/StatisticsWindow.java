@@ -67,7 +67,7 @@ public class StatisticsWindow extends JPanel
 	 * @return	Boolean 	Returns either true/false to indicate if the panel is already active
 	 */
 	public static Boolean checkActiveIndexes(int index) {
-		if(activePanelIndexes.get(index) != null) {
+		if(activePanelIndexes.contains(index)) {
 			return true;
 		}
 		return false;
@@ -77,11 +77,9 @@ public class StatisticsWindow extends JPanel
 	 * Updates the panels and windows with view changes.
 	 */
 	public static void update() {
-		System.out.println("Update Window");
 		activePanelIndexes.clear();
 		for(StatisticsPanel panel : panels) {
 			activePanelIndexes.add(panel.getActivePanelIndex());
-			System.out.println(activePanelIndexes.toString());
 			panel.updateStats(activePanelIndexes);
 		}
 	}
