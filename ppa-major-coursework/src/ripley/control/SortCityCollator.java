@@ -1,10 +1,6 @@
 package ripley.control;
 
-import java.text.CollationKey;
-import java.text.Collator;
-import java.text.ParseException;
 import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class SortCityCollator extends SortCollator 
 {
@@ -23,5 +19,4 @@ public class SortCityCollator extends SortCollator
 		return 0;
 	}
 	
-
 }
