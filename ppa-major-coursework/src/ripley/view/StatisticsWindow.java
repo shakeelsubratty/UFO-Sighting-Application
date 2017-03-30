@@ -1,14 +1,13 @@
 package ripley.view;
 
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.util.Observable;
-import java.util.Observer;
 
-import javax.swing.JButton;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.util.ArrayList;
+
 import javax.swing.JPanel;
 
-import ripley.control.StatisticsPanelToggle;
 import ripley.model.StatisticsData;
 
 /**
@@ -17,56 +16,45 @@ import ripley.model.StatisticsData;
  * @author Lewis - K1630576
  *
  */
-public class StatisticsWindow extends JPanel implements Observer
+public class StatisticsWindow extends JPanel
 {
-	// GUI Components
-	private static JButton leftButton;
-	private static JButton rightButton;
-	private static StatisticsPanel activePanel;
-	private static StatisticsPanelToggle statisticsActionListener;
-	private static StatisticsData statisticsData;
+	private StatisticsData statisticsData;
+	private static int panelNumber = 4;
+	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
+	private static ArrayList<Integer> activePanelIndexes = new ArrayList<Integer>();
 	
 	public StatisticsWindow()
-	{
-		setPreferredSize(new Dimension(450, 450));
-		activePanel = new StatisticsPanel("", "");
-		statisticsActionListener = new StatisticsPanelToggle();
-		statisticsActionListener.addObserver(this);
-		
-		// Initialise GUI components
+	{	
+		setLayout(new GridLayout(2,2));
+		setPreferredSize(new Dimension(950, 600));
 		initialise();
 	}
 	
 	private void initialise()
 	{
-		// Set Layout Manager
-		this.setLayout(new BorderLayout());
-		
-		// JButton leftButton
-		leftButton = new JButton("<");
-		leftButton.addActionListener(statisticsActionListener);
-		
-		
-		// JButton rightButton
-		rightButton = new JButton(">");
-		rightButton.addActionListener(statisticsActionListener);
-		
-		// Add components to panel
-		this.add(leftButton, BorderLayout.WEST);
-		this.add(activePanel, BorderLayout.CENTER);
-		this.add(rightButton, BorderLayout.EAST);
+		for(int i=0; i<panelNumber; i++) {
+			statisticsData = new StatisticsData();
+			StatisticsPanel statisticsPanel = new StatisticsPanel(statisticsData);
+			panels.add(statisticsPanel);
+			statisticsData.addObserver(statisticsPanel);
+			add(statisticsPanel);
+		}
 	}
 	
-
-	@Override
-	public void update(Observable o, Object arg) {
-		activePanel = StatisticsData.getActivePanel();
-		
-		// validate() and repaint() ?? 
-		this.remove(activePanel);
-		this.add(activePanel, BorderLayout.CENTER);
-		
-		this.validate();
-		this.repaint();
+	public static Boolean checkActiveIndexes(int index) {
+		if(activePanelIndexes.get(index) != null) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static void update() {
+		System.out.println("Update Window");
+		activePanelIndexes.clear();
+		for(StatisticsPanel panel : panels) {
+			activePanelIndexes.add(panel.getActivePanelIndex());
+			System.out.println(activePanelIndexes.toString());
+			panel.updateStats(activePanelIndexes);
+		}
 	}
 }

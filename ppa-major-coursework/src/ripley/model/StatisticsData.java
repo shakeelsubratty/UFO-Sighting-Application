@@ -2,10 +2,13 @@ package ripley.model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.ListIterator;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Set;
 
+import ripley.view.AverageDurationPanel;
+import ripley.view.StatisticsOutput;
 import ripley.view.StatisticsPanel;
 import ripley.view.StatisticsWindow;
 
@@ -17,23 +20,25 @@ import ripley.view.StatisticsWindow;
  */
 public class StatisticsData extends Observable {
 	
-	private static StatisticsPanel activePanel;
-	private static int activePanelIndex;
-	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
+	private StatisticsOutput activePanel;
+	private int activePanelIndex;
+	private ArrayList<StatisticsOutput> panels;
 	
 	public StatisticsData() {
-		
+		activePanelIndex = 0;
+		panels = new ArrayList<StatisticsOutput>();
 	}
 	
 	public void initialise() {
 		StatisticsParse.initialise();
-		panels.add(new StatisticsPanel("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
-		panels.add(new StatisticsPanel("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
-		panels.add(new StatisticsPanel("Likeliest States", StatisticsParse.likeliestState));
-		panels.add(new StatisticsPanel("Sightings via Other Platforms", Integer.toString(StatisticsParse.nonUSSightings)));
-		
-		activePanelIndex = 0;
-		activePanel = panels.get(activePanelIndex);
+		panels.add(new StatisticsOutput("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
+		panels.add(new StatisticsOutput("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
+		panels.add(new StatisticsOutput("Likeliest States", StatisticsParse.likeliestState));
+		panels.add(new StatisticsOutput("TimeStamp of Last Tweet Containing: 'Alien'", StatisticsParse.sightingsOtherPlatforms));
+		panels.add(new AverageDurationPanel("Average Duration Per State"));
+		panels.add(new StatisticsOutput("Most Common Month", MostCommonMonth.getMostPopularMonth()));
+
+		setActivePanel(0);
 		setChanged();
 		notifyObservers();
 	}
@@ -43,24 +48,46 @@ public class StatisticsData extends Observable {
 	 * 
 	 * @return activePanel		Return the panel that is in active display to the user
 	 */
-	public static StatisticsPanel getActivePanel() {
+	public StatisticsOutput getActivePanel() {
 		return activePanel;
 	}
 	
-	public static void setActivePanel(int direction) {
+	public int getActivePanelIndex() {
+		return activePanelIndex;
+	}
+	
+	public void setActivePanel(int direction) {
+
+		// If left
 		if(direction == 0) {
+			// If at start.
 			if(activePanelIndex == 0) {
 				activePanelIndex = panels.size()-1;
 			} else {
 				activePanelIndex--;
 			}
-		} else if(direction == 1) {
+		} else {
+			// If at end
 			if(activePanelIndex == panels.size()-1) {
 				activePanelIndex = 0;
 			} else {
 				activePanelIndex++;
 			}
 		}
+		
+		/*if(StatisticsWindow.checkActiveIndexes(activePanelIndex)) {
+			System.out.print(activePanelIndex);
+			setActivePanel(direction);
+		}*/
+		/*
+		 * 			
+			if(activePanels.get(activePanelIndex) != null) {
+				setActivePanel(direction);
+			}
+		 */
 		activePanel = panels.get(activePanelIndex);
+		
+		setChanged();
+		notifyObservers();
 	}
 }

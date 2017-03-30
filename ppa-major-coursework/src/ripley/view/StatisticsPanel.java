@@ -1,36 +1,39 @@
 package ripley.view;
 
 import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
+import java.util.ArrayList;
+import java.util.Observable;
+import java.util.Observer;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+
+import ripley.control.StatisticsPanelToggle;
+import ripley.model.StatisticsData;
 
 /**
  * Panel to display the statistics of the data within a given time frame.
  * 
  * @author Lewis - K1630576
- * @author Aaron - K1630486
  *
  */
-public class StatisticsPanel extends JPanel
+public class StatisticsPanel extends JPanel implements Observer
 {
 	// GUI Components
-	private JLabel titleLabel;
-	private JLabel infoLabel;
+	private JButton leftButton;
+	private JButton rightButton;
+	private StatisticsOutput activePanel;
+	private StatisticsPanelToggle statisticsActionListener;
+	private StatisticsData statisticsData;
 	
-	// Object states
-	private String title;
-	private String info;
-	
-	public StatisticsPanel(String title, String info)
+	public StatisticsPanel(StatisticsData statisticsData)
 	{
-		// Update object states
-		this.title = title;
-		this.info = info;
+		this.statisticsData = statisticsData;
+		activePanel = new StatisticsOutput("", "");
+		//setPreferredSize(new Dimension(450, 450));
+		statisticsActionListener = new StatisticsPanelToggle(statisticsData);
+		statisticsActionListener.addObserver(this);
 		
 		// Initialise GUI components
 		initialise();
@@ -41,26 +44,46 @@ public class StatisticsPanel extends JPanel
 		// Set Layout Manager
 		this.setLayout(new BorderLayout());
 		
-		// JLabel titleLabel
-		titleLabel = new JLabel(title);
-		titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		// JButton leftButton
+		leftButton = new JButton("<");
+		leftButton.addActionListener(statisticsActionListener);
 		
-		// JLabel infoLabel
-		infoLabel = new JLabel(info);
-		infoLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		
+		// JButton rightButton
+		rightButton = new JButton(">");
+		rightButton.addActionListener(statisticsActionListener);
 		
 		// Add components to panel
-		this.add(titleLabel, BorderLayout.NORTH);
-		this.add(infoLabel, BorderLayout.CENTER);
+		this.add(leftButton, BorderLayout.WEST);
+		this.add(activePanel, BorderLayout.CENTER);
+		this.add(rightButton, BorderLayout.EAST);
 	}
+	
+	public void updateStats(ArrayList<Integer> activePanelIndexes) {
+		if(statisticsData.getActivePanel() == null) {
+			statisticsData.initialise();
+		}
+		activePanel = statisticsData.getActivePanel();
+	}
+	
+	public int getActivePanelIndex() {
+		return statisticsData.getActivePanelIndex();
+	}
+	
 
-	/**
-	 * Method which sets text for the infoLabel.
-	 *
-	 * @param str		text to set the infoLabel to.
-	 */
-	public void setInfo(String str) {
+	@Override
+	public void update(Observable o, Object arg) {
+		System.out.println("Panel Update");
 		
-		infoLabel.setText(str);
+		this.remove(activePanel);
+		
+		activePanel = statisticsData.getActivePanel();
+		StatisticsWindow.update();
+		
+		this.revalidate();
+		this.repaint();
+		
+		// validate() and repaint() ?? 
+		this.add(activePanel, BorderLayout.CENTER);
 	}
 }

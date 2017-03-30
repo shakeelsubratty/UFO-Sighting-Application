@@ -36,12 +36,10 @@ public class Main {
 		MainWindowModel mainWindowModel = new MainWindowModel();
 		WelcomePanel welcomePanel = new WelcomePanel();
 		
-		StatisticsData statisticsData = new StatisticsData();
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
-		statisticsData.addObserver(statisticsWindow);
 		
 		MainWindow mainWindow = new MainWindow(mainWindowModel.ripleyYearArray());
-		MainWindowListener controller = new MainWindowListener(mainWindowModel, mainWindow, statisticsData);
+		MainWindowListener controller = new MainWindowListener(mainWindowModel, mainWindow);
 		
 		mainWindowModel.addObserver(welcomePanel);
 		

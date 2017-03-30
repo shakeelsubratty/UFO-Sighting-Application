@@ -1,8 +1,5 @@
 package ripley.model;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 import api.ripley.Incident;
 
 /**
@@ -16,26 +13,30 @@ public class StatisticsParse {
 	public static int hoaxes;
 	public static int nonUSSightings;
 	public static String likeliestState;
-	public static int sightingsOtherPlatforms;
-	private static Map<String, Integer> stateStats;
+	public static String sightingsOtherPlatforms;
+	private static boolean initialised;
 	
 	/**
 	 * Initialise, parsing through each incident that is stored.
 	 */
 	public static void initialise() {
-		//Loop through each incident
-		for(Incident incident : Fetch.incidents) {
+		if(!initialised) {
 			
-			// The summary of the incident
-			String incidentSummary = incident.getSummary().toLowerCase();
-			
-			// The state of the incident
-			String incidentState = incident.getState().toLowerCase();
-			
-			parseHoax(incidentSummary);
-			parseNonUSSightings(incidentState);
-			//parseLikeliestState(incidentState);
-			parseNonUSSightings("Alien");
+			//Loop through each incident
+			for(Incident incident : Fetch.incidents) {
+				
+				// The summary of the incident
+				String incidentSummary = incident.getSummary().toLowerCase();
+				
+				// The state of the incident
+				String incidentState = incident.getState().toLowerCase();
+				
+				parseHoax(incidentSummary);
+				parseNonUSSightings(incidentState);
+				parseLikeliestState(incidentState);
+				parseSightingsOtherPlatforms("Alien");
+				initialised=true;
+			}
 		}
 	}
 	
@@ -83,18 +84,24 @@ public class StatisticsParse {
 	 */
 	public static final void parseLikeliestState(String incidentState) {
 		
-		// Create HashMap, storing amount of incidents per state.
-		if(stateStats.containsKey(incidentState)) {
-			stateStats.put(incidentState, stateStats.get(incidentState)+1);
-		} else {
-			stateStats.put(incidentState, 1);
-		}
-			
-		// Loop through states
-		for(String stateKey : stateStats.keySet()) {
-			if(stateStats.get(stateKey) > stateStats.get(likeliestState)) {
-				likeliestState = stateKey;
+		int highestStateIndex = 0;
+		int highestStateValue = 0;
+		int count = 0; 
+		int stateCountValue;
+		
+		for(String state: SoftwareConstants.STATES) {
+			stateCountValue = Fetch.getIncidentCountInState(count);
+			if(highestStateValue < stateCountValue) {
+				highestStateIndex = count;
+				highestStateValue = stateCountValue;
 			}
+			count++;
+		}
+		
+		if(highestStateValue != 0) {
+			likeliestState = SoftwareConstants.STATES[highestStateIndex];
+		} else {
+			likeliestState = "Not enough data";
 		}
 	}
 	
