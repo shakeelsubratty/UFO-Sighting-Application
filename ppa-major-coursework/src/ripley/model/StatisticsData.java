@@ -41,7 +41,9 @@ public class StatisticsData extends Observable {
 		panels.add(new StatisticsOutput("TimeStamp of Last Tweet Containing: 'Alien'", StatisticsParse.sightingsOtherPlatforms));
 		panels.add(new AverageDurationPanel("Average Duration Per State"));
 		panels.add(new StatisticsOutput("Most Common Month", MostCommonMonth.getMostPopularMonth()));
-
+		panels.add((new StatisticsOutput("Most Common Type of Sighting", MostCommonTypeOfSighting.getMostCommonTypeOfSighting())));
+		panels.add(new StatisticsOutput("Incident's containing 'Flying Object'", Integer.toString(IncidentWordFrequency.getWord("flying object"))));
+		
 		// Notify view of change
 		setActivePanel(0);
 		setChanged();
