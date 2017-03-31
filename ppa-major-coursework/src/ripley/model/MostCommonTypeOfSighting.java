@@ -14,13 +14,13 @@ import api.ripley.Incident;
 
 public class MostCommonTypeOfSighting 
 {
-	private TreeMap<String, Integer> typesOfSightingCount;	
+	private static TreeMap<String, Integer> typesOfSightingCount;	
 	
 	/**
 	 * Returns the most common type of sighting within the selected dates.
 	 * @return Most common type of sighting
 	 */
-	public String getMostCommonTypeOfSighting()
+	public static String getMostCommonTypeOfSighting()
 	{
 		String mostCommonType = "";	//String to be returned by method
 		

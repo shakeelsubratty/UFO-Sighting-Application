@@ -31,7 +31,6 @@ public class MainWindowListener {
 		
 		view.setFooter(model.lastUpdated());
 		view.addListeners(new LeftButtonListener(), new RightButtonListener(), new ComboBoxFromListener(), new ComboBoxToListener());
-		System.out.println(model.lastUpdated());
 	}
 
 	/**
@@ -44,7 +43,6 @@ public class MainWindowListener {
 		public void actionPerformed(ActionEvent e) {
 
 			model.nextIndex();
-			System.out.println(model.getCurrentIndex());
 			checkIndex();
 			view.setCentrePanel(model.getPanels().get(model.getCurrentIndex()));
 		}
@@ -60,7 +58,6 @@ public class MainWindowListener {
 		public void actionPerformed(ActionEvent e) {
 
 			model.prevIndex();
-			System.out.println(model.getCurrentIndex());
 			checkIndex();
 			view.setCentrePanel(model.getPanels().get(model.getCurrentIndex()));
 			
