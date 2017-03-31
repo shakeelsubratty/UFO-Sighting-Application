@@ -18,12 +18,14 @@ public class AverageDurationModel extends Observable {
 	private ArrayList<Incident> currentList; // stores incidents in a certain state.
 	private int state; // references the state by its index.
 	private int average; // acutal stat.
+	private int divideBy; // what it's divided by (some incidents may not have duration)
 	
 	public AverageDurationModel() {
 		
 		currentList = new ArrayList<Incident>();
 		int state = -1;
 		int average = 0;
+		int divideBy = 0;
 		
 	}
 	
@@ -33,7 +35,7 @@ public class AverageDurationModel extends Observable {
 	 * @param str		state name for which you want the statistic.
 	 */
 	public void generateStat(String str) { 
-		System.out.println("Stat");
+		
 		// Finds index that is equivalent to inputed string. 
 		for ( int i = 0; i < SoftwareConstants.STATES.length ; i++) {
 			
@@ -51,11 +53,18 @@ public class AverageDurationModel extends Observable {
 			
 			for ( int f = 0; f < currentList.size(); f++ ) {
 				
-				average += parseDuration(currentList.get(f).getDuration());
+				int currentIncidentTime = parseDuration(currentList.get(f).getDuration());
+				
+				if ( currentIncidentTime > 0 ) {
+					
+					average += currentIncidentTime;
+					divideBy++;
+				}
+				
 			}
 			
 			// divide average by the number of incidents.
-			average = (int)(average / (double)currentList.size());
+			average = average / divideBy;
 			
 		} else {
 			

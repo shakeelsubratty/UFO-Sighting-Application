@@ -113,10 +113,10 @@ public class MainWindowModel extends Observable {
 		{
 			public void run()
 			{
-				System.out.println("lala mainwindowmodel");
+				
 				getIncidentsInSelectedRange(start, end);
 				
-				System.out.println("lala SLOWl");
+			
 				StatisticsWindow.update();
 				setChanged();
 				notifyObservers(searchTime);

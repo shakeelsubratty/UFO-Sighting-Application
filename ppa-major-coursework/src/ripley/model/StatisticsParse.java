@@ -32,27 +32,14 @@ public class StatisticsParse {
 				// The state of the incident
 				String incidentState = incident.getState().toLowerCase();
 				
-				long x = System.currentTimeMillis();
+	
 				parseHoax(incidentSummary);
-				System.out.println(System.currentTimeMillis() - x );
-				System.out.println("1st");
-				
-				long y = System.currentTimeMillis();
-				parseNonUSSightings(incidentState);
-				System.out.println(System.currentTimeMillis() - y );
-				System.out.println("2nd");	
-				
+				parseNonUSSightings(incidentState);	
 			}
-			
-			long z = System.currentTimeMillis();
+		
 			parseLikeliestState();
-			System.out.println(System.currentTimeMillis() - z );
-			System.out.println("3rd");
-			
-			long m = System.currentTimeMillis();
 			parseSightingsOtherPlatforms("Alien");
-			System.out.println(System.currentTimeMillis() - m );
-			System.out.println("4th");
+
 				
 			initialised=true;
 		}
