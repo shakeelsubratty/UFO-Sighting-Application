@@ -31,6 +31,7 @@ public class StatisticsWindow extends JPanel
 	private static ArrayList<StatisticsPanel> panels = new ArrayList<StatisticsPanel>();
 	private static ArrayList<Integer> activePanelIndexes;
 	private static boolean callCheck;
+	private static boolean firstLoad;
 	
 	/**
 	 * Create view instance of the statistics panel.
@@ -86,12 +87,20 @@ public class StatisticsWindow extends JPanel
 				panel.updateStats(activePanelIndexes);
 			}
 		} else {
+			if(activePanelIndexes.isEmpty()) {
+				firstLoad = true;
+			}
+			System.out.println(activePanelIndexes.toString());
 			int i = 0;
 			for(StatisticsPanel panel : panels) {
+				if(firstLoad) {
+					activePanelIndexes.add(i);
+				}
 				StatisticsData panelStatData = panel.getStatisticsData();
 				panelStatData.loadActivePanel(activePanelIndexes.get(i));
 				i++;
 			}
+			firstLoad = false;
 			callCheck = true;
 			update();
 		}
@@ -181,6 +190,6 @@ public class StatisticsWindow extends JPanel
 			{
 				JOptionPane.showMessageDialog(null, "Error: " + e);
 			}
-		}	
+		}
 	}
 }
