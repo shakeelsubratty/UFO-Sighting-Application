@@ -2,19 +2,13 @@ package ripley.view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.font.GraphicAttribute;
-import java.sql.Date;
-import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-import api.ripley.Incident;
-import api.ripley.Ripley;
 import ripley.model.DateRange;
 import ripley.model.Fetch;
 

@@ -2,7 +2,6 @@ package ripley.view;
 
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.io.File;
 import java.io.FileInputStream;

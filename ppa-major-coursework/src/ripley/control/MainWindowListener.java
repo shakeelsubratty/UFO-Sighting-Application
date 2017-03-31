@@ -5,13 +5,10 @@ package ripley.control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 import ripley.model.MainWindowModel;
-import ripley.model.StatisticsData;
 import ripley.view.MainWindow;
 
 /**

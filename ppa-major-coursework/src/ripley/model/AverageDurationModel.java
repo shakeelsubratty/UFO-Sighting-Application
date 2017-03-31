@@ -1,7 +1,6 @@
 package ripley.model;
 
 import java.util.ArrayList;
-import java.util.Observable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -13,7 +12,7 @@ import api.ripley.Incident;
  * @author Alex Franch Tapia - K1631466
  *
  */
-public class AverageDurationModel extends Observable {
+public class AverageDurationModel {
 	
 	private ArrayList<Incident> currentList; // stores incidents in a certain state.
 	private int state; // references the state by its index.
