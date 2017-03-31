@@ -20,11 +20,18 @@ public class IncidentWordFrequency {
 	 * @param searchTerm		The word to search the frequency of
 	 * @return wordFrequency		The frequency of searchTerm
 	 */
-	public static int getWord(String searchTerm) {
+	public static int getWord(String searchTerm) 
+	{
+		wordFrequency = 0;
 		searchTerm = searchTerm.toLowerCase();
 		Collection<Incident> incidentCollection = Fetch.getIncidents();
-		Collections.frequency(incidentCollection, searchTerm);
-		
+		for(Incident incident : incidentCollection)
+		{
+			if(incident.toString().contains(searchTerm));
+			wordFrequency++;
+		}
+		//wordFrequency = Collections.frequency(incidentCollection, searchTerm);
+		System.out.println(searchTerm + " " + wordFrequency);
 		return wordFrequency;
 	}
 	

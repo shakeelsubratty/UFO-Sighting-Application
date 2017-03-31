@@ -2,9 +2,17 @@ package ripley.model;
 
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ * Defines the combo box model for the Sort Sightings JList
+ * @author Shakeel Subratty - K1631133
+ *
+ */
 public class SortSightingsModel 
 {
 	private DefaultComboBoxModel<String> sortModel;
+	/**
+	 * Initialise sort model
+	 */
 	public SortSightingsModel()
 	{
 		sortModel = new DefaultComboBoxModel<>();

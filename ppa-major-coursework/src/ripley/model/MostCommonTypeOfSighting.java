@@ -9,7 +9,7 @@ import api.ripley.Incident;
 
 /**
  * Models and returns the statistic for most common type of sighting.
- * @author shakeelsubratty
+ * @author Shakeel Subratty - K1631133
  */
 
 public class MostCommonTypeOfSighting 

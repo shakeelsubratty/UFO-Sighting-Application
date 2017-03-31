@@ -2,13 +2,27 @@ package ripley.control;
 
 import java.util.regex.Matcher;
 
+/**
+ * Duration collator - defines ordering strategy for Duration comparisons
+ * @author Shakeel Subratty - K1631133
+ *
+ */
 public class SortDurationCollator extends SortCollator 
 {
+	/**
+	 * Constructor - creates SortCollator with passed pattern string
+	 * @param patternString
+	 */
 	public SortDurationCollator(String patternString) 
 	{
 		super(patternString);
 	}
-
+	
+	/**
+	 * Determies whether source duration is greater, equal or less than target duration
+	 * by numerical ordering.
+	 */
+	@Override
 	public int parse(Matcher matcher, Matcher targetMatcher)
 	{
 		int x,y;
@@ -20,7 +34,6 @@ public class SortDurationCollator extends SortCollator
 				return 1;
 			else if(x == y)
 				return 0;
-			
 			else
 				return -1;
 		}
