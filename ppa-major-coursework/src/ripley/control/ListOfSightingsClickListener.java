@@ -39,9 +39,9 @@ public class ListOfSightingsClickListener extends DoubleClickListener
 		int index = ((JList<String>)e.getComponent()).getSelectedIndex(); //Select the index of the item that was selected
 		Matcher matcher = idPattern.matcher(((JList<String>)e.getComponent()).getSelectedValue());
 		if(matcher.find())
-		{	
+		{	System.out.println(matcher.group());
 			//If selected item contains string ID, get the details for the incident with that ID
-			incidentDetails = Fetch.getIncidentDetails(matcher.group(1));
+			incidentDetails = Fetch.getIncidentDetails(matcher.group(1).trim());
 			
 			//Show option pane with formatted incident details
 			JLabel textLabel = new JLabel("<html>"+ formatIncidentDetails(incidentDetails) + "</html>");
