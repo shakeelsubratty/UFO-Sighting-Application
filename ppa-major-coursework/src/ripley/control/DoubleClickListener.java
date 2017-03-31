@@ -3,29 +3,28 @@ package ripley.control;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-
-import api.ripley.Incident;
-
-/*
- * ClickListener class - determines whether a selected list item has been double clicked 
- * and removes them.
+/**
+ * DoubleClickListener class - determines whether a selected list item has been double clicked.
+ * @author Shakeel Subratty - K1631133
+ *
  */
-public class DoubleClickListener extends MouseAdapter 
+public abstract class DoubleClickListener extends MouseAdapter 
 {
-	private long timeOfPreviousClick;
-	private long currentTime;
+	private long timeOfPreviousClick;	//Tracks time of previous click
+	private long currentTime;	
 	
-	private DefaultComboBoxModel<String> model;
-	
-	public DoubleClickListener(DefaultComboBoxModel<String> model)
+	/**
+	 * Constructor that initialises time of previous click to 0
+	 */
+	public DoubleClickListener()
 	{
-		this.model = model;
 		timeOfPreviousClick = 0; 
 	}
-	
+
+	/**
+	 * Action on mouse clicked. Overrides MouseAdapter.mouseClicked()
+	 */
+	@Override
 	public void mouseClicked(MouseEvent e)
 	{
 		currentTime = System.currentTimeMillis();
@@ -36,8 +35,10 @@ public class DoubleClickListener extends MouseAdapter
 		timeOfPreviousClick = currentTime;
 	}
 	
-	public void clickEvent(MouseEvent e)
-	{
-		
-	}
+	/**
+	 * Defines the action to be carried out on double click event. 
+	 * Overriden by sub-classes.
+	 * @param e
+	 */
+	public abstract void clickEvent(MouseEvent e);
 }

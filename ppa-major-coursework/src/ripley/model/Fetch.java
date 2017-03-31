@@ -60,7 +60,11 @@ public class Fetch {
 		lastUpdated = ripley.getLastUpdated();
 	}
 	
-	
+	/**
+	 * Get large details of a given incident
+	 * @param id
+	 * @return
+	 */
 	public static String getIncidentDetails(String id)
 	{
 		return ripley.getIncidentDetails(id);
@@ -103,6 +107,11 @@ public class Fetch {
 		return stateIncidents;
 	}
 	
+	/**
+	 * Return the number of incidents in a given state
+	 * @param state
+	 * @return
+	 */
 	public static int getIncidentCountInState(int state)
 	{
 		int count = 0;
@@ -116,6 +125,10 @@ public class Fetch {
 		return count;
 	}
 	
+	/**
+	 * Return the state index with the most sightings
+	 * @return
+	 */
 	public static int getMostSightingsCount()
 	{
 		if(mostSightings == -1)

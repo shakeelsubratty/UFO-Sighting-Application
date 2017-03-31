@@ -48,7 +48,7 @@ public class MainWindowModel extends Observable {
 
 		dateRange = new Integer[(endYear - startYear + 1)];
 
-		for (int i = startYear; i <= endYear; i++) {
+		for (int i = endYear; i >= startYear; i--) {
 
 			dateRange[iterator] = i;
 			iterator++;

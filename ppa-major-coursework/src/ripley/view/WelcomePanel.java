@@ -19,10 +19,12 @@ import ripley.model.DateRange;
 import ripley.model.Fetch;
 
 /**
- * @author shakeelsubratty
+ * Welcome panel for application.
+ * @author Shakeel Subratty - K1631133
  */
 public class WelcomePanel extends JPanel implements Observer
 {
+	//Variables that a displayed to user
 	private String startDate;
 	private String endDate;
 	private String dateSelected;
@@ -32,11 +34,18 @@ public class WelcomePanel extends JPanel implements Observer
 	private String acknowledgement;
 		
 	private JLabel text;
+	
+	/**
+	 * Create welcome panel
+	 */
 	public WelcomePanel()
 	{
 		initialise();
 	}
 	
+	/**
+	 * Intialise widgets
+	 */
 	private void initialise()
 	{
 		//BorderLayout manager
@@ -53,11 +62,15 @@ public class WelcomePanel extends JPanel implements Observer
 		acknowledgement = Fetch.getAcknowledgement();
 	
 		text = new JLabel();
-		updateText(text);
+		updateText(text);	//Determine what text should be displayed currently
 		
 		add(text, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Updates displayed text as variable values are changed
+	 * @param text
+	 */
 	private void updateText(JLabel text)
 	{
 		String str = "Welcome to the Ripley API v" + Fetch.getVersion()
@@ -87,6 +100,7 @@ public class WelcomePanel extends JPanel implements Observer
 	{
 		if(arg instanceof DateRange)
 		{
+			//When a range of dates is passed, update welcome panel to show this next stage
 			startDate = ""+((DateRange)arg).getStartDate();
 			endDate = ((DateRange)arg).getEndDate()+"";
 			dateSelected = "Dates selected: " + startDate + "-" + endDate;
@@ -95,6 +109,7 @@ public class WelcomePanel extends JPanel implements Observer
 		}
 		if(arg instanceof Long)
 		{
+			//When a time is passed, update welcome panel to show grabbing information is completed
 			timeForGrab = "Data grabbed in "+ ((Long)arg/1000) +" seconds (" + (Long) arg + " milliseconds)";
 			interaction = "<b>Please now interact with the buttons below</b>";
 			updateText(text);

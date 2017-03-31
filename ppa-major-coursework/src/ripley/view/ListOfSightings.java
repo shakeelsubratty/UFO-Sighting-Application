@@ -13,26 +13,39 @@ import ripley.control.ListOfSightingsClickListener;
 import ripley.control.SortSightingsClickListener;
 import ripley.model.SoftwareConstants;
 
+/**
+ * List of Sightings window.
+ * @author Shakeel Subratty - K1631133
+ */
 public class ListOfSightings extends JFrame 
 {
-	private int state;
 	private JList<String> incidentList;
-		
+	
+	/**
+	 * Creates list of sightings window for a given state.
+	 * @param state
+	 * @param listModel
+	 * @param sortModel
+	 */
 	public ListOfSightings(int state, DefaultComboBoxModel<String> listModel, DefaultComboBoxModel<String> sortModel)
 	{
 		super(SoftwareConstants.STATES[state]);
-		this.state = state;
 		setPreferredSize(new Dimension(800, 400));
 		
 		initialise(listModel,sortModel);
 	}
 	
+	/**
+	 * Intialise JLists for list of sightings window.
+	 * @param listModel
+	 * @param sortModel
+	 */
 	public void initialise(DefaultComboBoxModel<String> listModel, DefaultComboBoxModel<String> sortModel)
 	{
 		setLayout(new BorderLayout());
 		
 		incidentList = new JList<>(listModel);
-		incidentList.addMouseListener(new ListOfSightingsClickListener(listModel));
+		incidentList.addMouseListener(new ListOfSightingsClickListener());
 		JScrollPane jspList = new JScrollPane(incidentList);
 		
 		JComboBox<String> sortComboBox = new JComboBox<>(sortModel);
