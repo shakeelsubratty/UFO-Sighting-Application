@@ -30,8 +30,6 @@ public class IncidentWordFrequency {
 			if(incident.toString().contains(searchTerm));
 			wordFrequency++;
 		}
-		//wordFrequency = Collections.frequency(incidentCollection, searchTerm);
-		System.out.println(searchTerm + " " + wordFrequency);
 		return wordFrequency;
 	}
 	
