@@ -2,10 +2,6 @@ package ripley.control;
 
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.io.IOException;
-
-import javax.swing.JList;
-import javax.swing.JOptionPane;
 
 import ripley.model.SoftwareConstants;
 import ripley.view.StatisticsWindow;

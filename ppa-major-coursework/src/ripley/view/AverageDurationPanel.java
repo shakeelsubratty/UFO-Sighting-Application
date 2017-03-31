@@ -2,13 +2,9 @@ package ripley.view;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.JComboBox;
 
-import ripley.control.AverageDurationListener;
-import ripley.model.AverageDurationModel;
 import ripley.model.SoftwareConstants;
 
 /**
@@ -18,7 +14,7 @@ import ripley.model.SoftwareConstants;
  * @author Alex Franch Tapia - K1631466
  *
  */
-public class AverageDurationPanel extends StatisticsOutput implements Observer {
+public class AverageDurationPanel extends StatisticsOutput {
 
 	// Drop down menu with all states.
 	private JComboBox<String> jcbStates;
@@ -49,13 +45,11 @@ public class AverageDurationPanel extends StatisticsOutput implements Observer {
 	public String getDropDownState() {
 		return jcbStates.getSelectedItem().toString();
 	}
-
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
 	
+	/**
+	 * Method to add action listener to the drop down menu to select a state.
+	 * @param l
+	 */
 	public void addListener(ActionListener l) {
 		
 		jcbStates.addActionListener(l);
