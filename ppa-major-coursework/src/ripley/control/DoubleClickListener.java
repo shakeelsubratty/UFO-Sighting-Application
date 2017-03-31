@@ -4,10 +4,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JList;
-import javax.swing.JOptionPane;
-
-import api.ripley.Incident;
 
 /*
  * ClickListener class - determines whether a selected list item has been double clicked 

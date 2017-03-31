@@ -4,8 +4,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import com.mysql.fabric.xmlrpc.base.Array;
-
 import api.ripley.Incident;
 import api.ripley.Ripley;
 

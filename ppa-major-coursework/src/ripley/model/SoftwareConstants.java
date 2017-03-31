@@ -1,6 +1,5 @@
 package ripley.model;
 
-import java.awt.Point;
 /**
  * A class containing static final fields used as constants throughout the program
  * 

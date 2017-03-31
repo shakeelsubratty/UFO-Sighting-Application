@@ -6,7 +6,6 @@ import ripley.control.MainWindowListener;
 import ripley.model.Fetch;
 import ripley.model.MainWindowModel;
 import ripley.model.SoftwareConstants;
-import ripley.model.StatisticsData;
 import ripley.view.MainWindow;
 import ripley.view.MapPanel;
 import ripley.view.StatisticsWindow;

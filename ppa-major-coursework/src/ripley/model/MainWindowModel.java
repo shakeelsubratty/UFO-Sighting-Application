@@ -8,7 +8,6 @@ import java.util.Observable;
 
 import javax.swing.JPanel;
 
-import api.ripley.Incident;
 import ripley.view.MapPanel;
 import ripley.view.StatisticsWindow;
 
