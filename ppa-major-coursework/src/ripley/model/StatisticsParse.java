@@ -22,6 +22,7 @@ public class StatisticsParse {
 	public static void initialise() {
 		if(!initialised) {
 			
+			
 			//Loop through each incident
 			for(Incident incident : Fetch.incidents) {
 				
@@ -31,12 +32,16 @@ public class StatisticsParse {
 				// The state of the incident
 				String incidentState = incident.getState().toLowerCase();
 				
+	
 				parseHoax(incidentSummary);
-				parseNonUSSightings(incidentState);
-				parseLikeliestState(incidentState);
-				parseSightingsOtherPlatforms("Alien");
-				initialised=true;
+				parseNonUSSightings(incidentState);	
 			}
+		
+			parseLikeliestState();
+			parseSightingsOtherPlatforms("Alien");
+
+				
+			initialised=true;
 		}
 	}
 	
@@ -77,7 +82,7 @@ public class StatisticsParse {
 	 * 
 	 * @param incidentState		The state of the incident
 	 */
-	public static final void parseLikeliestState(String incidentState) {
+	public static final void parseLikeliestState() {
 		
 		int highestStateIndex = 0;
 		int highestStateValue = 0;

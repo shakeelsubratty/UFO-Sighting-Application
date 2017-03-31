@@ -81,6 +81,7 @@ public class StatisticsWindow extends JPanel
 	 */
 	public static void update() {
 		if(callCheck) {
+ 
 			activePanelIndexes.clear();
 			for(StatisticsPanel panel : panels) {
 				activePanelIndexes.add(panel.getActivePanelIndex());
@@ -90,7 +91,7 @@ public class StatisticsWindow extends JPanel
 			if(activePanelIndexes.isEmpty()) {
 				firstLoad = true;
 			}
-			System.out.println(activePanelIndexes.toString());
+		
 			int i = 0;
 			for(StatisticsPanel panel : panels) {
 				if(firstLoad) {
@@ -102,7 +103,9 @@ public class StatisticsWindow extends JPanel
 			}
 			firstLoad = false;
 			callCheck = true;
+
 			update();
+
 		}
 	}
 	

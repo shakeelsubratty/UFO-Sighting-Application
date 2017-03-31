@@ -41,8 +41,10 @@ public class Main {
 		WelcomePanel welcomePanel = new WelcomePanel();
 		
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
+
 		
 		MainWindow mainWindow = new MainWindow(mainWindowModel.ripleyYearArray());
+		
 		MainWindowListener controller = new MainWindowListener(mainWindowModel, mainWindow);
 		mainWindowModel.addObserver(welcomePanel);
 		
@@ -58,6 +60,5 @@ public class Main {
 		mainWindowModel.addPanel(surprisePanel);
 		
 		mainWindow.setCentrePanel(mainWindowModel.getPanels().get(0));
-		
 	}
 }

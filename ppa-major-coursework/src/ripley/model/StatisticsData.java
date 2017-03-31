@@ -3,6 +3,7 @@ package ripley.model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+import ripley.control.AverageDurationListener;
 import ripley.view.AverageDurationPanel;
 import ripley.view.StatisticsOutput;
 import ripley.view.StatisticsWindow;
@@ -38,10 +39,16 @@ public class StatisticsData extends Observable {
 		panels.add(new StatisticsOutput("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
 		panels.add(new StatisticsOutput("Likeliest States", StatisticsParse.likeliestState));
 		panels.add(new StatisticsOutput("TimeStamp of Last Tweet Containing: 'Alien'", StatisticsParse.sightingsOtherPlatforms));
-		panels.add(new AverageDurationPanel("Average Duration Per State"));
+		//panels.add(new AverageDurationPanel("Average Duration Per State"));
 		panels.add(new StatisticsOutput("Most Common Month", MostCommonMonth.getMostPopularMonth()));
 		panels.add((new StatisticsOutput("Most Common Type of Sighting", MostCommonTypeOfSighting.getMostCommonTypeOfSighting())));
 		panels.add(new StatisticsOutput("Incident's containing 'Flying Object'", Integer.toString(IncidentWordFrequency.getWord("flying object"))));
+		
+		AverageDurationModel avgDModel = new AverageDurationModel();
+		AverageDurationPanel avgDPanel = new AverageDurationPanel("Average Duration Per State");
+		AverageDurationListener avgDListener = new AverageDurationListener(avgDPanel,avgDModel);
+		
+		panels.add(avgDPanel);
 		
 		// Notify view of change
 		setActivePanel(2);

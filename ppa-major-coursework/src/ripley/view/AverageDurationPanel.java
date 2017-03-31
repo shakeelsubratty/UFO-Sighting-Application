@@ -22,15 +22,14 @@ public class AverageDurationPanel extends StatisticsOutput implements Observer {
 
 	// Drop down menu with all states.
 	private JComboBox<String> jcbStates;
-	private AverageDurationModel averageDurationModel;
 
 	public AverageDurationPanel(String title) {
 		
 		super(title,"0");
 		jcbStates = new JComboBox<String>(SoftwareConstants.STATES);
 		addDropDown();
-		averageDurationModel = new AverageDurationModel();
-		averageDurationModel.addObserver(this);
+		//averageDurationModel = new AverageDurationModel();
+		//averageDurationModel.addObserver(this);
 	}
 	
 	/**
@@ -40,7 +39,7 @@ public class AverageDurationPanel extends StatisticsOutput implements Observer {
 		
 		super.add(jcbStates,BorderLayout.SOUTH);
 		jcbStates.setSelectedItem(null);	
-		jcbStates.addActionListener(new AverageDurationListener(this, averageDurationModel));
+		
 	}
 		
 	/**
@@ -55,6 +54,11 @@ public class AverageDurationPanel extends StatisticsOutput implements Observer {
 	public void update(Observable o, Object arg) {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void addListener(ActionListener l) {
+		
+		jcbStates.addActionListener(l);
 	}
 
 

@@ -113,7 +113,10 @@ public class MainWindowModel extends Observable {
 		{
 			public void run()
 			{
+				
 				getIncidentsInSelectedRange(start, end);
+				
+			
 				StatisticsWindow.update();
 				setChanged();
 				notifyObservers(searchTime);
