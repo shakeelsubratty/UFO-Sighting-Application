@@ -34,7 +34,6 @@ public class StatisticsData extends Observable {
 		
 		// Call parsing of data, to retrieve from various sources
 		StatisticsParse.initialise();
-		
 		panels.add(new StatisticsOutput("Hoaxes", Integer.toString(StatisticsParse.hoaxes)));
 		panels.add(new StatisticsOutput("Non US Sightings", Integer.toString(StatisticsParse.nonUSSightings)));
 		panels.add(new StatisticsOutput("Likeliest States", StatisticsParse.likeliestState));
@@ -45,7 +44,7 @@ public class StatisticsData extends Observable {
 		panels.add(new StatisticsOutput("Incident's containing 'Flying Object'", Integer.toString(IncidentWordFrequency.getWord("flying object"))));
 		
 		// Notify view of change
-		setActivePanel(0);
+		setActivePanel(2);
 		setChanged();
 		notifyObservers();
 	}
@@ -90,7 +89,7 @@ public class StatisticsData extends Observable {
 			}
 			
 		// Otherwise, direction is to the right (right button)
-		} else {
+		} else if(direction == 1) {
 			
 			// If the current view is at the end of the array
 			if(activePanelIndex == panels.size()-1) {
@@ -103,22 +102,29 @@ public class StatisticsData extends Observable {
 				activePanelIndex++;
 			}
 		}
-		/*
-		 * 			
-			if(activePanels.get(activePanelIndex) != null) {
-				setActivePanel(direction);
-			}
-		 */
 		
 		// Set the new active panel
 		activePanel = panels.get(activePanelIndex);
 		
-		if(StatisticsWindow.checkActiveIndexes(activePanelIndex) == true) {
-			setActivePanel(direction);
+		// If not moving
+		if(direction != 2) {
+			// Check if panel is already active
+			if(StatisticsWindow.checkActiveIndexes(activePanelIndex) == true) {
+				setActivePanel(direction);
+			}
 		}
 		
 		// Call the view to update
 		setChanged();
 		notifyObservers();
+	}
+	
+	/**
+	 * Loads the active panel from save.
+	 * 
+	 * @param index		The saved index for this panel
+	 */
+	public void loadActivePanel(int index) {
+		activePanelIndex = index;
 	}
 }

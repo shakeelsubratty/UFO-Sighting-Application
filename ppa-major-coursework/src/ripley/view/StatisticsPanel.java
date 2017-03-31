@@ -85,6 +85,14 @@ public class StatisticsPanel extends JPanel implements Observer
 		return statisticsData.getActivePanelIndex();
 	}
 	
+	/**
+	 * Returns the model in use for the panel instance.
+	 * 
+	 * @return statisticsData		The model of the panel instance
+	 */
+	public StatisticsData getStatisticsData() {
+		return statisticsData;
+	}
 
 	@Override
 	/**
