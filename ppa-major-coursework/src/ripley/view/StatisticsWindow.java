@@ -81,6 +81,7 @@ public class StatisticsWindow extends JPanel
 	 */
 	public static void update() {
 		if(callCheck) {
+ 
 			activePanelIndexes.clear();
 			for(StatisticsPanel panel : panels) {
 				activePanelIndexes.add(panel.getActivePanelIndex());
@@ -91,6 +92,7 @@ public class StatisticsWindow extends JPanel
 				firstLoad = true;
 			}
 			System.out.println(activePanelIndexes.toString());
+			System.out.println("i get stuck here(Statistics Window)");
 			int i = 0;
 			for(StatisticsPanel panel : panels) {
 				if(firstLoad) {
@@ -102,7 +104,9 @@ public class StatisticsWindow extends JPanel
 			}
 			firstLoad = false;
 			callCheck = true;
+			System.out.println("This is impossible");
 			update();
+			System.out.println("yep true");
 		}
 	}
 	

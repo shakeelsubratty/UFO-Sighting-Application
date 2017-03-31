@@ -33,16 +33,20 @@ public class Main {
 		
 		// Get required data from API to start application.
 		Fetch.getData();
+		System.out.println("Data Fetched");
 		
 		/*
 		 * Setup the model and panels
 		 */
 		MainWindowModel mainWindowModel = new MainWindowModel();
 		WelcomePanel welcomePanel = new WelcomePanel();
+		System.out.println("Main Panels made");
 		
 		StatisticsWindow statisticsWindow = new StatisticsWindow();
+		System.out.println("Stat Window made");
 		
 		MainWindow mainWindow = new MainWindow(mainWindowModel.ripleyYearArray());
+		System.out.println("Main Window Made");
 		MainWindowListener controller = new MainWindowListener(mainWindowModel, mainWindow);
 		mainWindowModel.addObserver(welcomePanel);
 		
@@ -58,6 +62,6 @@ public class Main {
 		mainWindowModel.addPanel(surprisePanel);
 		
 		mainWindow.setCentrePanel(mainWindowModel.getPanels().get(0));
-		
+		System.out.println("Main Window Made");
 	}
 }

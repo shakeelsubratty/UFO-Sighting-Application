@@ -2,6 +2,8 @@ package ripley.model;
 
 import java.util.ArrayList;
 import java.util.Observable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import api.ripley.Incident;
 
@@ -31,7 +33,7 @@ public class AverageDurationModel extends Observable {
 	 * @param str		state name for which you want the statistic.
 	 */
 	public void generateStat(String str) { 
-		
+		System.out.println("Stat");
 		// Finds index that is equivalent to inputed string. 
 		for ( int i = 0; i < SoftwareConstants.STATES.length ; i++) {
 			
@@ -45,13 +47,20 @@ public class AverageDurationModel extends Observable {
 		currentList = Fetch.getIncidentsInState(state);
 		
 		// For every incident add its duration to the average.
-		for ( int f = 0; f < currentList.size(); f++ ) {
+		if ( currentList.size() != 0 ) {
 			
-			average += Integer.parseInt(currentList.get(f).getDuration());
+			for ( int f = 0; f < currentList.size(); f++ ) {
+				
+				average += parseDuration(currentList.get(f).getDuration());
+			}
+			
+			// divide average by the number of incidents.
+			average = (int)(average / (double)currentList.size());
+			
+		} else {
+			
+			average = 0;
 		}
-		
-		// divide average by the number of incidents.
-		average = average / currentList.size();
 		
 	}
 	
@@ -63,6 +72,29 @@ public class AverageDurationModel extends Observable {
 	public String getAverage() {
 		
 		return String.valueOf(average);
+	}
+	
+	private int parseDuration(String duration)
+	{
+		int time = 0;
+		String durationPattern = "((([\\d])+)\\s((second(s)?|sec(s)?)|(minut(e)?(s)?|min(s)?)|(hour(s)?)?))";
+		Pattern pattern = Pattern.compile(durationPattern); 
+		Matcher matcher = pattern.matcher(duration);
+		if(matcher.find())
+		{
+			int x =  Integer.parseInt(matcher.group(2));
+			if(matcher.group(12) != null)
+			{
+				x *= 60.00;
+			}
+			else if(matcher.group(5) != null)
+			{
+				x = Math.round(x/60);
+			}
+			time = x;
+		}
+		
+		return time;
 	}
 
 }
