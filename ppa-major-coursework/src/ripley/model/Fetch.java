@@ -39,23 +39,23 @@ public class Fetch {
 		
 		ripley = new Ripley(PRIVATE_KEY, PUBLIC_KEY);
 		
-		// Get working version of the Ripley API.
-		version = ripley.getVersion();
-		
+//		// Get working version of the Ripley API.
+//		version = ripley.getVersion();
+//		
 		// Acknowledgement string for the ripley API.
 		acknowledgement = ripley.getAcknowledgementString();
-		
+//		
 		// First year of incidents
 		startYear = ripley.getStartYear();
-		
+//		
 		// Last year of incidents
 		endYear = ripley.getLatestYear();
-		
-		// Current date and time
-		String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
-		
-		
-		lastUpdated = ripley.getLastUpdated();
+//		
+//		// Current date and time
+//		String currentTime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+//		
+//		
+//		lastUpdated = ripley.getLastUpdated();
 	}
 	
 	/**
